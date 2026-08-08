@@ -5755,3 +5755,12 @@
 2026-08-08T15:19:14 INFO    [100/111] tosikeikaku202306shizuoka
 2026-08-08T15:19:14 INFO    [111/111] tsushima
 2026-08-08T15:19:14 INFO    --- end of normalize ---
+2026-08-08T15:20:52 INFO    $ bskp tiles --theme 土地利用
+2026-08-08T15:20:52 INFO    土地利用: 599 レイヤ -> landuse.pmtiles
+2026-08-08T15:29:09 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-08T15:29:09 INFO    --- end of tiles ---
+2026-08-08T15:48:18 INFO    $ bskp tiles --theme 人口
+2026-08-08T15:48:18 INFO    人口: 211 レイヤ -> population.pmtiles
+2026-08-08T15:50:11 INFO    既存 index から 9 テーマを引き継ぎます
+2026-08-08T15:50:11 INFO    出典 53 件を attribution.json に書き出しました
+2026-08-08T15:50:11 INFO    --- end of tiles ---

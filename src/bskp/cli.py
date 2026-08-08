@@ -323,6 +323,16 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     index = [{"theme": t, "slug": s, "file": d.name, "layers": n,
               "bytes": d.stat().st_size} for t, s, d, n in made]
     args.tiles.mkdir(parents=True, exist_ok=True)
+
+    # --theme で一部だけ作り直したとき、作らなかったテーマを index から
+    # 消してしまわないよう既存分とマージする（ビューアが読めなくなる）
+    index_path = args.tiles / "index.json"
+    if args.theme and index_path.exists():
+        rebuilt = {e["slug"] for e in index}
+        kept = [e for e in json.loads(index_path.read_text(encoding="utf-8"))
+                if e["slug"] not in rebuilt and (args.tiles / e["file"]).exists()]
+        logging.info("既存 index から %d テーマを引き継ぎます", len(kept))
+        index = kept + index
     (args.tiles / "index.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
 

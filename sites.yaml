@@ -47,7 +47,12 @@ sites:
       - https://www.city.tsushima.lg.jp/kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html
     pause: 1.0
     enabled: true
-    note: 市の通常ページから SHP の ZIP を直接配布している型。この型は全国に多数ある
+    license: クリエイティブ・コモンズ 表示 4.0 国際
+    note: >
+      市の通常ページから SHP の ZIP を直接配布している型。この型は全国に多数ある。
+      ライセンスはページに書かれていないが、市のオープンデータ利用規約
+      （/shisei/toukeijouhou/opendata/opendata.html）で
+      「特に記載のあるものを除き CC BY 4.0」と明示されている。
 
   - id: kawasaki
     name: 川崎市 都市計画基礎調査（オープンデータ）

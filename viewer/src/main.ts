@@ -2,7 +2,10 @@ import maplibregl from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-import { MAX_ACTIVE, THEMES, colorOf, themeOf, type ThemeDef } from './layers'
+import {
+  GROUP_UNCLASSIFIED, LANDUSE_GROUPS, MAX_ACTIVE, THEMES, UNCLASSIFIED,
+  colorOf, landuseColorExpression, themeOf, type ThemeDef,
+} from './layers'
 import { applyThemeAttr, initialTheme, type Theme } from './theme'
 import './style.css'
 
@@ -79,10 +82,29 @@ const srcId = (key: string): string => `src-${key}`
 const fillId = (key: string): string => `${key}-fill`
 const lineId = (key: string): string => `${key}-line`
 const pointId = (key: string): string => `${key}-point`
-const allLayerIds = (key: string): string[] => [fillId(key), lineId(key), pointId(key)]
+const allLayerIds = (key: string): string[] =>
+  [fillId(key), lineId(key), pointId(key), `${key}-hatch`]
 
 const interactiveIds = (): string[] =>
   [...active].flatMap(allLayerIds).filter((id) => map.getLayer(id))
+
+/** 未分類を塗り分けるための斜線ハッチ。色に頼らない手掛かりとして使う。 */
+function ensureHatch(): void {
+  const id = 'hatch-unclassified'
+  if (map.hasImage(id)) map.removeImage(id)
+  const size = 8
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+  ctx.strokeStyle = UNCLASSIFIED[theme]
+  ctx.lineWidth = 1.5
+  ctx.beginPath()
+  ctx.moveTo(-size, size); ctx.lineTo(size, -size)
+  ctx.moveTo(0, size * 2); ctx.lineTo(size * 2, 0)
+  ctx.stroke()
+  map.addImage(id, ctx.getImageData(0, 0, size, size), { pixelRatio: 1 })
+}
 
 /**
  * データレイヤを追加する。ジオメトリ型が混在した PMTiles なので、
@@ -102,12 +124,34 @@ function addDataLayers(): void {
       })
     }
 
-    map.addLayer({
-      id: fillId(def.key), type: 'fill', source: srcId(def.key), 'source-layer': def.key,
-      filter: ['==', ['geometry-type'], 'Polygon'],
-      layout: { visibility: visible },
-      paint: { 'fill-color': color, 'fill-opacity': alpha, 'fill-outline-color': color },
-    })
+    if (def.key === 'landuse') {
+      // 土地利用だけは単色ではなく、正規化した lui_group で 3 系統に塗り分ける
+      ensureHatch()
+      map.addLayer({
+        id: `${def.key}-hatch`, type: 'fill', source: srcId(def.key), 'source-layer': def.key,
+        filter: ['all', ['==', ['geometry-type'], 'Polygon'],
+                 ['==', ['get', 'lui_group'], GROUP_UNCLASSIFIED]],
+        layout: { visibility: visible },
+        paint: { 'fill-pattern': 'hatch-unclassified', 'fill-opacity': Math.min(1, alpha + 0.35) },
+      })
+      map.addLayer({
+        id: fillId(def.key), type: 'fill', source: srcId(def.key), 'source-layer': def.key,
+        filter: ['all', ['==', ['geometry-type'], 'Polygon'],
+                 ['!=', ['get', 'lui_group'], GROUP_UNCLASSIFIED]],
+        layout: { visibility: visible },
+        paint: {
+          'fill-color': landuseColorExpression(theme) as never,
+          'fill-opacity': alpha,
+        },
+      })
+    } else {
+      map.addLayer({
+        id: fillId(def.key), type: 'fill', source: srcId(def.key), 'source-layer': def.key,
+        filter: ['==', ['geometry-type'], 'Polygon'],
+        layout: { visibility: visible },
+        paint: { 'fill-color': color, 'fill-opacity': alpha, 'fill-outline-color': color },
+      })
+    }
     map.addLayer({
       id: lineId(def.key), type: 'line', source: srcId(def.key), 'source-layer': def.key,
       filter: ['==', ['geometry-type'], 'LineString'],
@@ -187,6 +231,7 @@ function buildToggles(): void {
       </label>
       <div class="layer-body">
         <p class="layer-desc">${def.desc}</p>
+        ${def.key === 'landuse' ? landuseLegend() : ''}
         <label class="opacity">
           <span>不透明度</span>
           <input type="range" min="0.05" max="1" step="0.05"
@@ -224,6 +269,23 @@ function buildToggles(): void {
     layersDiv.appendChild(row)
   }
 }
+
+/**
+ * 土地利用の凡例。3 系統の色と、未分類のハッチを並べる。
+ * 識別を色だけに依存させないため、必ず名前を添える。
+ */
+function landuseLegend(): string {
+  const items = LANDUSE_GROUPS.map(
+    (g) => `<li><span class="key" style="background:${g[theme]}"></span>${g.value}</li>`,
+  ).join('')
+  return `<ul class="legend">${items}
+    <li><span class="key hatch" style="--hatch:${UNCLASSIFIED[theme]}"></span>
+        ${GROUP_UNCLASSIFIED}<span class="legend-note">対照表に記載なし</span></li>
+  </ul>
+  <p class="legend-note">国土交通省の対照表で全国共通コードに正規化し、
+     実施要領の大分類（自然的／都市的／低未利用）に集約した区分。</p>`
+}
+
 
 function setVisible(def: ThemeDef, on: boolean): void {
   for (const id of allLayerIds(def.key)) {
@@ -320,14 +382,27 @@ async function renderAttribution(): Promise<void> {
     const res = await fetch(`${tilesBase}/attribution.json`)
     if (!res.ok) throw new Error(String(res.status))
     const list: Attribution[] = await res.json()
+    // 提供元は50件を超えるのでライセンス単位にまとめる。
+    // 全件は details に畳んでおく（CC-BY も GFDL も表示義務があるため省略はしない）
+    const byLicense = new Map<string, string[]>()
+    for (const a of list) {
+      const key = a.license || 'ライセンス表記なし'
+      const orgs = byLicense.get(key) ?? []
+      orgs.push(a.organization)
+      byLicense.set(key, orgs)
+    }
+    const summary = [...byLicense]
+      .sort((a, b) => b[1].length - a[1].length)
+      .map(([lic, orgs]) => `${esc(lic)}（${orgs.length}団体）`)
+      .join(' / ')
+    const detail = [...byLicense]
+      .map(([lic, orgs]) =>
+        `<dt>${esc(lic)}</dt><dd>${orgs.map(esc).join('、')}</dd>`)
+      .join('')
     el.innerHTML =
-      '出典: ' +
-      list
-        .map((a) => `${esc(a.organization)}（${esc(a.license)}）`)
-        .join(' / ') +
-      ' — いずれも' +
-      list.map((a) => esc(a.catalog)).filter((v, i, s) => s.indexOf(v) === i).join('・') +
-      'で公開されているオープンデータ'
+      `出典: ${summary}` +
+      `<details class="sources"><summary>提供元の一覧（${list.length}件）</summary>` +
+      `<dl>${detail}</dl></details>`
   } catch {
     el.textContent = '出典: 各自治体が公開する都市計画基礎調査オープンデータ'
   }

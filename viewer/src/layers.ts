@@ -100,6 +100,37 @@ export const THEMES: ThemeDef[] = [
   },
 ]
 
+/**
+ * 土地利用の 3 系統別の配色。
+ *
+ * 国標準の用途は 20 区分あるが、20 色は検証を通せないので実施要領の大分類
+ * （自然的／都市的／低未利用）に束ねる。3 色なら all-pairs でも両モード PASS する。
+ *
+ * 4 つ目の「未分類」に中立色を当てる案は検証で落ちた。ダークモードでは灰と
+ * aqua 系がどの明度でも 通常視 ΔE 13.3 前後まで近づき分離できない
+ * （明度帯 L 0.48-0.67 が狭いため構造的に回避できない）。
+ * そこで未分類は色ではなくハッチ（テクスチャ）で描く。色以外の手掛かりなので
+ * 色覚特性にも印刷にも依存しない。
+ */
+export const LANDUSE_GROUPS = [
+  { value: '自然的土地利用', light: '#1baf7a', dark: '#199e70' },
+  { value: '都市的土地利用', light: '#eb6834', dark: '#d95926' },
+  { value: '低未利用土地', light: '#2a78d6', dark: '#3987e5' },
+] as const
+
+/** 未分類のハッチの線色。塗りつぶしの色ではないので配色スロットを消費しない。 */
+export const UNCLASSIFIED = { light: '#6b7078', dark: '#9aa0a6' } as const
+export const GROUP_UNCLASSIFIED = '未分類'
+
+/** MapLibre の fill-color 用。lui_group で分岐し、該当なしは透明にする
+ *  （未分類は別レイヤでハッチを敷くため、ここでは塗らない）。 */
+export function landuseColorExpression(mode: 'light' | 'dark'): unknown[] {
+  const expr: unknown[] = ['match', ['get', 'lui_group']]
+  for (const g of LANDUSE_GROUPS) expr.push(g.value, g[mode])
+  expr.push('rgba(0,0,0,0)')
+  return expr
+}
+
 export const themeOf = (key: string): ThemeDef | undefined =>
   THEMES.find((t) => t.key === key)
 

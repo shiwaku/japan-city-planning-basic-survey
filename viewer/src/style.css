@@ -201,3 +201,24 @@ body {
   .panel { width: 100%; max-width: none; top: auto; height: 52vh; }
   .panel.collapsed { height: auto; }
 }
+
+/* ---- 土地利用の凡例 ---- */
+.legend { list-style: none; margin: 0 0 6px; padding: 0; display: flex;
+  flex-direction: column; gap: 3px; }
+.legend li { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--ink-2); }
+.legend .key { width: 14px; height: 10px; flex: none; border-radius: 2px;
+  border: 1px solid var(--line-2); }
+/* 未分類は色ではなく斜線で示す。色覚特性や印刷に依存しない手掛かりにするため */
+.legend .key.hatch {
+  background: repeating-linear-gradient(-45deg,
+    var(--hatch) 0 1.5px, transparent 1.5px 5px);
+}
+.legend-note { margin: 0 0 0 auto; font-size: 10px; color: var(--ink-3); }
+p.legend-note { margin: 0 0 4px; line-height: 1.5; }
+
+/* ---- 出典一覧 ---- */
+.sources { margin-top: 4px; }
+.sources summary { cursor: pointer; color: var(--ink-2); }
+.sources dl { margin: 6px 0 0; max-height: 160px; overflow-y: auto; }
+.sources dt { margin-top: 5px; color: var(--ink-2); }
+.sources dd { margin: 1px 0 0; padding-left: 8px; }
