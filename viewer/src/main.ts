@@ -14,6 +14,15 @@ interface TileEntry {
   bytes: number
 }
 
+/** bskp tiles が実データから生成する出典情報。CC-BY / GNU FDL とも表示が必須。 */
+interface Attribution {
+  organization: string
+  license: string
+  catalog: string
+  datasets: number
+  url: string
+}
+
 let theme: Theme = initialTheme()
 applyThemeAttr(theme)
 
@@ -297,6 +306,31 @@ async function boot(): Promise<void> {
   const layers = index.reduce((a, e) => a + e.layers, 0)
   const mib = index.reduce((a, e) => a + e.bytes, 0) / 1048576
   statusEl.textContent = `${index.length}項目 / ${layers}レイヤ / ${mib.toFixed(0)} MiB`
+
+  await renderAttribution()
+}
+
+/**
+ * 出典表示。CC-BY も GNU FDL も再配布には表示が必要なので、
+ * 実データから生成した attribution.json をそのまま出す（手書きにしない）。
+ */
+async function renderAttribution(): Promise<void> {
+  const el = document.getElementById('attribution') as HTMLElement
+  try {
+    const res = await fetch(`${tilesBase}/attribution.json`)
+    if (!res.ok) throw new Error(String(res.status))
+    const list: Attribution[] = await res.json()
+    el.innerHTML =
+      '出典: ' +
+      list
+        .map((a) => `${esc(a.organization)}（${esc(a.license)}）`)
+        .join(' / ') +
+      ' — いずれも' +
+      list.map((a) => esc(a.catalog)).filter((v, i, s) => s.indexOf(v) === i).join('・') +
+      'で公開されているオープンデータ'
+  } catch {
+    el.textContent = '出典: 各自治体が公開する都市計画基礎調査オープンデータ'
+  }
 }
 
 renderThemeBtn()
