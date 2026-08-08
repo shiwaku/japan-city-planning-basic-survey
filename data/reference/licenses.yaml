@@ -1,0 +1,32 @@
+# カタログのメタデータが曖昧・空のときに、一次情報で確認した内容で補うための表。
+# 再配布するので「その他」「未指定」のまま出さない。確認先を必ず書く。
+#
+# ここに書くのは実際に規約を読んで確認したものだけ。推測で埋めない。
+
+overrides:
+  東京都都市整備局:
+    license: クリエイティブ・コモンズ 表示 4.0 国際
+    source: >
+      東京都オープンデータカタログサイト 利用規約
+      https://portal.data.metro.tokyo.lg.jp/terms/
+      「本サイトに存在する著作物の著作権は、クリエイティブ・コモンズ・ライセンス
+      表示4.0国際のもとでライセンスされています」。複製・公衆送信・翻案が可能で
+      商用利用も可。カタログの license_id は 'other' だがサイト規約が適用される。
+
+  愛知県津島市:
+    license: クリエイティブ・コモンズ 表示 4.0 国際
+    source: >
+      津島市オープンデータ利用規約
+      https://www.city.tsushima.lg.jp/shisei/toukeijouhou/opendata/opendata.html
+      「特に記載のあるものを除き、クリエイティブ・コモンズ・ライセンス表示4.0国際
+      のもとでライセンスされています」。
+
+# 配布タイルから外すデータセット。ライセンスが不明なものを再配布しないため。
+# 一次情報で確認が取れたらここから外す。
+exclude:
+  - dataset: www-geospatial-jp-ckan-dataset-https-data-bodik-jp-dataset-440001_2023toshi_kituki
+    reason: 大分県 令和5年度（杵築市）。G空間情報センター側で「ライセンスが指定されていません」。BODIK の原本も辿れず
+  - dataset: www-geospatial-jp-ckan-dataset-https-data-bodik-jp-dataset-440001_2023toshi_yufuin
+    reason: 同上（湯布院）
+  - dataset: www-geospatial-jp-ckan-dataset-https-data-bodik-jp-dataset-440001_2023toshi_hasama
+    reason: 同上（由布市挟間）

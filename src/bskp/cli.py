@@ -321,6 +321,18 @@ def cmd_tiles(args: argparse.Namespace) -> None:
         sys.exit(f"not found: {manifest_path}  (先に `python -m bskp convert` を実行)")
     layers = json.loads(manifest_path.read_text(encoding="utf-8"))
 
+    # ライセンス不明のデータセットは配布タイルに入れない。
+    # convert は layers.json を作り直すので、手で消しても復活する。
+    # 除外は licenses.yaml に持たせて毎回効くようにする。
+    lic_path = args.reference / "licenses.yaml"
+    if lic_path.exists():
+        excluded = {e["dataset"] for e in
+                    (yaml.safe_load(lic_path.read_text(encoding="utf-8")) or {}).get("exclude") or []}
+        before = len(layers)
+        layers = [l for l in layers if l["dataset_name"] not in excluded]
+        if before != len(layers):
+            logging.info("ライセンス不明のため %d レイヤを除外しました", before - len(layers))
+
     groups: dict[str, list[Path]] = collections.defaultdict(list)
     for layer in layers:
         for theme in layer["themes"] or ["その他"]:
@@ -364,17 +376,28 @@ def cmd_tiles(args: argparse.Namespace) -> None:
         print(f"  {t:<10} {d.name:<20} {d.stat().st_size / 1048576:8.1f} MiB  ({n} レイヤ)")
 
 
-def _attribution_for(layers: list[dict], inventory: Path) -> list[dict]:
-    """タイルに含まれるデータの提供元とライセンスを、インベントリから引き当てる。"""
+def _attribution_for(layers: list[dict], inventory: Path,
+                     reference: Path | None = None) -> list[dict]:
+    """タイルに含まれるデータの提供元とライセンスを、インベントリから引き当てる。
+
+    カタログのメタデータが「その他」や空のことがあるので、一次情報で確認した内容を
+    licenses.yaml で補う。再配布するのに条件不明のまま出さないため。
+    """
+    verified: dict[str, dict] = {}
+    ref_dir = reference or (inventory.parent / "reference")
+    lic_path = ref_dir / "licenses.yaml"
+    if lic_path.exists():
+        verified = (yaml.safe_load(lic_path.read_text(encoding="utf-8")) or {}).get("overrides") or {}
     used = {(l["catalog_id"], l["dataset_name"]) for l in layers}
     seen: dict[tuple[str, str], dict] = {}
     for row in _read_inventory(inventory):
         key = (row["catalog_id"], row["dataset_name"])
         if key not in used or key in seen:
             continue
+        fixed = verified.get(row["organization"])
         seen[key] = {
             "organization": row["organization"],
-            "license": row["license"],
+            "license": fixed["license"] if fixed else row["license"],
             "catalog": row["catalog_name"],
             "url": row["dataset_url"],
         }
@@ -604,6 +627,7 @@ def main(argv: list[str] | None = None) -> None:
     st = sub.add_parser("tiles", help="調査項目ごとにPMTilesを作る")
     st.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
     st.add_argument("--tiles", type=Path, default=DEFAULT_TILES)
+    st.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     st.add_argument("--theme", action="append", help="対象の調査項目（複数可）")
     st.add_argument("--min-zoom", type=int, default=4)
     st.add_argument("--max-zoom", type=int, default=14)
