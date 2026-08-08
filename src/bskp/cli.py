@@ -25,7 +25,7 @@ from .fetch import fetch_all
 from .codetable import build_reference, normalize_code
 from .convert import build_pmtiles, describe, extract_recursive, to_geojsonl
 from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
-from .normalize import GROUPS, annotate, code_field
+from .normalize import GROUPS, annotate, code_field, is_aggregate
 from .scrape import Site, scrape_site
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -275,6 +275,7 @@ def cmd_normalize(args: argparse.Namespace) -> None:
     logging.info("%d レイヤを正規化します", len(targets))
 
     stats: collections.Counter = collections.Counter()
+    skipped_aggregate = 0
     for n, path in enumerate(targets, 1):
         parts = path.relative_to(args.processed).parts
         pref = args.pref or index.get(parts[1] if len(parts) > 1 else "", "")
@@ -288,8 +289,13 @@ def cmd_normalize(args: argparse.Namespace) -> None:
             feature = json.loads(raw)
             props = feature.get("properties") or {}
             if not resolved:
-                field, is_national = code_field(list(props))
                 resolved = True
+                if is_aggregate(list(props)):
+                    # 小地域集計型は敷地ベースの土地利用とは別物なので正規化しない
+                    skipped_aggregate += 1
+                    lines_out = []
+                    break
+                field, is_national = code_field(list(props))
             feature["properties"] = annotate(props, pref, reference, field, is_national)
             stats[feature["properties"]["lui_group"]] += 1
             lines_out.append(json.dumps(feature, ensure_ascii=False))
@@ -300,7 +306,8 @@ def cmd_normalize(args: argparse.Namespace) -> None:
             logging.info("[%d/%d] %s", n, len(targets), parts[1] if len(parts) > 1 else "")
 
     total = sum(stats.values())
-    print(f"{len(targets)} レイヤ / {total:,} フィーチャ")
+    print(f"{len(targets) - skipped_aggregate} レイヤ / {total:,} フィーチャ"
+          f"（小地域集計型 {skipped_aggregate} レイヤは対象外）")
     for group in GROUPS:
         count = stats.get(group, 0)
         if total:

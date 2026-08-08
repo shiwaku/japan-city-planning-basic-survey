@@ -86,36 +86,35 @@ def code_field(fields: list[str]) -> tuple[str | None, bool]:
     return None, False
 
 
-def dominant_lui(props: dict) -> str | None:
-    """小地域集計型（lui_201… に面積が入る）から、最大面積の用途コードを選ぶ。
+# 小地域集計型の目印。small_area / area_id_no を持ち、用途別の面積や棟数が
+# lui_201… bui_401… のように列で並ぶ。1 ポリゴン = 1 小地域なので、
+# 地物の形と属性の意味が対応しない
+AGGREGATE_MARKERS = ("small_area", "area_id_no")
 
-    1 ポリゴンが複数用途の面積を持つので単一区分にはならない。
-    地図で塗り分けるために「主たる用途」を代表値として決める。
-    集計値であること自体はビューア側で明示する。
+
+def is_aggregate(fields: list[str]) -> bool:
+    """小地域集計型なら True。
+
+    土地利用は敷地ベース、建物は建物ベースのポリゴンが本来の姿で、
+    集計型は 1 ポリゴンが小地域まるごとを指す別物。同じ地図記号では描けない。
+    実測では土地利用の 99.8%（984,681/986,643 フィーチャ）が個別ポリゴンで、
+    集計型は 0.2% しかない。混ぜると凡例の意味が壊れるので分けて扱う。
     """
-    best_code, best_area = None, 0.0
-    for key, value in props.items():
-        m = _LUI_RE.match(key)
-        if not m:
-            continue
-        try:
-            area = float(value or 0)
-        except (TypeError, ValueError):
-            continue
-        # 231(不明) は主たる用途の候補にしない
-        if m.group(1) == "231":
-            continue
-        if area > best_area:
-            best_code, best_area = m.group(1), area
-    return best_code if best_area > 0 else None
+    names = {_clean(f) for f in fields}
+    if all(m in names for m in AGGREGATE_MARKERS):
+        return True
+    return any(_LUI_RE.match(n) for n in names)
 
 
 def annotate(props: dict, pref: str, reference: dict,
              field: str | None, is_national: bool = False) -> dict:
     """1 フィーチャの属性に lui_code / lui_name / lui_group を足して返す。
 
-    優先順は (1) 国標準コードを持つ列があればそれ、(2) 県独自コードを対照表で写す、
-    (3) 小地域集計型なら面積最大の用途を代表値にする。
+    優先順は (1) 国標準コードを持つ列があればそれ、(2) 県独自コードを対照表で写す。
+
+    小地域集計型からの「主たる用途」の導出はしない。1 ポリゴンが小地域まるごとで
+    複数用途の面積を持つため、代表値を1つ選ぶと元データに無い値を作ることになる。
+    集計型のレイヤ自体を対象から外す（is_aggregate で判定）。
     """
     from .codetable import normalize_code
 
@@ -129,9 +128,6 @@ def annotate(props: dict, pref: str, reference: dict,
             code = text if text in reference["national_codes"] else None
         else:
             code = normalize_code(reference, pref, text)
-    if code is None:
-        code = dominant_lui(props)
-
     props = dict(props)
     props["lui_code"] = code or ""
     props["lui_name"] = reference["national_codes"].get(code, "") if code else ""

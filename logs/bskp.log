@@ -5808,3 +5808,11 @@
 2026-08-08T16:01:28 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
 2026-08-08T16:01:29 INFO    saitama-pref: 5 ページ読んで 0 ファイルリンクを取得
 2026-08-08T16:01:29 INFO    --- end of scrape ---
+2026-08-08T16:10:44 INFO    $ bskp normalize
+2026-08-08T16:11:17 INFO    111 レイヤを正規化します
+2026-08-08T16:11:19 INFO    --- end of normalize ---
+2026-08-08T16:13:47 INFO    $ bskp normalize
+2026-08-08T16:14:04 INFO    111 レイヤを正規化します
+2026-08-08T16:14:50 INFO    [100/111] tosikeikaku202306shizuoka
+2026-08-08T16:14:51 INFO    [111/111] tsushima
+2026-08-08T16:14:51 INFO    --- end of normalize ---

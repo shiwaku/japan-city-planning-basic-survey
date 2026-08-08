@@ -99,7 +99,7 @@ class Layer:
     themes: list[str] = field(default_factory=list)
 
 
-def _ogrinfo(path: Path) -> dict:
+def _ogrinfo(path: Path, encoding: str = "CP932") -> dict:
     """ogrinfo -so -al -json でレイヤの素性を読む。
 
     SHAPE_ENCODING を渡しても、DBF 由来のフィールド名がそのまま CP932 バイトで
@@ -110,7 +110,7 @@ def _ogrinfo(path: Path) -> dict:
         out = subprocess.run(
             ["ogrinfo", "-so", "-al", "-json", str(path)],
             capture_output=True, timeout=180, check=True,
-            env={**_env(), "SHAPE_ENCODING": "CP932"},
+            env={**_env(), "SHAPE_ENCODING": encoding},
         ).stdout
         return json.loads(out.decode("utf-8", "replace"))
     except subprocess.CalledProcessError as exc:
@@ -138,6 +138,29 @@ def describe(path: Path) -> tuple[str, int, str]:
     return srs, int(layer.get("featureCount") or 0), layer.get("geometryFields", [{}])[0].get("type", "")
 
 
+# 文字化けの目印。UTF-8 のバイト列を CP932 として読むと、この帯の文字が大量に出る
+# （'佐藤' が '菴占陸' のようになる）。逆方向の化けは別の帯になる
+_MOJIBAKE = re.compile(r"[繧繝縺蜿蜷菴閭髢郢輔ｼｦｧｨｩｪ]")
+
+
+def detect_encoding(source: Path) -> str:
+    """DBF の文字コードを決める。CP932 決め打ちだと UTF-8 のものが化ける。
+
+    自治体データは CP932 が多数だが UTF-8 も混ざる（h29luss は UTF-8 で、
+    CP932 を強制すると属性名が '菴乗園繧ｳ' になった）。
+    属性名を両方で読んでみて、化けの少ないほうを採る。
+    """
+    for encoding in ("CP932", "UTF-8"):
+        meta = _ogrinfo(source, encoding)
+        layers = meta.get("layers") or []
+        if not layers:
+            continue
+        names = "".join(f.get("name", "") for f in layers[0].get("fields", []))
+        if not _MOJIBAKE.search(names):
+            return encoding
+    return "CP932"
+
+
 def to_geojsonl(source: Path, dest: Path, source_srs: str = "") -> bool:
     """EPSG:4326 の GeoJSONSeq に変換する。
 
@@ -150,16 +173,43 @@ def to_geojsonl(source: Path, dest: Path, source_srs: str = "") -> bool:
            "-t_srs", "EPSG:4326", "-skipfailures", "-makevalid"]
     if source_srs:
         cmd += ["-s_srs", source_srs]
-    env_note = {"SHAPE_ENCODING": "CP932"}
+    # 属性名からの推定だけでは決めきれない。DBF のフィールド名は 10 バイト上限で
+    # 多バイト文字の途中で切れることがあり（'調査区' が 10 バイト目で分断される）、
+    # どちらの符号化でも壊れて見える。CP932 を指定すると GDAL が変換するので
+    # 出力は必ず妥当な UTF-8 になるが、UTF-8 を指定すると生バイトが素通りして
+    # 不正な UTF-8 が出る。そこで出力の妥当性で最終判断する。
+    for encoding in (detect_encoding(source), "CP932"):
+        try:
+            subprocess.run(cmd, capture_output=True, check=True, timeout=1800,
+                           env={**_env(), "SHAPE_ENCODING": encoding})
+        except subprocess.CalledProcessError as exc:
+            log.warning("ogr2ogr 失敗 %s: %s", source.name,
+                        exc.stderr.decode("utf-8", "replace")[:300])
+            return False
+        except subprocess.TimeoutExpired:
+            log.warning("ogr2ogr タイムアウト: %s", source.name)
+            return False
+        if _is_valid_utf8(dest):
+            return True
+        log.info("%s: %s では不正な UTF-8 になったので CP932 で作り直します",
+                 source.name, encoding)
+    return True
+
+
+def _is_valid_utf8(path: Path, sample: int = 1 << 20) -> bool:
+    """出力の先頭を読んで UTF-8 として妥当か確かめる。"""
     try:
-        subprocess.run(cmd, capture_output=True, check=True, timeout=1800,
-                       env={**_env(), **env_note})
-        return True
-    except subprocess.CalledProcessError as exc:
-        log.warning("ogr2ogr 失敗 %s: %s", source.name,
-                    exc.stderr.decode("utf-8", "replace")[:300])
-    except subprocess.TimeoutExpired:
-        log.warning("ogr2ogr タイムアウト: %s", source.name)
+        with path.open("rb") as fh:
+            head = fh.read(sample)
+    except OSError:
+        return False
+    # 末尾で多バイト文字が切れている可能性があるので数バイト削りながら試す
+    for cut in range(4):
+        try:
+            (head if cut == 0 else head[:-cut]).decode("utf-8")
+            return True
+        except UnicodeDecodeError:
+            continue
     return False
 
 
