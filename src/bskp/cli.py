@@ -275,8 +275,46 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     args.tiles.mkdir(parents=True, exist_ok=True)
     (args.tiles / "index.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # 出典表示。CC-BY も GNU FDL も再配布には表示が要るので、
+    # タイルの元になったデータセットから実際の提供元とライセンスを拾って出す。
+    # 手書きにすると変換対象が変わったときに嘘になる。
+    attribution = _attribution_for(layers, args.inventory)
+    (args.tiles / "attribution.json").write_text(
+        json.dumps(attribution, ensure_ascii=False, indent=2), encoding="utf-8")
+    logging.info("出典 %d 件を attribution.json に書き出しました", len(attribution))
     for t, s, d, n in made:
         print(f"  {t:<10} {d.name:<20} {d.stat().st_size / 1048576:8.1f} MiB  ({n} レイヤ)")
+
+
+def _attribution_for(layers: list[dict], inventory: Path) -> list[dict]:
+    """タイルに含まれるデータの提供元とライセンスを、インベントリから引き当てる。"""
+    used = {(l["catalog_id"], l["dataset_name"]) for l in layers}
+    seen: dict[tuple[str, str], dict] = {}
+    for row in _read_inventory(inventory):
+        key = (row["catalog_id"], row["dataset_name"])
+        if key not in used or key in seen:
+            continue
+        seen[key] = {
+            "organization": row["organization"],
+            "license": row["license"],
+            "catalog": row["catalog_name"],
+            "url": row["dataset_url"],
+        }
+
+    # 組織＋ライセンス単位にまとめる。同じ県のデータセットが何十件も並んでも意味がない
+    grouped: dict[tuple[str, str], dict] = {}
+    for rec in seen.values():
+        key = (rec["organization"], rec["license"])
+        entry = grouped.setdefault(key, {
+            "organization": rec["organization"],
+            "license": rec["license"],
+            "catalog": rec["catalog"],
+            "datasets": 0,
+            "url": rec["url"],
+        })
+        entry["datasets"] += 1
+    return sorted(grouped.values(), key=lambda e: -e["datasets"])
 
 
 # 調査項目名 → ファイル名に使える slug

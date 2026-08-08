@@ -1,0 +1,83 @@
+name: Deploy viewer to GitHub Pages
+
+# PMTiles（約98 MiB）はリポジトリに入れていない。git 履歴が重くなるうえ、
+# タイルは data/raw から再生成できるため。代わりに Release にアセットとして
+# 置き、ビルド時に取り出す。Release アセットは git 履歴に載らない。
+#
+# タイルを更新したら:
+#   make tiles
+#   gh release upload tiles --clobber data/tiles/*
+# のあと、このワークフローを再実行する（workflow_dispatch）。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'viewer/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時実行を1つに絞る。進行中のデプロイは中断しない
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  TILES_RELEASE: tiles
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Install
+        working-directory: viewer
+        run: npm ci
+
+      - name: Build
+        working-directory: viewer
+        run: npm run build
+
+      - name: Fetch tiles from release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p viewer/dist/tiles
+          gh release download "$TILES_RELEASE" \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir viewer/dist/tiles \
+            --pattern '*'
+          ls -la viewer/dist/tiles
+
+      - name: Verify tiles
+        run: |
+          test -f viewer/dist/tiles/index.json || { echo "index.json がありません"; exit 1; }
+          count=$(ls viewer/dist/tiles/*.pmtiles | wc -l)
+          echo "PMTiles $count 件 / $(du -sh viewer/dist/tiles | cut -f1)"
+          test "$count" -gt 0 || { echo "PMTiles がありません"; exit 1; }
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: viewer/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
