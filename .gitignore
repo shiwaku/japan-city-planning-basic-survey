@@ -3,5 +3,3 @@ data/work/
 *.part
 __pycache__/
 .venv/
-# 走査ログは各自の実行履歴なので共有しない（形式は README 参照）
-logs/

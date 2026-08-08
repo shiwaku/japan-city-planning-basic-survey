@@ -1,0 +1,987 @@
+2026-08-08T10:54:20 INFO    $ bskp scrape
+2026-08-08T10:54:20 DEBUG   Starting new HTTPS connection (1): www.mlit.go.jp:443
+2026-08-08T10:54:20 DEBUG   https://www.mlit.go.jp:443 "GET /robots.txt HTTP/11" 404 234
+2026-08-08T10:54:20 INFO    robots.txt: https://www.mlit.go.jp -> none (allow all)
+2026-08-08T10:54:20 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/city_plan/toshi_city_plan_tk_000049.html HTTP/11" 200 None
+2026-08-08T10:54:21 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/tosiko/kisotyousa001.html HTTP/11" 200 None
+2026-08-08T10:54:22 INFO    mlit-kisochosa: 2 ページ読んで 36 ファイルリンクを取得
+2026-08-08T10:54:22 DEBUG   Starting new HTTPS connection (1): opendata.pref.shizuoka.jp:443
+2026-08-08T10:54:23 DEBUG   https://opendata.pref.shizuoka.jp:443 "GET /robots.txt HTTP/11" 200 115
+2026-08-08T10:54:23 INFO    robots.txt: https://opendata.pref.shizuoka.jp -> loaded
+2026-08-08T10:54:23 DEBUG   https://opendata.pref.shizuoka.jp:443 "GET /dataset/9925.html HTTP/11" 200 None
+2026-08-08T10:54:24 INFO    shizuoka-pref: 1 ページ読んで 0 ファイルリンクを取得
+2026-08-08T10:54:24 DEBUG   Starting new HTTPS connection (1): www.city.tsushima.lg.jp:443
+2026-08-08T10:54:24 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /robots.txt HTTP/11" 404 None
+2026-08-08T10:54:24 INFO    robots.txt: https://www.city.tsushima.lg.jp -> none (allow all)
+2026-08-08T10:54:24 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html HTTP/11" 200 None
+2026-08-08T10:54:25 INFO    tsushima: 1 ページ読んで 18 ファイルリンクを取得
+2026-08-08T10:54:25 INFO    --- end of scrape ---
+2026-08-08T10:55:53 INFO    $ bskp scrape
+2026-08-08T10:55:53 DEBUG   Starting new HTTPS connection (1): www.mlit.go.jp:443
+2026-08-08T10:55:53 DEBUG   https://www.mlit.go.jp:443 "GET /robots.txt HTTP/11" 404 234
+2026-08-08T10:55:53 INFO    robots.txt: https://www.mlit.go.jp -> none (allow all)
+2026-08-08T10:55:53 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/city_plan/toshi_city_plan_tk_000049.html HTTP/11" 200 None
+2026-08-08T10:55:54 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/tosiko/kisotyousa001.html HTTP/11" 200 None
+2026-08-08T10:55:55 INFO    mlit-kisochosa: 2 ページ読んで 36 ファイルリンクを取得
+2026-08-08T10:55:55 DEBUG   Starting new HTTPS connection (1): opendata.pref.shizuoka.jp:443
+2026-08-08T10:55:55 DEBUG   https://opendata.pref.shizuoka.jp:443 "GET /robots.txt HTTP/11" 200 115
+2026-08-08T10:55:55 INFO    robots.txt: https://opendata.pref.shizuoka.jp -> loaded
+2026-08-08T10:55:55 DEBUG   https://opendata.pref.shizuoka.jp:443 "GET /dataset/9925.html HTTP/11" 200 None
+2026-08-08T10:55:56 INFO    shizuoka-pref: 1 ページ読んで 0 ファイルリンクを取得
+2026-08-08T10:55:56 DEBUG   Starting new HTTPS connection (1): www.city.tsushima.lg.jp:443
+2026-08-08T10:55:56 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /robots.txt HTTP/11" 404 None
+2026-08-08T10:55:56 INFO    robots.txt: https://www.city.tsushima.lg.jp -> none (allow all)
+2026-08-08T10:55:56 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html HTTP/11" 200 None
+2026-08-08T10:55:57 INFO    tsushima: 1 ページ読んで 18 ファイルリンクを取得
+2026-08-08T10:55:57 INFO    --- end of scrape ---
+2026-08-08T11:02:26 INFO    $ bskp harvest --limit 0
+2026-08-08T11:02:26 DEBUG   Starting new HTTPS connection (1): www.geospatial.jp:443
+2026-08-08T11:02:26 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:02:26 INFO    geospatial-jp: q='都市計画基礎調査' -> 55 hits
+2026-08-08T11:02:27 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:02:27 INFO    geospatial-jp: q='"都市計画基礎調査"' -> 23 hits
+2026-08-08T11:02:27 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:02:27 INFO    geospatial-jp: q='土地利用現況調査' -> 1 hits
+2026-08-08T11:02:27 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 210
+2026-08-08T11:02:27 INFO    geospatial-jp: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:02:27 INFO    geospatial-jp: 60 fetched -> 56 relevant (strict 56 / alias 0)
+2026-08-08T11:02:27 DEBUG   Starting new HTTPS connection (1): data.bodik.jp:443
+2026-08-08T11:02:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:02:28 INFO    bodik: q='都市計画基礎調査' -> 4781 hits
+2026-08-08T11:02:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:02:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:02:30 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:02:32 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:02:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:02:34 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:02:36 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:02:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:02:38 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:02:40 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:02:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:02:42 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:02:44 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:02:45 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:02:48 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:02:49 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:02:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:02:52 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:02:53 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:02:54 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:02:56 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:02:58 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:02:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:03:00 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:03:01 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:03:02 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:03:03 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:03:04 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:03:05 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:03:05 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:03:07 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:03:08 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:03:09 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:03:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:03:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:03:12 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:03:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:03:14 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:03:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:03:16 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:03:17 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:03:19 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:03:24 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:03:26 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4400 HTTP/11" 200 None
+2026-08-08T11:03:28 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4500 HTTP/11" 200 None
+2026-08-08T11:03:30 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4600 HTTP/11" 200 None
+2026-08-08T11:03:34 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4700 HTTP/11" 200 None
+2026-08-08T11:03:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:03:35 INFO    bodik: q='"都市計画基礎調査"' -> 23 hits
+2026-08-08T11:03:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:03:35 INFO    bodik: q='土地利用現況調査' -> 4562 hits
+2026-08-08T11:03:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:03:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:03:39 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:03:40 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:03:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:03:42 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:03:43 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:03:45 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:03:46 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:03:48 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:03:49 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:03:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:03:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:03:53 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:03:54 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:03:55 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:03:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:04:00 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:04:01 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:04:02 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:04:03 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:04:05 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:04:07 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:04:09 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:04:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:04:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:04:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:04:14 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:04:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:04:17 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:04:18 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:04:19 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:04:21 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:04:22 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:04:24 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:04:25 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:04:26 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:04:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:04:28 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:04:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:04:30 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:04:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:04:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:04:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4400 HTTP/11" 200 None
+2026-08-08T11:04:44 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4500 HTTP/11" 200 None
+2026-08-08T11:04:45 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:04:45 INFO    bodik: q='建物利用現況調査' -> 4359 hits
+2026-08-08T11:04:46 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:04:47 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:04:49 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:04:50 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:04:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:04:52 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:04:54 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:04:55 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:04:56 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:04:58 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:04:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:05:00 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:05:01 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:05:02 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:05:04 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:05:05 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:05:06 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:05:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:05:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:05:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:05:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:05:16 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:05:17 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:05:18 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:05:20 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:05:22 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:05:23 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:05:24 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:05:26 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:05:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:05:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:05:30 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:05:31 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:05:32 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:05:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:05:34 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:05:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:05:36 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:05:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:05:39 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:05:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:05:47 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:05:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:05:51 INFO    bodik: 5795 fetched -> 23 relevant (strict 23 / alias 0)
+2026-08-08T11:05:51 DEBUG   Starting new HTTPS connection (1): catalog.data.metro.tokyo.lg.jp:443
+2026-08-08T11:05:51 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:05:51 INFO    tokyo: q='都市計画基礎調査' -> 2832 hits
+2026-08-08T11:05:52 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:05:52 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:05:53 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:05:54 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:05:54 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:05:55 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:05:56 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:05:57 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:05:58 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:05:59 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:06:00 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:06:01 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:06:02 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:06:02 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:06:03 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:06:04 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:06:05 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:06:05 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:06:06 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:06:07 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:06:07 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:06:08 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:06:09 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:06:10 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:06:11 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:06:11 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:06:13 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:06:14 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:06:14 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 230
+2026-08-08T11:06:14 INFO    tokyo: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:06:14 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:06:14 INFO    tokyo: q='土地利用現況調査' -> 2387 hits
+2026-08-08T11:06:15 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:06:16 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:06:20 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:06:21 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:06:22 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:06:22 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:06:24 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:06:25 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:06:25 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:06:26 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:06:27 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:06:28 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:06:29 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:06:29 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:06:30 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:06:31 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:06:32 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:06:32 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:06:33 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:06:34 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:06:35 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:06:36 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:06:37 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:06:37 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:06:37 INFO    tokyo: q='建物利用現況調査' -> 2369 hits
+2026-08-08T11:06:38 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:06:39 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:06:40 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:06:41 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:06:42 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:06:43 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:06:44 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:06:45 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:06:45 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:06:46 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:06:47 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:06:48 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:06:49 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:06:50 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:06:51 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:06:51 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:06:55 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:06:56 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:06:57 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:06:58 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:06:59 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:07:00 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:07:00 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:07:00 INFO    tokyo: 3137 fetched -> 2 relevant (strict 0 / alias 2)
+2026-08-08T11:07:00 DEBUG   Starting new HTTPS connection (1): data.city.yokohama.lg.jp:443
+2026-08-08T11:07:01 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2547914
+2026-08-08T11:07:01 INFO    yokohama: q='都市計画基礎調査' -> 91 hits
+2026-08-08T11:07:01 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 16831
+2026-08-08T11:07:01 INFO    yokohama: q='"都市計画基礎調査"' -> 1 hits
+2026-08-08T11:07:01 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2521504
+2026-08-08T11:07:01 INFO    yokohama: q='土地利用現況調査' -> 81 hits
+2026-08-08T11:07:02 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2443673
+2026-08-08T11:07:02 INFO    yokohama: q='建物利用現況調査' -> 77 hits
+2026-08-08T11:07:02 INFO    yokohama: 116 fetched -> 1 relevant (strict 1 / alias 0)
+2026-08-08T11:07:02 DEBUG   Starting new HTTPS connection (1): ckan.pf-sapporo.jp:443
+2026-08-08T11:07:02 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:07:02 INFO    sapporo: q='都市計画基礎調査' -> 86 hits
+2026-08-08T11:07:02 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:07:02 INFO    sapporo: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:03 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:07:03 INFO    sapporo: q='土地利用現況調査' -> 88 hits
+2026-08-08T11:07:03 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:07:03 INFO    sapporo: q='建物利用現況調査' -> 88 hits
+2026-08-08T11:07:03 INFO    sapporo: 117 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:03 DEBUG   Starting new HTTPS connection (1): data.city.sendai.jp:443
+2026-08-08T11:07:03 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 45094
+2026-08-08T11:07:03 INFO    sendai: q='都市計画基礎調査' -> 3 hits
+2026-08-08T11:07:03 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 219
+2026-08-08T11:07:03 INFO    sendai: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:03 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:07:03 INFO    sendai: q='土地利用現況調査' -> 6 hits
+2026-08-08T11:07:03 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:07:04 INFO    sendai: q='建物利用現況調査' -> 6 hits
+2026-08-08T11:07:04 INFO    sendai: 6 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:04 DEBUG   Starting new HTTPS connection (1): catalog.opendata.pref.kanagawa.jp:443
+2026-08-08T11:07:04 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1537683
+2026-08-08T11:07:04 INFO    kanagawa: q='都市計画基礎調査' -> 376 hits
+2026-08-08T11:07:05 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1123513
+2026-08-08T11:07:06 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 653178
+2026-08-08T11:07:07 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1349600
+2026-08-08T11:07:07 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 79076
+2026-08-08T11:07:07 INFO    kanagawa: q='"都市計画基礎調査"' -> 3 hits
+2026-08-08T11:07:07 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1501162
+2026-08-08T11:07:08 INFO    kanagawa: q='土地利用現況調査' -> 380 hits
+2026-08-08T11:07:08 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 887855
+2026-08-08T11:07:09 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 971718
+2026-08-08T11:07:10 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1401709
+2026-08-08T11:07:11 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1530184
+2026-08-08T11:07:11 INFO    kanagawa: q='建物利用現況調査' -> 358 hits
+2026-08-08T11:07:11 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 878034
+2026-08-08T11:07:12 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 761161
+2026-08-08T11:07:13 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1154637
+2026-08-08T11:07:13 INFO    kanagawa: 403 fetched -> 3 relevant (strict 3 / alias 0)
+2026-08-08T11:07:13 DEBUG   Starting new HTTPS connection (1): gifu-opendata.pref.gifu.lg.jp:443
+2026-08-08T11:07:13 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 689216
+2026-08-08T11:07:13 INFO    gifu: q='都市計画基礎調査' -> 419 hits
+2026-08-08T11:07:14 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1627326
+2026-08-08T11:07:15 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 667949
+2026-08-08T11:07:15 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 949683
+2026-08-08T11:07:16 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 704223
+2026-08-08T11:07:16 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 566878
+2026-08-08T11:07:16 INFO    gifu: q='"都市計画基礎調査"' -> 81 hits
+2026-08-08T11:07:16 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 725800
+2026-08-08T11:07:16 INFO    gifu: q='土地利用現況調査' -> 390 hits
+2026-08-08T11:07:17 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1597506
+2026-08-08T11:07:18 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 759601
+2026-08-08T11:07:19 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1169087
+2026-08-08T11:07:19 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 782335
+2026-08-08T11:07:19 INFO    gifu: q='建物利用現況調査' -> 385 hits
+2026-08-08T11:07:20 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1533198
+2026-08-08T11:07:20 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 744476
+2026-08-08T11:07:21 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1174458
+2026-08-08T11:07:21 INFO    gifu: 448 fetched -> 81 relevant (strict 81 / alias 0)
+2026-08-08T11:07:21 DEBUG   Starting new HTTPS connection (1): catalog.city.utsunomiya.tochigi.jp:443
+2026-08-08T11:07:21 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 293334
+2026-08-08T11:07:21 INFO    utsunomiya: q='都市計画基礎調査' -> 65 hits
+2026-08-08T11:07:21 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 234
+2026-08-08T11:07:21 INFO    utsunomiya: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:21 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 354058
+2026-08-08T11:07:21 INFO    utsunomiya: q='土地利用現況調査' -> 77 hits
+2026-08-08T11:07:22 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 369382
+2026-08-08T11:07:22 INFO    utsunomiya: q='建物利用現況調査' -> 76 hits
+2026-08-08T11:07:22 INFO    utsunomiya: 78 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:22 DEBUG   Starting new HTTPS connection (1): opendata.city.minato.tokyo.jp:443
+2026-08-08T11:07:22 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1014945
+2026-08-08T11:07:22 INFO    minato: q='都市計画基礎調査' -> 189 hits
+2026-08-08T11:07:23 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 611265
+2026-08-08T11:07:24 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:24 INFO    minato: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:24 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1010840
+2026-08-08T11:07:24 INFO    minato: q='土地利用現況調査' -> 248 hits
+2026-08-08T11:07:25 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 854892
+2026-08-08T11:07:26 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 413977
+2026-08-08T11:07:27 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1029268
+2026-08-08T11:07:30 INFO    minato: q='建物利用現況調査' -> 258 hits
+2026-08-08T11:07:30 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 844631
+2026-08-08T11:07:32 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 1351682
+2026-08-08T11:07:32 INFO    minato: 266 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:32 DEBUG   Starting new HTTPS connection (1): data.data4citizen.jp:443
+2026-08-08T11:07:32 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 413942
+2026-08-08T11:07:32 INFO    data4citizen: q='都市計画基礎調査' -> 126 hits
+2026-08-08T11:07:33 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 216774
+2026-08-08T11:07:33 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 2549
+2026-08-08T11:07:33 INFO    data4citizen: q='"都市計画基礎調査"' -> 1 hits
+2026-08-08T11:07:33 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 429822
+2026-08-08T11:07:33 INFO    data4citizen: q='土地利用現況調査' -> 177 hits
+2026-08-08T11:07:33 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 787412
+2026-08-08T11:07:34 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 443226
+2026-08-08T11:07:34 INFO    data4citizen: q='建物利用現況調査' -> 177 hits
+2026-08-08T11:07:34 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 779850
+2026-08-08T11:07:34 INFO    data4citizen: 215 fetched -> 1 relevant (strict 1 / alias 0)
+2026-08-08T11:07:34 DEBUG   Starting new HTTP connection (1): opendata-nasu.opendatastack.jp:80
+2026-08-08T11:07:35 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:07:35 DEBUG   Starting new HTTPS connection (1): opendata-nasu.opendatastack.jp:443
+2026-08-08T11:07:35 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 326915
+2026-08-08T11:07:35 INFO    nasu: q='都市計画基礎調査' -> 43 hits
+2026-08-08T11:07:35 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:07:35 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 230
+2026-08-08T11:07:35 INFO    nasu: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:35 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:07:35 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1078005
+2026-08-08T11:07:35 INFO    nasu: q='土地利用現況調査' -> 74 hits
+2026-08-08T11:07:35 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:07:35 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 994987
+2026-08-08T11:07:35 INFO    nasu: q='建物利用現況調査' -> 65 hits
+2026-08-08T11:07:35 INFO    nasu: 93 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:35 DEBUG   Starting new HTTPS connection (1): opendata-api-kakogawa.jp:443
+2026-08-08T11:07:35 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1446804
+2026-08-08T11:07:35 INFO    kakogawa: q='都市計画基礎調査' -> 14 hits
+2026-08-08T11:07:35 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:35 INFO    kakogawa: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:36 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2490470
+2026-08-08T11:07:36 INFO    kakogawa: q='土地利用現況調査' -> 53 hits
+2026-08-08T11:07:36 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2490470
+2026-08-08T11:07:36 INFO    kakogawa: q='建物利用現況調査' -> 53 hits
+2026-08-08T11:07:36 INFO    kakogawa: 53 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:36 DEBUG   Starting new HTTP connection (1): opendata.city.machida.tokyo.jp:80
+2026-08-08T11:07:37 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:37 INFO    machida: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:37 INFO    machida: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:37 INFO    machida: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:07:37 INFO    machida: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:07:37 INFO    machida: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:37 DEBUG   Starting new HTTP connection (1): opendata.city.sagamihara.kanagawa.jp:80
+2026-08-08T11:07:37 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:07:37 DEBUG   Starting new HTTPS connection (1): opendata.city.sagamihara.kanagawa.jp:443
+2026-08-08T11:07:37 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:07:37 INFO    sagamihara: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:07:37 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:07:37 INFO    sagamihara: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:07:37 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:07:37 INFO    sagamihara: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:07:37 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:07:37 INFO    sagamihara: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:07:37 INFO    sagamihara: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:37 DEBUG   Starting new HTTP connection (1): opendata.city.niigata.lg.jp:80
+2026-08-08T11:07:37 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:07:37 INFO    niigata: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:07:37 INFO    niigata: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:07:37 INFO    niigata: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:07:37 INFO    niigata: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:07:37 INFO    niigata: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:37 DEBUG   Starting new HTTPS connection (1): catalog-data.city.kanazawa.ishikawa.jp:443
+2026-08-08T11:07:37 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:07:37 INFO    kanazawa: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:07:37 INFO    kanazawa: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:07:37 INFO    kanazawa: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:07:37 INFO    kanazawa: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:07:37 INFO    kanazawa: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:37 DEBUG   Starting new HTTPS connection (1): ckan.odp.jig.jp:443
+2026-08-08T11:07:37 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:07:37 INFO    jig-odp: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:07:37 INFO    jig-odp: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:07:37 INFO    jig-odp: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:07:37 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:07:37 INFO    jig-odp: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:07:37 INFO    jig-odp: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:37 DEBUG   Starting new HTTPS connection (1): yamaguchi-opendata.jp:443
+2026-08-08T11:07:37 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:07:38 DEBUG   Starting new HTTPS connection (2): yamaguchi-opendata.jp:443
+2026-08-08T11:07:38 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:07:39 DEBUG   Starting new HTTPS connection (3): yamaguchi-opendata.jp:443
+2026-08-08T11:07:39 WARNING yamaguchi: query '都市計画基礎調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:07:39 DEBUG   Starting new HTTPS connection (4): yamaguchi-opendata.jp:443
+2026-08-08T11:07:39 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:07:40 DEBUG   Starting new HTTPS connection (5): yamaguchi-opendata.jp:443
+2026-08-08T11:07:40 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:07:41 DEBUG   Starting new HTTPS connection (6): yamaguchi-opendata.jp:443
+2026-08-08T11:07:41 WARNING yamaguchi: query '"都市計画基礎調査"' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:07:41 DEBUG   Starting new HTTPS connection (7): yamaguchi-opendata.jp:443
+2026-08-08T11:07:41 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:07:41 DEBUG   Starting new HTTPS connection (8): yamaguchi-opendata.jp:443
+2026-08-08T11:07:41 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:07:42 DEBUG   Starting new HTTPS connection (9): yamaguchi-opendata.jp:443
+2026-08-08T11:07:42 WARNING yamaguchi: query '土地利用現況調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:07:42 DEBUG   Starting new HTTPS connection (10): yamaguchi-opendata.jp:443
+2026-08-08T11:07:42 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:07:43 DEBUG   Starting new HTTPS connection (11): yamaguchi-opendata.jp:443
+2026-08-08T11:07:43 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:07:44 DEBUG   Starting new HTTPS connection (12): yamaguchi-opendata.jp:443
+2026-08-08T11:07:44 WARNING yamaguchi: query '建物利用現況調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:07:44 INFO    yamaguchi: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:07:44 INFO    wrote /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/datasets.jsonl (167 datasets), /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/resources.csv (1240 resources)
+2026-08-08T11:07:44 INFO    --- end of harvest ---
+2026-08-08T11:08:26 INFO    $ bskp harvest --catalog yamaguchi --limit 0
+2026-08-08T11:08:26 DEBUG   Starting new HTTPS connection (1): yamaguchi-opendata.jp:443
+2026-08-08T11:08:26 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:08:27 DEBUG   Starting new HTTPS connection (2): yamaguchi-opendata.jp:443
+2026-08-08T11:08:27 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:08:28 DEBUG   Starting new HTTPS connection (3): yamaguchi-opendata.jp:443
+2026-08-08T11:08:28 WARNING yamaguchi: query '都市計画基礎調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:08:28 DEBUG   Starting new HTTPS connection (4): yamaguchi-opendata.jp:443
+2026-08-08T11:08:28 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:08:28 DEBUG   Starting new HTTPS connection (5): yamaguchi-opendata.jp:443
+2026-08-08T11:08:28 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:08:29 DEBUG   Starting new HTTPS connection (6): yamaguchi-opendata.jp:443
+2026-08-08T11:08:29 WARNING yamaguchi: query '"都市計画基礎調査"' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:08:29 DEBUG   Starting new HTTPS connection (7): yamaguchi-opendata.jp:443
+2026-08-08T11:08:29 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:08:30 DEBUG   Starting new HTTPS connection (8): yamaguchi-opendata.jp:443
+2026-08-08T11:08:30 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:08:31 DEBUG   Starting new HTTPS connection (9): yamaguchi-opendata.jp:443
+2026-08-08T11:08:31 WARNING yamaguchi: query '土地利用現況調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:08:31 DEBUG   Starting new HTTPS connection (10): yamaguchi-opendata.jp:443
+2026-08-08T11:08:31 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 1/3 in 0.5s)
+2026-08-08T11:08:32 DEBUG   Starting new HTTPS connection (11): yamaguchi-opendata.jp:443
+2026-08-08T11:08:32 DEBUG   yamaguchi: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)'))) (retry 2/3 in 1.0s)
+2026-08-08T11:08:33 DEBUG   Starting new HTTPS connection (12): yamaguchi-opendata.jp:443
+2026-08-08T11:08:33 WARNING yamaguchi: query '建物利用現況調査' failed: yamaguchi: package_search failed: HTTPSConnectionPool(host='yamaguchi-opendata.jp', port=443): Max retries exceeded with url: /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INSUFFICIENT_SECURITY] tlsv1 alert insufficient security (_ssl.c:1010)')))
+2026-08-08T11:08:33 INFO    yamaguchi: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:08:33 INFO    wrote /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/datasets.jsonl (0 datasets), /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/resources.csv (0 resources)
+2026-08-08T11:08:33 INFO    --- end of harvest ---
+2026-08-08T11:10:26 INFO    $ bskp harvest --catalog yamaguchi --limit 0
+2026-08-08T11:10:26 DEBUG   Starting new HTTPS connection (1): yamaguchi-opendata.jp:443
+2026-08-08T11:10:26 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 78582
+2026-08-08T11:10:26 INFO    yamaguchi: q='都市計画基礎調査' -> 19 hits
+2026-08-08T11:10:26 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 78582
+2026-08-08T11:10:26 INFO    yamaguchi: q='"都市計画基礎調査"' -> 19 hits
+2026-08-08T11:10:26 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:10:26 INFO    yamaguchi: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:10:26 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:10:26 INFO    yamaguchi: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:10:26 INFO    yamaguchi: 19 fetched -> 18 relevant (strict 18 / alias 0)
+2026-08-08T11:10:26 INFO    wrote /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/datasets.jsonl (18 datasets), /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/resources.csv (36 resources)
+2026-08-08T11:10:26 INFO    --- end of harvest ---
+2026-08-08T11:11:09 INFO    $ bskp harvest --limit 0
+2026-08-08T11:11:09 DEBUG   Starting new HTTPS connection (1): www.geospatial.jp:443
+2026-08-08T11:11:09 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:11:09 INFO    geospatial-jp: q='都市計画基礎調査' -> 55 hits
+2026-08-08T11:11:09 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:11:09 INFO    geospatial-jp: q='"都市計画基礎調査"' -> 23 hits
+2026-08-08T11:11:09 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:11:09 INFO    geospatial-jp: q='土地利用現況調査' -> 1 hits
+2026-08-08T11:11:09 DEBUG   https://www.geospatial.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 210
+2026-08-08T11:11:09 INFO    geospatial-jp: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:11:09 INFO    geospatial-jp: 60 fetched -> 56 relevant (strict 56 / alias 0)
+2026-08-08T11:11:09 DEBUG   Starting new HTTPS connection (1): data.bodik.jp:443
+2026-08-08T11:11:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:11:10 INFO    bodik: q='都市計画基礎調査' -> 4781 hits
+2026-08-08T11:11:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:11:12 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:11:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:11:14 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:11:16 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:11:17 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:11:18 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:11:20 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:11:21 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:11:22 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:11:24 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:11:25 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:11:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:11:28 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:11:28 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:11:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:11:31 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:11:32 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:11:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:11:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:11:38 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:11:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:11:42 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:11:44 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:11:45 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:11:46 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:11:46 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:11:47 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:11:48 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:11:49 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:11:50 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:11:52 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:11:53 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:11:54 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:11:55 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:11:56 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:11:57 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:11:58 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:11:58 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:11:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:12:01 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:12:02 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:12:04 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:12:07 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4400 HTTP/11" 200 None
+2026-08-08T11:12:12 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4500 HTTP/11" 200 None
+2026-08-08T11:12:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4600 HTTP/11" 200 None
+2026-08-08T11:12:20 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=4700 HTTP/11" 200 None
+2026-08-08T11:12:21 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:12:21 INFO    bodik: q='"都市計画基礎調査"' -> 23 hits
+2026-08-08T11:12:21 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:12:21 INFO    bodik: q='土地利用現況調査' -> 4562 hits
+2026-08-08T11:12:22 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:12:23 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:12:24 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:12:25 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:12:26 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:12:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:12:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:12:31 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:12:32 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:12:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:12:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:12:36 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:12:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:12:38 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:12:39 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:12:40 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:12:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:12:42 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:12:43 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:12:47 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:12:49 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:12:50 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:12:52 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:12:54 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:12:55 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:12:56 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:12:58 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:12:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:13:00 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:13:02 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:13:03 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:13:04 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:13:06 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:13:07 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:13:09 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:13:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:13:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:13:12 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:13:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:13:14 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:13:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:13:17 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:13:23 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:13:26 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4400 HTTP/11" 200 None
+2026-08-08T11:13:29 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4500 HTTP/11" 200 None
+2026-08-08T11:13:30 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:13:30 INFO    bodik: q='建物利用現況調査' -> 4359 hits
+2026-08-08T11:13:31 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:13:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:13:34 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:13:35 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:13:36 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:13:38 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:13:39 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:13:40 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:13:41 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:13:43 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:13:44 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:13:45 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:13:46 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:13:47 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:13:48 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:13:50 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:13:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:13:51 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:13:53 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:13:57 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:13:59 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:14:01 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:14:01 DEBUG   Resetting dropped connection: data.bodik.jp
+2026-08-08T11:14:03 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:14:04 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:14:05 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:14:07 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:14:09 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:14:10 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:14:11 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2900 HTTP/11" 200 None
+2026-08-08T11:14:13 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3000 HTTP/11" 200 None
+2026-08-08T11:14:14 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3100 HTTP/11" 200 None
+2026-08-08T11:14:15 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3200 HTTP/11" 200 None
+2026-08-08T11:14:16 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3300 HTTP/11" 200 None
+2026-08-08T11:14:18 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3400 HTTP/11" 200 None
+2026-08-08T11:14:19 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3500 HTTP/11" 200 None
+2026-08-08T11:14:20 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3600 HTTP/11" 200 None
+2026-08-08T11:14:20 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3700 HTTP/11" 200 None
+2026-08-08T11:14:22 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3800 HTTP/11" 200 None
+2026-08-08T11:14:23 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=3900 HTTP/11" 200 None
+2026-08-08T11:14:25 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4000 HTTP/11" 200 None
+2026-08-08T11:14:27 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4100 HTTP/11" 200 None
+2026-08-08T11:14:33 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4200 HTTP/11" 200 None
+2026-08-08T11:14:37 DEBUG   https://data.bodik.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=4300 HTTP/11" 200 None
+2026-08-08T11:14:37 INFO    bodik: 5795 fetched -> 23 relevant (strict 23 / alias 0)
+2026-08-08T11:14:37 DEBUG   Starting new HTTPS connection (1): catalog.data.metro.tokyo.lg.jp:443
+2026-08-08T11:14:37 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:14:37 INFO    tokyo: q='都市計画基礎調査' -> 2832 hits
+2026-08-08T11:14:38 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:14:39 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:14:39 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:14:40 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:14:41 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:14:42 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:14:42 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:14:43 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:14:44 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:14:45 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:14:46 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:14:46 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:14:47 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:14:48 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:14:48 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:14:49 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:14:50 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:14:50 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:14:51 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:14:52 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:14:52 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:14:53 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:14:54 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:14:55 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2400 HTTP/11" 200 None
+2026-08-08T11:14:55 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2500 HTTP/11" 200 None
+2026-08-08T11:14:56 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2600 HTTP/11" 200 None
+2026-08-08T11:14:57 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2700 HTTP/11" 200 None
+2026-08-08T11:14:58 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=2800 HTTP/11" 200 None
+2026-08-08T11:14:58 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 230
+2026-08-08T11:14:58 INFO    tokyo: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:14:59 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:14:59 INFO    tokyo: q='土地利用現況調査' -> 2387 hits
+2026-08-08T11:15:00 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:15:01 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:15:02 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:15:03 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:15:04 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:15:05 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:15:06 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:15:07 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:15:07 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:15:08 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:15:09 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:15:09 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:15:10 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:15:11 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:15:12 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:15:12 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:15:13 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:15:14 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:15:15 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:15:15 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:15:16 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:15:17 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:15:18 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:15:18 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:15:18 INFO    tokyo: q='建物利用現況調査' -> 2369 hits
+2026-08-08T11:15:19 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 None
+2026-08-08T11:15:24 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 None
+2026-08-08T11:15:25 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 None
+2026-08-08T11:15:26 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 None
+2026-08-08T11:15:27 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=500 HTTP/11" 200 None
+2026-08-08T11:15:27 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=600 HTTP/11" 200 None
+2026-08-08T11:15:29 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=700 HTTP/11" 200 None
+2026-08-08T11:15:30 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=800 HTTP/11" 200 None
+2026-08-08T11:15:30 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=900 HTTP/11" 200 None
+2026-08-08T11:15:31 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1000 HTTP/11" 200 None
+2026-08-08T11:15:32 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1100 HTTP/11" 200 None
+2026-08-08T11:15:32 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1200 HTTP/11" 200 None
+2026-08-08T11:15:33 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1300 HTTP/11" 200 None
+2026-08-08T11:15:34 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1400 HTTP/11" 200 None
+2026-08-08T11:15:35 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1500 HTTP/11" 200 None
+2026-08-08T11:15:36 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1600 HTTP/11" 200 None
+2026-08-08T11:15:36 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1700 HTTP/11" 200 None
+2026-08-08T11:15:37 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1800 HTTP/11" 200 None
+2026-08-08T11:15:38 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=1900 HTTP/11" 200 None
+2026-08-08T11:15:39 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2000 HTTP/11" 200 None
+2026-08-08T11:15:40 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2100 HTTP/11" 200 None
+2026-08-08T11:15:41 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2200 HTTP/11" 200 None
+2026-08-08T11:15:42 DEBUG   https://catalog.data.metro.tokyo.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=2300 HTTP/11" 200 None
+2026-08-08T11:15:42 INFO    tokyo: 3137 fetched -> 2 relevant (strict 0 / alias 2)
+2026-08-08T11:15:42 DEBUG   Starting new HTTPS connection (1): data.city.yokohama.lg.jp:443
+2026-08-08T11:15:42 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2547914
+2026-08-08T11:15:42 INFO    yokohama: q='都市計画基礎調査' -> 91 hits
+2026-08-08T11:15:42 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 16831
+2026-08-08T11:15:42 INFO    yokohama: q='"都市計画基礎調査"' -> 1 hits
+2026-08-08T11:15:42 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2521504
+2026-08-08T11:15:43 INFO    yokohama: q='土地利用現況調査' -> 81 hits
+2026-08-08T11:15:43 DEBUG   https://data.city.yokohama.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2443673
+2026-08-08T11:15:43 INFO    yokohama: q='建物利用現況調査' -> 77 hits
+2026-08-08T11:15:43 INFO    yokohama: 116 fetched -> 1 relevant (strict 1 / alias 0)
+2026-08-08T11:15:43 DEBUG   Starting new HTTPS connection (1): ckan.pf-sapporo.jp:443
+2026-08-08T11:15:43 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:15:43 INFO    sapporo: q='都市計画基礎調査' -> 86 hits
+2026-08-08T11:15:43 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:15:43 INFO    sapporo: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:15:43 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:15:43 INFO    sapporo: q='土地利用現況調査' -> 88 hits
+2026-08-08T11:15:44 DEBUG   https://ckan.pf-sapporo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 None
+2026-08-08T11:15:44 INFO    sapporo: q='建物利用現況調査' -> 88 hits
+2026-08-08T11:15:44 INFO    sapporo: 117 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:15:44 DEBUG   Starting new HTTPS connection (1): data.city.sendai.jp:443
+2026-08-08T11:15:44 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 45094
+2026-08-08T11:15:44 INFO    sendai: q='都市計画基礎調査' -> 3 hits
+2026-08-08T11:15:44 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 219
+2026-08-08T11:15:44 INFO    sendai: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:15:44 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:15:44 INFO    sendai: q='土地利用現況調査' -> 6 hits
+2026-08-08T11:15:44 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:15:44 INFO    sendai: q='建物利用現況調査' -> 6 hits
+2026-08-08T11:15:44 INFO    sendai: 6 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:15:44 DEBUG   Starting new HTTPS connection (1): catalog.opendata.pref.kanagawa.jp:443
+2026-08-08T11:15:44 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1537683
+2026-08-08T11:15:45 INFO    kanagawa: q='都市計画基礎調査' -> 376 hits
+2026-08-08T11:15:45 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1123513
+2026-08-08T11:15:46 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 653178
+2026-08-08T11:15:47 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1349600
+2026-08-08T11:15:47 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 79076
+2026-08-08T11:15:47 INFO    kanagawa: q='"都市計画基礎調査"' -> 3 hits
+2026-08-08T11:15:48 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1501162
+2026-08-08T11:15:48 INFO    kanagawa: q='土地利用現況調査' -> 380 hits
+2026-08-08T11:15:49 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 887855
+2026-08-08T11:15:49 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 971718
+2026-08-08T11:15:50 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1401709
+2026-08-08T11:15:51 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1530184
+2026-08-08T11:15:51 INFO    kanagawa: q='建物利用現況調査' -> 358 hits
+2026-08-08T11:15:52 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 878034
+2026-08-08T11:15:53 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 761161
+2026-08-08T11:15:54 DEBUG   https://catalog.opendata.pref.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1154637
+2026-08-08T11:15:54 INFO    kanagawa: 403 fetched -> 3 relevant (strict 3 / alias 0)
+2026-08-08T11:15:54 DEBUG   Starting new HTTPS connection (1): gifu-opendata.pref.gifu.lg.jp:443
+2026-08-08T11:15:54 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 689216
+2026-08-08T11:15:54 INFO    gifu: q='都市計画基礎調査' -> 419 hits
+2026-08-08T11:15:55 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1627326
+2026-08-08T11:15:56 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 667949
+2026-08-08T11:15:59 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 949683
+2026-08-08T11:16:00 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=400 HTTP/11" 200 704223
+2026-08-08T11:16:00 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 566878
+2026-08-08T11:16:00 INFO    gifu: q='"都市計画基礎調査"' -> 81 hits
+2026-08-08T11:16:01 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 725800
+2026-08-08T11:16:01 INFO    gifu: q='土地利用現況調査' -> 390 hits
+2026-08-08T11:16:01 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1597506
+2026-08-08T11:16:02 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 759601
+2026-08-08T11:16:03 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1169087
+2026-08-08T11:16:03 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 782335
+2026-08-08T11:16:03 INFO    gifu: q='建物利用現況調査' -> 385 hits
+2026-08-08T11:16:04 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 1533198
+2026-08-08T11:16:05 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 744476
+2026-08-08T11:16:05 DEBUG   https://gifu-opendata.pref.gifu.lg.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=300 HTTP/11" 200 1174458
+2026-08-08T11:16:05 INFO    gifu: 448 fetched -> 81 relevant (strict 81 / alias 0)
+2026-08-08T11:16:05 DEBUG   Starting new HTTPS connection (1): catalog.city.utsunomiya.tochigi.jp:443
+2026-08-08T11:16:06 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 293334
+2026-08-08T11:16:06 INFO    utsunomiya: q='都市計画基礎調査' -> 65 hits
+2026-08-08T11:16:06 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 234
+2026-08-08T11:16:06 INFO    utsunomiya: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:06 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 354058
+2026-08-08T11:16:06 INFO    utsunomiya: q='土地利用現況調査' -> 77 hits
+2026-08-08T11:16:06 DEBUG   https://catalog.city.utsunomiya.tochigi.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 369382
+2026-08-08T11:16:06 INFO    utsunomiya: q='建物利用現況調査' -> 76 hits
+2026-08-08T11:16:06 INFO    utsunomiya: 78 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:06 DEBUG   Starting new HTTPS connection (1): opendata.city.minato.tokyo.jp:443
+2026-08-08T11:16:06 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1014945
+2026-08-08T11:16:07 INFO    minato: q='都市計画基礎調査' -> 189 hits
+2026-08-08T11:16:07 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 611265
+2026-08-08T11:16:07 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:07 INFO    minato: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:08 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1010840
+2026-08-08T11:16:08 INFO    minato: q='土地利用現況調査' -> 248 hits
+2026-08-08T11:16:09 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 854892
+2026-08-08T11:16:10 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 413977
+2026-08-08T11:16:10 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1029268
+2026-08-08T11:16:11 INFO    minato: q='建物利用現況調査' -> 258 hits
+2026-08-08T11:16:11 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 844631
+2026-08-08T11:16:13 DEBUG   https://opendata.city.minato.tokyo.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=200 HTTP/11" 200 1351682
+2026-08-08T11:16:13 INFO    minato: 266 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:13 DEBUG   Starting new HTTPS connection (1): data.data4citizen.jp:443
+2026-08-08T11:16:13 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 413942
+2026-08-08T11:16:13 INFO    data4citizen: q='都市計画基礎調査' -> 126 hits
+2026-08-08T11:16:14 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 216774
+2026-08-08T11:16:14 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 2549
+2026-08-08T11:16:14 INFO    data4citizen: q='"都市計画基礎調査"' -> 1 hits
+2026-08-08T11:16:14 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 429822
+2026-08-08T11:16:14 INFO    data4citizen: q='土地利用現況調査' -> 177 hits
+2026-08-08T11:16:14 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 787412
+2026-08-08T11:16:15 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 443226
+2026-08-08T11:16:15 INFO    data4citizen: q='建物利用現況調査' -> 177 hits
+2026-08-08T11:16:15 DEBUG   https://data.data4citizen.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=100 HTTP/11" 200 779850
+2026-08-08T11:16:15 INFO    data4citizen: 215 fetched -> 1 relevant (strict 1 / alias 0)
+2026-08-08T11:16:15 DEBUG   Starting new HTTP connection (1): opendata-nasu.opendatastack.jp:80
+2026-08-08T11:16:15 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:16:15 DEBUG   Starting new HTTPS connection (1): opendata-nasu.opendatastack.jp:443
+2026-08-08T11:16:16 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 326915
+2026-08-08T11:16:16 INFO    nasu: q='都市計画基礎調査' -> 43 hits
+2026-08-08T11:16:16 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:16:16 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 230
+2026-08-08T11:16:16 INFO    nasu: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:16 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:16:16 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1078005
+2026-08-08T11:16:16 INFO    nasu: q='土地利用現況調査' -> 74 hits
+2026-08-08T11:16:16 DEBUG   http://opendata-nasu.opendatastack.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 178
+2026-08-08T11:16:16 DEBUG   https://opendata-nasu.opendatastack.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 994987
+2026-08-08T11:16:16 INFO    nasu: q='建物利用現況調査' -> 65 hits
+2026-08-08T11:16:16 INFO    nasu: 93 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:16 DEBUG   Starting new HTTPS connection (1): opendata-api-kakogawa.jp:443
+2026-08-08T11:16:16 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 1446804
+2026-08-08T11:16:16 INFO    kakogawa: q='都市計画基礎調査' -> 14 hits
+2026-08-08T11:16:16 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:16 INFO    kakogawa: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:17 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2490470
+2026-08-08T11:16:17 INFO    kakogawa: q='土地利用現況調査' -> 53 hits
+2026-08-08T11:16:17 DEBUG   https://opendata-api-kakogawa.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 2490470
+2026-08-08T11:16:17 INFO    kakogawa: q='建物利用現況調査' -> 53 hits
+2026-08-08T11:16:17 INFO    kakogawa: 53 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:17 DEBUG   Starting new HTTP connection (1): opendata.city.machida.tokyo.jp:80
+2026-08-08T11:16:17 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:17 INFO    machida: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:16:17 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:17 INFO    machida: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:17 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:17 INFO    machida: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:17 DEBUG   http://opendata.city.machida.tokyo.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 229
+2026-08-08T11:16:17 INFO    machida: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:17 INFO    machida: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:17 DEBUG   Starting new HTTP connection (1): opendata.city.sagamihara.kanagawa.jp:80
+2026-08-08T11:16:17 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:16:17 DEBUG   Starting new HTTPS connection (1): opendata.city.sagamihara.kanagawa.jp:443
+2026-08-08T11:16:18 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:16:18 INFO    sagamihara: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:16:18 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:16:18 INFO    sagamihara: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:16:18 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:16:18 INFO    sagamihara: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.sagamihara.kanagawa.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 301 167
+2026-08-08T11:16:18 DEBUG   https://opendata.city.sagamihara.kanagawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 236
+2026-08-08T11:16:18 INFO    sagamihara: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:18 INFO    sagamihara: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:18 DEBUG   Starting new HTTP connection (1): opendata.city.niigata.lg.jp:80
+2026-08-08T11:16:18 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:18 INFO    niigata: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:18 INFO    niigata: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:18 INFO    niigata: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   http://opendata.city.niigata.lg.jp:80 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:18 INFO    niigata: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:18 INFO    niigata: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:18 DEBUG   Starting new HTTPS connection (1): catalog-data.city.kanazawa.ishikawa.jp:443
+2026-08-08T11:16:18 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:16:18 INFO    kanazawa: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:16:18 INFO    kanazawa: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:16:18 INFO    kanazawa: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://catalog-data.city.kanazawa.ishikawa.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 238
+2026-08-08T11:16:18 INFO    kanazawa: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:18 INFO    kanazawa: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:18 DEBUG   Starting new HTTPS connection (1): ckan.odp.jig.jp:443
+2026-08-08T11:16:18 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:16:18 INFO    jig-odp: q='都市計画基礎調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:16:18 INFO    jig-odp: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:16:18 INFO    jig-odp: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:18 DEBUG   https://ckan.odp.jig.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 215
+2026-08-08T11:16:18 INFO    jig-odp: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:18 INFO    jig-odp: 0 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:18 DEBUG   Starting new HTTPS connection (1): yamaguchi-opendata.jp:443
+2026-08-08T11:16:18 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 78582
+2026-08-08T11:16:18 INFO    yamaguchi: q='都市計画基礎調査' -> 19 hits
+2026-08-08T11:16:18 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 78582
+2026-08-08T11:16:18 INFO    yamaguchi: q='"都市計画基礎調査"' -> 19 hits
+2026-08-08T11:16:18 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:18 INFO    yamaguchi: q='土地利用現況調査' -> 0 hits
+2026-08-08T11:16:19 DEBUG   https://yamaguchi-opendata.jp:443 "GET /ckan/api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 226
+2026-08-08T11:16:19 INFO    yamaguchi: q='建物利用現況調査' -> 0 hits
+2026-08-08T11:16:19 INFO    yamaguchi: 19 fetched -> 18 relevant (strict 18 / alias 0)
+2026-08-08T11:16:19 INFO    wrote /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/datasets.jsonl (185 datasets), /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/resources.csv (1276 resources)
+2026-08-08T11:16:19 INFO    --- end of harvest ---
+2026-08-08T11:16:44 INFO    $ bskp harvest --catalog sendai --limit 0
+2026-08-08T11:16:44 DEBUG   Starting new HTTPS connection (1): data.city.sendai.jp:443
+2026-08-08T11:16:44 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 45094
+2026-08-08T11:16:45 INFO    sendai: q='都市計画基礎調査' -> 3 hits
+2026-08-08T11:16:45 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%22%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB%E5%9F%BA%E7%A4%8E%E8%AA%BF%E6%9F%BB%22&rows=100&start=0 HTTP/11" 200 219
+2026-08-08T11:16:45 INFO    sendai: q='"都市計画基礎調査"' -> 0 hits
+2026-08-08T11:16:45 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:16:45 INFO    sendai: q='土地利用現況調査' -> 6 hits
+2026-08-08T11:16:45 DEBUG   https://data.city.sendai.jp:443 "GET /api/3/action/package_search?q=%E5%BB%BA%E7%89%A9%E5%88%A9%E7%94%A8%E7%8F%BE%E6%B3%81%E8%AA%BF%E6%9F%BB&rows=100&start=0 HTTP/11" 200 322740
+2026-08-08T11:16:45 INFO    sendai: q='建物利用現況調査' -> 6 hits
+2026-08-08T11:16:45 INFO    sendai: 6 fetched -> 0 relevant (strict 0 / alias 0)
+2026-08-08T11:16:45 INFO    既存インベントリから 184 datasets / 1276 resources を引き継ぎます
+2026-08-08T11:16:45 INFO    wrote /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/datasets.jsonl (184 datasets), /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/inventory/resources.csv (1276 resources)
+2026-08-08T11:16:45 INFO    --- end of harvest ---
+2026-08-08T11:16:46 INFO    $ bskp report
+2026-08-08T11:16:46 INFO    --- end of report ---
