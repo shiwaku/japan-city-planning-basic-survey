@@ -13,6 +13,7 @@ import collections
 import csv
 import json
 import logging
+import os
 import re
 import sys
 from pathlib import Path
@@ -21,6 +22,7 @@ import yaml
 
 from .ckan import Catalog, CkanClient
 from .fetch import fetch_all
+from .codetable import build_reference, normalize_code
 from .convert import build_pmtiles, describe, extract_recursive, to_geojsonl
 from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
 from .scrape import Site, scrape_site
@@ -33,6 +35,7 @@ DEFAULT_RAW = ROOT / "data" / "raw"
 DEFAULT_WORK = ROOT / "data" / "work"
 DEFAULT_PROCESSED = ROOT / "data" / "processed"
 DEFAULT_TILES = ROOT / "data" / "tiles"
+DEFAULT_REFERENCE = ROOT / "data" / "reference"
 
 
 def load_catalogs(path: Path, only: list[str] | None = None,
@@ -325,6 +328,104 @@ THEME_SLUGS = {
 }
 
 
+def cmd_codetable(args: argparse.Namespace) -> None:
+    """国交省の対照表・コード表を解析して landuse_codes.json を作る。"""
+    ref = build_reference(args.reference / "mlit_landuse_crosswalk.xlsx",
+                          args.reference / "mlit_code_table.xlsx")
+    out = args.reference / "landuse_codes.json"
+    out.write_text(json.dumps(ref, ensure_ascii=False, indent=2), encoding="utf-8")
+    with_codes = sum(1 for v in ref["prefectures"].values() if v["to_national"])
+    total = sum(len(v["to_national"]) for v in ref["prefectures"].values())
+    print(f"国標準コード {len(ref['national_codes'])} 区分 / "
+          f"{len(ref['prefectures'])}都道府県（独自コードあり {with_codes}県）/ 対応 {total} 件 -> {out}")
+
+
+def cmd_coverage(args: argparse.Namespace) -> None:
+    """土地利用レイヤの用途コードが、対照表でどれだけ写せるかを実測する。
+
+    対照表は公式だが実データを完全にはカバーしない（さいたま市の 141-144・150 は
+    埼玉県のシートに載っていない）。どこが写せないかを黙って捨てないための計測。
+    """
+    import subprocess
+
+    ref = json.loads((args.reference / "landuse_codes.json").read_text(encoding="utf-8"))
+    env = {**os.environ, "SHAPE_ENCODING": "CP932"}
+    field_re = re.compile(r"^\s+(LANDUSE|landuse|lu_code|youto)\s*\(\w+\)\s*=\s*(.+)$")
+
+    targets = [p for p in args.work.rglob("*.shp")
+               if re.search(r"土地利用|tochiriyou|landuse", p.name, re.I)]
+    index = _pref_index(args.inventory, ref)
+
+    grand = collections.Counter()
+    unknown: set[str] = set()
+    national_style = 0
+    for path in targets[: args.limit]:
+        parts = path.relative_to(args.work).parts
+        dataset = parts[1] if len(parts) > 1 else ""
+        pref = args.pref or index.get(dataset, "")
+        out = subprocess.run(["ogrinfo", "-al", "-geom=NO", "-fields=YES", str(path)],
+                             capture_output=True, env=env).stdout.decode("utf-8", "replace")
+        vals = collections.Counter()
+        for line in out.splitlines():
+            m = field_re.match(line)
+            if m:
+                vals[m.group(2).strip()] += 1
+        if not vals:
+            # lui_201… 形式（国標準の列名で面積が入る型）。用途コード列を持たないので
+            # 写像は不要。件数だけ数えておく
+            national_style += 1
+            continue
+        if not pref:
+            unknown.add(dataset)
+            continue
+        ok = sum(n for v, n in vals.items() if normalize_code(ref, pref, v))
+        tot = sum(vals.values())
+        grand["ok"] += ok
+        grand["total"] += tot
+        miss = {v: n for v, n in vals.items() if not normalize_code(ref, pref, v)}
+        status = "OK " if not miss else "欠 "
+        logging.info("%s %5.1f%% %7d件 %-8s %s", status, ok / tot * 100, tot, pref,
+                     path.relative_to(args.work))
+        for v, n in sorted(miss.items(), key=lambda kv: -kv[1])[:6]:
+            logging.info("      未対応 %-6s %6d件", v, n)
+
+    print(f"\n区分図型 {grand['total']:,} フィーチャ中 {grand['ok']:,} "
+          f"({grand['ok'] / grand['total'] * 100:.1f}%) が国標準コードに写せます"
+          if grand["total"] else "\n区分図型のレイヤはありませんでした")
+    print(f"国標準列型（lui_*）のレイヤ: {national_style} 件（写像不要）")
+    if unknown:
+        print(f"都道府県を特定できないデータセット: {len(unknown)} 件 "
+              f"({', '.join(sorted(unknown)[:4])}…)")
+
+
+def _pref_index(inventory: Path, ref: dict) -> dict[str, str]:
+    """データセット名 -> 都道府県名。インベントリの提供組織から引く。
+
+    パス中の数字から推測してはいけない。岐阜県のデータセット名は `c11654-116` で、
+    先頭2桁を JIS コードとして読むと埼玉県(11)になる。組織名が唯一の確かな出所。
+    """
+    names = sorted(ref["prefectures"], key=len, reverse=True)
+    index: dict[str, str] = {}
+    for row in _read_inventory(inventory):
+        org = row.get("organization") or ""
+        title = row.get("dataset_title") or ""
+        for pref in names:
+            if pref in org or pref in title:
+                index[row["dataset_name"]] = pref
+                break
+        else:
+            # 「都市・まちづくり推進課」のように県名を含まない組織名があるので
+            # カタログ名・カタログIDからも引く
+            for key, pref in (("oita", "大分県"), ("gifu", "岐阜県"),
+                              ("shizuoka", "静岡県"), ("kanagawa", "神奈川県"),
+                              ("yamaguchi", "山口県"), ("tsushima", "愛知県"),
+                              ("saitama", "埼玉県"), ("tokyo", "東京都")):
+                if key in row["catalog_id"] or key in row["dataset_name"]:
+                    index[row["dataset_name"]] = pref
+                    break
+    return index
+
+
 def _read_inventory(inventory: Path) -> list[dict]:
     """resources.csv と scraped.csv を両方読む（あるものだけ）。"""
     rows: list[dict] = []
@@ -433,6 +534,17 @@ def main(argv: list[str] | None = None) -> None:
     st.add_argument("--min-zoom", type=int, default=4)
     st.add_argument("--max-zoom", type=int, default=14)
     st.set_defaults(func=cmd_tiles)
+
+    sct = sub.add_parser("codetable", help="国交省の対照表を解析してコード辞書を作る")
+    sct.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
+    sct.set_defaults(func=cmd_codetable)
+
+    scv = sub.add_parser("coverage", help="用途コードが対照表でどれだけ写せるか実測する")
+    scv.add_argument("--work", type=Path, default=DEFAULT_WORK)
+    scv.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
+    scv.add_argument("--pref", help="都道府県名を明示する（推定に任せない場合）")
+    scv.add_argument("--limit", type=int, default=40)
+    scv.set_defaults(func=cmd_coverage)
 
     sr = sub.add_parser("report", help="インベントリを集計")
     sr.set_defaults(func=cmd_report)
