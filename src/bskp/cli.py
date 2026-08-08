@@ -179,12 +179,22 @@ def cmd_scrape(args: argparse.Namespace) -> None:
 
     out = args.inventory / "scraped.csv"
     out.parent.mkdir(parents=True, exist_ok=True)
+    written = [r.__dict__ for r in rows]
+
+    # --site で一部だけ走査したとき、走査しなかったサイトの結果を消さない。
+    # harvest --catalog / tiles --theme と同じ落とし穴（部分実行が全体を上書きする）
+    if args.site and out.exists():
+        done = {s.id for s in sites}
+        with out.open(encoding="utf-8", newline="") as fh:
+            kept = [r for r in csv.DictReader(fh) if r["catalog_id"] not in done]
+        logging.info("既存の scraped.csv から %d 件を引き継ぎます", len(kept))
+        written = kept + written
+
     with out.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(ResourceRow.__annotations__))
         writer.writeheader()
-        for row in rows:
-            writer.writerow(row.__dict__)
-    print(f"{len(rows)} resources -> {out}")
+        writer.writerows(written)
+    print(f"{len(written)} resources -> {out}")
 
 
 GEO_SUFFIXES = {".shp", ".geojson", ".json", ".gml", ".gpkg", ".kml"}

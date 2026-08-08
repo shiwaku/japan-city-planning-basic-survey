@@ -5764,3 +5764,47 @@
 2026-08-08T15:50:11 INFO    既存 index から 9 テーマを引き継ぎます
 2026-08-08T15:50:11 INFO    出典 53 件を attribution.json に書き出しました
 2026-08-08T15:50:11 INFO    --- end of tiles ---
+2026-08-08T15:56:19 INFO    $ bskp scrape --site tsushima
+2026-08-08T15:56:19 DEBUG   Starting new HTTPS connection (1): www.city.tsushima.lg.jp:443
+2026-08-08T15:56:19 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /robots.txt HTTP/11" 404 None
+2026-08-08T15:56:19 INFO    robots.txt: https://www.city.tsushima.lg.jp -> none (allow all)
+2026-08-08T15:56:19 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html HTTP/11" 200 None
+2026-08-08T15:56:20 INFO    tsushima: 1 ページ読んで 18 ファイルリンクを取得
+2026-08-08T15:56:20 INFO    --- end of scrape ---
+2026-08-08T16:01:17 INFO    $ bskp scrape
+2026-08-08T16:01:17 DEBUG   Starting new HTTPS connection (1): www.mlit.go.jp:443
+2026-08-08T16:01:17 DEBUG   https://www.mlit.go.jp:443 "GET /robots.txt HTTP/11" 404 234
+2026-08-08T16:01:17 INFO    robots.txt: https://www.mlit.go.jp -> none (allow all)
+2026-08-08T16:01:17 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/city_plan/toshi_city_plan_tk_000049.html HTTP/11" 200 None
+2026-08-08T16:01:18 DEBUG   https://www.mlit.go.jp:443 "GET /toshi/tosiko/kisotyousa001.html HTTP/11" 200 None
+2026-08-08T16:01:19 INFO    mlit-kisochosa: 2 ページ読んで 36 ファイルリンクを取得
+2026-08-08T16:01:19 DEBUG   Starting new HTTPS connection (1): www.city.tsushima.lg.jp:443
+2026-08-08T16:01:19 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /robots.txt HTTP/11" 404 None
+2026-08-08T16:01:19 INFO    robots.txt: https://www.city.tsushima.lg.jp -> none (allow all)
+2026-08-08T16:01:19 DEBUG   https://www.city.tsushima.lg.jp:443 "GET /kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html HTTP/11" 200 None
+2026-08-08T16:01:20 INFO    tsushima: 1 ページ読んで 18 ファイルリンクを取得
+2026-08-08T16:01:20 DEBUG   Starting new HTTPS connection (1): www.city.kawasaki.jp:443
+2026-08-08T16:01:20 DEBUG   https://www.city.kawasaki.jp:443 "GET /robots.txt HTTP/11" 200 69
+2026-08-08T16:01:20 INFO    robots.txt: https://www.city.kawasaki.jp -> loaded
+2026-08-08T16:01:20 DEBUG   https://www.city.kawasaki.jp:443 "GET /500/page/0000185069.html HTTP/11" 200 None
+2026-08-08T16:01:21 INFO    kawasaki: 1 ページ読んで 13 ファイルリンクを取得
+2026-08-08T16:01:21 DEBUG   Starting new HTTPS connection (1): www.city.isehara.kanagawa.jp:443
+2026-08-08T16:01:22 DEBUG   https://www.city.isehara.kanagawa.jp:443 "GET /robots.txt HTTP/11" 200 117
+2026-08-08T16:01:22 INFO    robots.txt: https://www.city.isehara.kanagawa.jp -> loaded
+2026-08-08T16:01:22 DEBUG   https://www.city.isehara.kanagawa.jp:443 "GET /docs/2026022500029/ HTTP/11" 200 None
+2026-08-08T16:01:23 INFO    isehara: 1 ページ読んで 15 ファイルリンクを取得
+2026-08-08T16:01:23 DEBUG   Starting new HTTPS connection (1): www.city.azumino.nagano.jp:443
+2026-08-08T16:01:23 DEBUG   https://www.city.azumino.nagano.jp:443 "GET /robots.txt HTTP/11" 404 25259
+2026-08-08T16:01:23 INFO    robots.txt: https://www.city.azumino.nagano.jp -> none (allow all)
+2026-08-08T16:01:23 DEBUG   https://www.city.azumino.nagano.jp:443 "GET /site/kaihatsu/109027.html HTTP/11" 200 12909
+2026-08-08T16:01:24 INFO    azumino: 1 ページ読んで 24 ファイルリンクを取得
+2026-08-08T16:01:24 DEBUG   Starting new HTTPS connection (1): www.pref.saitama.lg.jp:443
+2026-08-08T16:01:24 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /robots.txt HTTP/11" 200 415
+2026-08-08T16:01:24 INFO    robots.txt: https://www.pref.saitama.lg.jp -> loaded
+2026-08-08T16:01:24 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
+2026-08-08T16:01:25 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
+2026-08-08T16:01:26 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
+2026-08-08T16:01:27 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
+2026-08-08T16:01:28 DEBUG   https://www.pref.saitama.lg.jp:443 "GET /a1102/tosikeikaku-data/index.html HTTP/11" 200 None
+2026-08-08T16:01:29 INFO    saitama-pref: 5 ページ読んで 0 ファイルリンクを取得
+2026-08-08T16:01:29 INFO    --- end of scrape ---
