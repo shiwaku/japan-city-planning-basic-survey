@@ -5816,3 +5816,9 @@
 2026-08-08T16:14:50 INFO    [100/111] tosikeikaku202306shizuoka
 2026-08-08T16:14:51 INFO    [111/111] tsushima
 2026-08-08T16:14:51 INFO    --- end of normalize ---
+2026-08-08T16:38:46 INFO    $ bskp tiles --theme 土地利用 --theme 建物
+2026-08-08T16:38:46 INFO    土地利用: 574 レイヤ -> landuse.pmtiles
+2026-08-08T16:45:20 INFO    建物: 194 レイヤ -> building.pmtiles
+2026-08-08T16:46:13 INFO    既存 index から 8 テーマを引き継ぎます
+2026-08-08T16:46:13 INFO    出典 53 件を attribution.json に書き出しました
+2026-08-08T16:46:13 INFO    --- end of tiles ---

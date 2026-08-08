@@ -2,10 +2,11 @@ import maplibregl from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
+import { MAX_ACTIVE, THEMES, colorOf, themeOf, type ThemeDef } from './layers'
 import {
-  GROUP_UNCLASSIFIED, LANDUSE_GROUPS, MAX_ACTIVE, THEMES, UNCLASSIFIED,
-  colorOf, landuseColorExpression, themeOf, type ThemeDef,
-} from './layers'
+  CONVENTIONAL, CONVENTIONAL_ORDER, GROUPS, GROUP_UNCLASSIFIED, UNCLASSIFIED,
+  fillColor, type PaletteId,
+} from './palettes'
 import { applyThemeAttr, initialTheme, type Theme } from './theme'
 import './style.css'
 
@@ -25,6 +26,10 @@ interface Attribution {
   datasets: number
   url: string
 }
+
+// 土地利用の配色。既定は検証済み（安全側）。慣行配色は切り替えで選ぶ
+let palette: PaletteId =
+  (localStorage.getItem('bskp-palette') as PaletteId) || 'validated'
 
 let theme: Theme = initialTheme()
 applyThemeAttr(theme)
@@ -140,7 +145,7 @@ function addDataLayers(): void {
                  ['!=', ['get', 'lui_group'], GROUP_UNCLASSIFIED]],
         layout: { visibility: visible },
         paint: {
-          'fill-color': landuseColorExpression(theme) as never,
+          'fill-color': fillColor(palette, theme) as never,
           'fill-opacity': alpha,
         },
       })
@@ -258,6 +263,20 @@ function buildToggles(): void {
       row.classList.toggle('active', checkbox.checked)
     })
 
+    for (const btn of row.querySelectorAll<HTMLButtonElement>('.palette-switch button')) {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.palette as PaletteId
+        if (next === palette) return
+        palette = next
+        localStorage.setItem('bskp-palette', palette)
+        if (map.getLayer(fillId('landuse'))) {
+          map.setPaintProperty(fillId('landuse'), 'fill-color',
+                               fillColor(palette, theme) as never)
+        }
+        buildToggles()
+      })
+    }
+
     const slider = row.querySelector('input[type=range]') as HTMLInputElement
     slider.addEventListener('input', () => {
       const v = Number(slider.value)
@@ -271,19 +290,38 @@ function buildToggles(): void {
 }
 
 /**
- * 土地利用の凡例。3 系統の色と、未分類のハッチを並べる。
- * 識別を色だけに依存させないため、必ず名前を添える。
+ * 土地利用の凡例。選んでいる配色に合わせて中身が変わる。
+ * 識別を色だけに依存させないため、必ず区分名を添える。
  */
 function landuseLegend(): string {
-  const items = LANDUSE_GROUPS.map(
-    (g) => `<li><span class="key" style="background:${g[theme]}"></span>${g.value}</li>`,
-  ).join('')
-  return `<ul class="legend">${items}
-    <li><span class="key hatch" style="--hatch:${UNCLASSIFIED[theme]}"></span>
-        ${GROUP_UNCLASSIFIED}<span class="legend-note">対照表に記載なし</span></li>
-  </ul>
-  <p class="legend-note">国土交通省の対照表で全国共通コードに正規化し、
-     実施要領の大分類（自然的／都市的／低未利用）に集約した区分。</p>`
+  const swatch = (color: string, label: string, note = '') =>
+    `<li><span class="key" style="background:${color}"></span>${label}` +
+    (note ? `<span class="legend-note">${note}</span>` : '') + '</li>'
+
+  const items =
+    palette === 'conventional'
+      ? CONVENTIONAL_ORDER.map((code) =>
+          swatch(CONVENTIONAL[code][theme], `${CONVENTIONAL[code].name}`)).join('')
+      : GROUPS.map((g) => swatch(g[theme], g.value)).join('')
+
+  const hatch =
+    `<li><span class="key hatch" style="--hatch:${UNCLASSIFIED[theme]}"></span>` +
+    `${GROUP_UNCLASSIFIED}<span class="legend-note">対照表に記載なし</span></li>`
+
+  const note =
+    palette === 'conventional'
+      ? '東京都土地利用現況図〔建物用途別〕の凡例を参考にした慣行配色。区分数が多く、' +
+        '色の分離は検証を通らない（色覚特性によっては区別が難しい組み合わせを含む）。'
+      : '実施要領の大分類に集約した3系統。色の分離を検証済み（ライト/ダーク両モード）。'
+
+  return `<div class="palette-switch" role="group" aria-label="土地利用の配色">
+      <button type="button" data-palette="validated"
+        class="${palette === 'validated' ? 'on' : ''}">検証済み3系統</button>
+      <button type="button" data-palette="conventional"
+        class="${palette === 'conventional' ? 'on' : ''}">慣行配色20区分</button>
+    </div>
+    <ul class="legend ${palette}">${items}${hatch}</ul>
+    <p class="legend-note">${note}</p>`
 }
 
 
