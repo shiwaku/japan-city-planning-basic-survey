@@ -88,6 +88,27 @@ class ResourceRow:
     url: str
 
 
+def normalize(pkg: dict, flavor: str) -> dict:
+    """カタログの方言を CKAN 標準のキーに寄せる。
+
+    SHIRASAGI 系は title を持たず name にタイトルが入り、organization も
+    license_title も無い。そのまま扱うとタイトル空・組織空の行が量産される。
+    """
+    if flavor != "shirasagi":
+        return pkg
+    return {
+        **pkg,
+        "title": pkg.get("name") or "",
+        "name": str(pkg.get("uuid") or pkg.get("id") or ""),
+        "notes": pkg.get("text") or "",
+        "organization": {"title": (pkg.get("site") or {}).get("name")
+                         if isinstance(pkg.get("site"), dict) else (pkg.get("site") or "")},
+        "license_title": pkg.get("license_title") or "",
+        "tags": [{"display_name": t} if isinstance(t, str) else t
+                 for t in (pkg.get("tags") or [])],
+    }
+
+
 def _text_of(pkg: dict) -> str:
     parts = [pkg.get("title") or "", pkg.get("name") or "", pkg.get("notes") or ""]
     parts += [t.get("display_name") or t.get("name") or "" for t in pkg.get("tags") or []]
@@ -134,7 +155,8 @@ def harvest_catalog(cat: Catalog, limit: int | None = None) -> tuple[list[dict],
     for q in QUERIES:
         try:
             for pkg in client.search(q, limit=limit):
-                seen.setdefault(pkg["id"], pkg)
+                pkg = normalize(pkg, cat.flavor)
+                seen.setdefault(str(pkg.get("id") or pkg.get("name")), pkg)
         except Exception as exc:  # noqa: BLE001 - 1 カタログの失敗で全体を止めない
             log.warning("%s: query %r failed: %s", cat.id, q, exc)
 

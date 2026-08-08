@@ -3,3 +3,6 @@ data/work/
 *.part
 __pycache__/
 .venv/
+data/work/
+data/processed/
+data/tiles/

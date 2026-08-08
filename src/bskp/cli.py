@@ -13,6 +13,7 @@ import collections
 import csv
 import json
 import logging
+import re
 import sys
 from pathlib import Path
 
@@ -20,7 +21,8 @@ import yaml
 
 from .ckan import Catalog, CkanClient
 from .fetch import fetch_all
-from .harvest import ResourceRow, harvest_catalog, write_inventory
+from .convert import build_pmtiles, describe, extract_recursive, to_geojsonl
+from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
 from .scrape import Site, scrape_site
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,6 +30,9 @@ DEFAULT_CATALOGS = ROOT / "catalogs.yaml"
 DEFAULT_SITES = ROOT / "sites.yaml"
 DEFAULT_INVENTORY = ROOT / "data" / "inventory"
 DEFAULT_RAW = ROOT / "data" / "raw"
+DEFAULT_WORK = ROOT / "data" / "work"
+DEFAULT_PROCESSED = ROOT / "data" / "processed"
+DEFAULT_TILES = ROOT / "data" / "tiles"
 
 
 def load_catalogs(path: Path, only: list[str] | None = None,
@@ -178,6 +183,110 @@ def cmd_scrape(args: argparse.Namespace) -> None:
     print(f"{len(rows)} resources -> {out}")
 
 
+GEO_SUFFIXES = {".shp", ".geojson", ".json", ".gml", ".gpkg", ".kml"}
+
+
+def cmd_extract(args: argparse.Namespace) -> None:
+    """data/raw の書庫を data/work に展開する（入れ子ZIP・CP932対応）。"""
+    archives = sorted(p for p in args.raw.rglob("*") if p.suffix.lower() == ".zip")
+    logging.info("%d 個の書庫を展開します", len(archives))
+    for n, archive in enumerate(archives, 1):
+        rel = archive.relative_to(args.raw).with_suffix("")
+        dest = args.work / rel
+        if dest.exists() and not args.force:
+            continue
+        files = extract_recursive(archive, dest)
+        logging.info("[%d/%d] %d ファイル <- %s", n, len(archives), len(files), rel)
+    geo = [p for p in args.work.rglob("*") if p.suffix.lower() in GEO_SUFFIXES]
+    print(f"展開完了。地物ファイル {len(geo)} 件が data/work 以下にあります")
+
+
+def cmd_convert(args: argparse.Namespace) -> None:
+    """data/work の地物ファイルを EPSG:4326 の GeoJSONSeq に変換する。"""
+    sources = sorted(p for p in args.work.rglob("*") if p.suffix.lower() in GEO_SUFFIXES)
+    if args.match:
+        pat = re.compile(args.match)
+        sources = [p for p in sources if pat.search(p.name)]
+    logging.info("%d 件を変換します", len(sources))
+
+    manifest: list[dict] = []
+    for n, src in enumerate(sources, 1):
+        rel = src.relative_to(args.work)
+        dest = (args.processed / rel).with_suffix(".geojsonl")
+        srs, count, geom = describe(src)
+        if count == 0:
+            logging.info("[%d/%d] 空のためスキップ: %s", n, len(sources), rel)
+            continue
+        if dest.exists() and not args.force:
+            manifest.append(_layer_record(rel, dest, srs, count, geom))
+            continue
+        if to_geojsonl(src, dest):
+            logging.info("[%d/%d] %-6s %6d件 %-14s %s", n, len(sources),
+                         geom[:6], count, srs or "SRS不明", rel)
+            manifest.append(_layer_record(rel, dest, srs, count, geom))
+
+    args.processed.mkdir(parents=True, exist_ok=True)
+    out = args.processed / "layers.json"
+    out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    total = sum(m["features"] for m in manifest)
+    print(f"{len(manifest)} レイヤ / {total:,} フィーチャ -> {args.processed}")
+
+
+def _layer_record(rel: Path, dest: Path, srs: str, count: int, geom: str) -> dict:
+    parts = rel.parts
+    return {
+        "path": dest.as_posix(),
+        "source": rel.as_posix(),
+        "catalog_id": parts[0] if parts else "",
+        "dataset_name": parts[1] if len(parts) > 1 else "",
+        "layer": rel.stem,
+        "srs": srs,
+        "features": count,
+        "geometry": geom,
+        "themes": themes_for(rel.stem, *parts),
+    }
+
+
+def cmd_tiles(args: argparse.Namespace) -> None:
+    """調査項目ごとに GeoJSONSeq をまとめて PMTiles にする。"""
+    manifest_path = args.processed / "layers.json"
+    if not manifest_path.exists():
+        sys.exit(f"not found: {manifest_path}  (先に `python -m bskp convert` を実行)")
+    layers = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+    groups: dict[str, list[Path]] = collections.defaultdict(list)
+    for layer in layers:
+        for theme in layer["themes"] or ["その他"]:
+            groups[theme].append(Path(layer["path"]))
+
+    made = []
+    for theme, inputs in sorted(groups.items(), key=lambda kv: -len(kv[1])):
+        if args.theme and theme not in args.theme:
+            continue
+        slug = THEME_SLUGS.get(theme, "other")
+        dest = args.tiles / f"{slug}.pmtiles"
+        logging.info("%s: %d レイヤ -> %s", theme, len(inputs), dest.name)
+        if build_pmtiles(inputs, dest, layer_name=slug,
+                         min_zoom=args.min_zoom, max_zoom=args.max_zoom):
+            made.append((theme, slug, dest, len(inputs)))
+
+    index = [{"theme": t, "slug": s, "file": d.name, "layers": n,
+              "bytes": d.stat().st_size} for t, s, d, n in made]
+    args.tiles.mkdir(parents=True, exist_ok=True)
+    (args.tiles / "index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
+    for t, s, d, n in made:
+        print(f"  {t:<10} {d.name:<20} {d.stat().st_size / 1048576:8.1f} MiB  ({n} レイヤ)")
+
+
+# 調査項目名 → ファイル名に使える slug
+THEME_SLUGS = {
+    "人口": "population", "産業": "industry", "土地利用": "landuse",
+    "建物": "building", "都市施設": "facility", "地価": "landprice",
+    "自然環境": "nature", "災害": "hazard", "景観": "landscape", "その他": "other",
+}
+
+
 def _read_inventory(inventory: Path) -> list[dict]:
     """resources.csv と scraped.csv を両方読む（あるものだけ）。"""
     rows: list[dict] = []
@@ -265,6 +374,27 @@ def main(argv: list[str] | None = None) -> None:
     sc.add_argument("--sites", type=Path, default=DEFAULT_SITES)
     sc.add_argument("--site", action="append", help="対象サイト id（複数可）")
     sc.set_defaults(func=cmd_scrape)
+
+    se = sub.add_parser("extract", help="書庫を展開する（入れ子ZIP・CP932対応）")
+    se.add_argument("--raw", type=Path, default=DEFAULT_RAW)
+    se.add_argument("--work", type=Path, default=DEFAULT_WORK)
+    se.add_argument("--force", action="store_true")
+    se.set_defaults(func=cmd_extract)
+
+    sv = sub.add_parser("convert", help="地物ファイルをEPSG:4326のGeoJSONSeqに変換")
+    sv.add_argument("--work", type=Path, default=DEFAULT_WORK)
+    sv.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
+    sv.add_argument("--match", help="ファイル名の絞り込み正規表現")
+    sv.add_argument("--force", action="store_true")
+    sv.set_defaults(func=cmd_convert)
+
+    st = sub.add_parser("tiles", help="調査項目ごとにPMTilesを作る")
+    st.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
+    st.add_argument("--tiles", type=Path, default=DEFAULT_TILES)
+    st.add_argument("--theme", action="append", help="対象の調査項目（複数可）")
+    st.add_argument("--min-zoom", type=int, default=4)
+    st.add_argument("--max-zoom", type=int, default=14)
+    st.set_defaults(func=cmd_tiles)
 
     sr = sub.add_parser("report", help="インベントリを集計")
     sr.set_defaults(func=cmd_report)

@@ -142,6 +142,19 @@ catalogs:
       legacy_tls を有効にする（curl では通るので原因が分かりにくい）
     legacy_tls: true
 
+  # --- SHIRASAGI CMS 系（/api 直下・レスポンス形が CKAN と別） ---
+  - id: shizuoka-pref
+    name: 静岡県オープンデータ（ふじのくにオープンデータカタログ）
+    api: https://opendata.pref.shizuoka.jp
+    site: https://opendata.pref.shizuoka.jp/
+    api_path: /api
+    flavor: shirasagi
+    enabled: true
+    note: >
+      JS描画で取れないと思い込んでいたが、単に API のパスが /api 直下だっただけ。
+      title を持たず name にタイトルが入るなど応答形が CKAN と違うので flavor で正規化する。
+      G空間情報センター側にも同じ静岡県データがあり重複しうる（突き合わせは未実装）。
+
   # --- 疎通は通るが対象データが無い / CKAN ではない ---
   # probe の結果を残しておくための枠。enabled: true に上げれば harvest 対象になる。
   - id: e-gov

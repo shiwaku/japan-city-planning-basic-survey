@@ -57,10 +57,15 @@ class Catalog:
     note: str = ""
     user_agent: str = ""
     legacy_tls: bool = False
+    # CKAN 標準は /api/3/action だが、SHIRASAGI CMS のオープンデータモジュールは
+    # /api 直下に package_search を置く（静岡県がこれ。JS描画で取れないと思ったら
+    # 単にパスが違うだけだった）。レスポンスの形も違うので flavor で切り替える。
+    api_path: str = "/api/3/action"
+    flavor: str = "ckan"
 
     @property
     def action_base(self) -> str:
-        return self.api.rstrip("/") + "/api/3/action"
+        return self.api.rstrip("/") + "/" + self.api_path.strip("/")
 
     def dataset_url(self, name: str) -> str:
         """データセットの人間向け URL。CKAN の慣例に従い /dataset/<name>。"""

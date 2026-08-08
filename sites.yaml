@@ -39,16 +39,6 @@ sites:
       実データではなく、様式テンプレートCSV・コード表XLSX・実施要領PDF。
       変換フェーズの列マッピング（lui_201 等）とコード対照に使う。
 
-  - id: shizuoka-pref
-    name: 静岡県オープンデータ（ふじのくにオープンデータカタログ）
-    prefecture: 静岡県
-    start_urls:
-      - https://opendata.pref.shizuoka.jp/dataset/9925.html
-    pause: 1.0
-    enabled: true
-    note: >
-      CKAN 風の URL だが /api/3/action は 404。G空間情報センター側にも
-      同じ静岡県データがあるため重複しうる。突き合わせは未実装。
 
   - id: tsushima
     name: 津島市 都市計画関連情報のオープンデータ

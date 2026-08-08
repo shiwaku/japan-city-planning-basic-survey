@@ -1,7 +1,9 @@
 # 都市計画基礎調査 オープンデータ収集ツール
 
-全国の都市計画基礎調査データをオープンデータカタログから収集し、Web 地図化するための土台。
-現時点では **収集フェーズ（harvest / fetch）** が動く。
+全国の都市計画基礎調査データをオープンデータカタログから収集し、Web 地図として表示する。
+
+収集（harvest / scrape / fetch）→ 変換（extract / convert / tiles）→ 表示（web/）まで
+一通り動く。
 
 ## 都市計画基礎調査とは
 
@@ -29,6 +31,7 @@
 |---|---:|---:|
 | G空間情報センター | 17,274 | 56 |
 | 岐阜県オープンデータ | 1,879 | 81 |
+| 静岡県オープンデータ（SHIRASAGI） | — | 34 |
 | BODIK ODCS（約350自治体） | 18,311 | 23 |
 | 山口県オープンデータカタログ | 770 | 18 |
 | 神奈川県オープンデータカタログ | 807 | 3 |
@@ -71,16 +74,40 @@ bskp fetch --dry-run           # URLと保存先を出すだけ
 # 走査ログは logs/bskp.log に追記される（--log で変更可）
 ```
 
-### 収集結果（2026-08-08 時点）
+### 変換して地図にする
 
-186 データセット / 1,330 リソース / 判明分 26.41 GiB。
+```bash
+bskp extract     # data/raw の書庫を展開 → data/work/（入れ子ZIP・CP932対応）
+bskp convert     # 地物ファイルをEPSG:4326のGeoJSONSeqに → data/processed/
+bskp tiles       # 調査項目ごとにPMTilesを作る → data/tiles/
+
+python scripts/serve.py        # http://localhost:8000/web/ を開く
+```
+
+`scripts/serve.py` は Range 対応の開発用サーバ。Python 標準の `http.server` は
+Range に対応しておらず、PMTiles を開くたびにファイル全体（自然環境は 34 MiB）を
+返してしまうため用意した。
+
+### 実測結果（2026-08-08 時点）
+
+**収集**: 220 データセット / 1,668 リソース / 判明分 26.41 GiB
 
 ```
-形式:  ZIP 556 / CSV 266 / XLSX 98 / SHP 94 / DOCX 80 / PDF 52 / KMZ 21 …
-組織:  静岡県 303 / 大分県 231 / 岐阜県都市建築部 227 / 埼玉県 81 / 茅野市 69 /
-       神奈川県県土整備局 67 / さいたま市 44 / 山口県 20 / 東京都都市整備局 17 …
-種別:  archive 556 / tabular 385 / document 167 / geo 120
+カタログ:  G空間情報センター 473 / 岐阜県 341 / 静岡県 338 / BODIK 327 /
+           神奈川県 67 / 山口県 36 / 国交省 36 / 津島市 18 / 東京都 17 / 横浜市 14
+組織:      静岡県 303 / 大分県 231 / 岐阜県都市建築部 227 / 埼玉県 81 / 茅野市 69 …
 ```
+
+**変換**: 展開 4.9 GiB → 503 レイヤ / 542,807 フィーチャ → PMTiles 98 MiB
+
+```
+自然環境 34.3MiB(138層) / 土地利用 21.0MiB(51層) / その他 15.9MiB(70層) /
+建物 11.9MiB(53層) / 都市施設 6.7MiB(70層) / 人口 2.6MiB(9層) /
+災害 2.1MiB(61層) / 産業 1.4MiB(11層) / 景観 1.2MiB(30層) / 地価 0.1MiB(14層)
+```
+
+座標系は実測で 5 種類混在した（EPSG:2450 が 448 層、2444 が 50 層、
+2451 が 2 層、4612 が 2 層、標高付き複合CRS が 1 層）。すべて EPSG:4326 に再投影している。
 
 ## 設計メモ
 
@@ -118,22 +145,26 @@ bskp fetch --dry-run           # URLと保存先を出すだけ
 **再実行は差分だけ。** `data/raw/manifest.jsonl` に sha256 付きで記録し、
 取得済みは飛ばす。失敗記録は次回再試行される。
 
-## Web 地図化に向けた既知の課題
+## 変換フェーズの設計メモ
 
-1. **座標系がバラバラ。** 平面直角座標系で配布される（日田市は JGD2000 / Japan Plane
-   Rectangular CS II = EPSG:2444）。系番号は県ごとに違うので `.prj` を見て
-   `-t_srs EPSG:4326` で個別に再投影する。
-2. **ZIP の中身は開くまで分からない。** 556 件の ZIP は SHP・PDF・調書が混在する。
-   静岡県の ZIP は入れ子（ZIP の中に ZIP）。インベントリの `kind=archive` は
-   「要展開・要判定」の意味。
-3. **リソースの format 表記が当てにならない。** 大分県玖珠町の「shpデータ」リソースは
-   実体が CSV のみ（URL も csv 版と同じ `oitakenkusucsv.zip`）。format ではなく
-   中身で判定する必要がある。
-4. **文字コードと ZIP 内ファイル名。** DBF は CP932、ZIP エントリ名も CP932。
-   Python の `zipfile` は cp437 として読むので明示的に再デコードする。
-5. **粒度が違う。** 小地域単位のポリゴン（日田市の土地利用現況は 116 フィーチャ）と、
+生データ側の事情に振り回されるので、**format 表記を信じず、展開して中身で判定する**。
+
+1. **座標系がバラバラ。** 平面直角座標系で配布され、系番号は県ごとに違う。
+   実測で 5 種類混在した。`.prj` は GDAL が読むので系番号の個別指定は要らず、
+   `-t_srs EPSG:4326` だけで揃う。
+2. **ZIP が入れ子。** 静岡県は ZIP の中に ZIP がもう一段ある。再帰展開する
+   （深さ 3 で打ち切り、`..` や絶対パスは弾く）。
+3. **文字コード。** DBF も ZIP エントリ名も CP932。`zipfile` はエントリ名を
+   cp437 として読むので明示的に再デコードし、GDAL には `SHAPE_ENCODING=CP932` を渡す。
+   さらに `ogrinfo -json` の出力自体に CP932 バイトが混ざって `json.loads` が落ちるため、
+   デコード不能バイトは置換して読み進める。
+4. **リソースの format 表記が当てにならない。** 大分県玖珠町の「shpデータ」リソースは
+   実体が CSV のみ（URL も csv 版と同じ `oitakenkusucsv.zip`）。
+5. **tippecanoe は .pmtiles を指定しても mbtiles を書く。** v2.80 で確認（先頭バイトが
+   `SQLite format 3`）。`pmtiles convert` を必ず通す。
+6. **粒度が違う。** 小地域単位のポリゴン（日田市の土地利用現況は 116 フィーチャ）と
    建物単位のデータが混在する。凡例・ズームレベル設計に影響する。
-6. **ライセンスが不統一。** CC-BY / GNU FDL / 独自利用規約 が混在。
+7. **ライセンスが不統一。** CC-BY / GNU FDL / 独自利用規約 が混在。
    `resources.csv` の `license` 列に保持している。
 
 ## 構成
@@ -143,14 +174,17 @@ catalogs.yaml            CKANカタログの登録簿（20件・うち18有効�
 sites.yaml               CKANを持たない配布サイトの登録簿
 candidates.txt           discover に食わせる候補URLリスト
 src/bskp/
-  ckan.py                CKAN クライアント（ページング・リトライ・UA/TLS切替）
+  ckan.py                CKAN クライアント（ページング・リトライ・UA/TLS/方言切替）
   harvest.py             横断検索とクライアント側フィルタ
   scrape.py              非CKANサイトのリンク抽出（robots.txt尊重・文字コード判定）
   fetch.py               ダウンロード（sha256・レジューム）
-  cli.py                 probe / discover / harvest / scrape / report / fetch
+  convert.py             再帰展開・素性判定・再投影・タイル生成
+  cli.py                 probe/discover/harvest/scrape/extract/convert/tiles/report/fetch
+web/index.html           MapLibre GL JS + PMTiles のビューア
+scripts/serve.py         Range 対応の開発用サーバ
 data/
   inventory/             datasets.jsonl, resources.csv, scraped.csv（git 管理）
-  raw/                   取得した実ファイル（git 管理外）
+  raw/ work/ processed/ tiles/   中間・成果物（git 管理外）
 logs/bskp.log            走査ログ（追記）
 ```
 
@@ -168,4 +202,21 @@ robots.txt を必ず確認し、1ドメイン直列・ウェイト付きで、`f
   バイト列推定 → UTF-8 → CP932 の順に試す
 - **ログインが要る**（広島県 DoboX）— CKAN API は無く内部 API は 401。
   一覧も動的描画。匿名では取得できないので `enabled: false` にしてある
-- **JS 描画で静的HTMLにリンクが無い**（静岡県）— 0件。ブラウザ自動化が要る
+- **API のパスが違うだけだった**（静岡県）— JS 描画で取れないと思い込んでいたが、
+  SHIRASAGI CMS のオープンデータモジュールが `/api` 直下に `package_search` を
+  持っていた。応答形も CKAN と違う（`title` が無く `name` にタイトルが入る）ので
+  `flavor: shirasagi` で正規化する。ブラウザ自動化は不要だった
+
+## 全国化の到達点と限界
+
+CKAN 側は概ね掘り尽くした。実測した内訳：
+
+- `search.ckan.jp` の対象サイト一覧（39カタログ）を全て probe → 19 が生存
+- 47都道府県 × 4 命名パターン（188 URL）を機械的に probe → 新規は 2 のみ、
+  うち該当データありは 0。ホスト名の推測は歩留まりが悪い
+- 一度失敗した 17 エンドポイントを「パス違い（`/api`）＋緩和TLS」で再試行 → 2 復活、
+  ただし該当 0
+
+残っているのは **CKAN も CKAN 互換 API も持たない配布**（県の通常ページ、
+認証付きポータル）で、これは `sites.yaml` に 1 件ずつ積むしかない。
+津島市の型（市の通常ページから SHP の ZIP を直接配布）は全国に多数あると見られる。
