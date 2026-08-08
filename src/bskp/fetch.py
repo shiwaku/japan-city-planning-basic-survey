@@ -14,6 +14,7 @@ import hashlib
 import json
 import logging
 import re
+import socket
 import time
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -26,6 +27,26 @@ log = logging.getLogger(__name__)
 
 CHUNK = 1 << 20  # 1 MiB
 _UNSAFE = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
+
+
+def prefer_ipv4() -> None:
+    """名前解決の結果を IPv4 に絞る。
+
+    東京都の配信ホスト（data.storage.data.metro.tokyo.lg.jp）は AAAA を持つが
+    IPv6 では接続が確立せず、そのまま無応答になる（curl -4 なら 206 が返る）。
+    名前解決は成功するので「取得中のまま1バイトも進まない」形で現れ、原因が分かりにくい。
+    取得先は公開データの配信サーバに限られるので、IPv4 に固定して回避する。
+    """
+    if getattr(socket, "_bskp_ipv4_only", False):
+        return
+    original = socket.getaddrinfo
+
+    def ipv4_only(host, port, family=0, type=0, proto=0, flags=0):  # noqa: A002
+        return original(host, port, socket.AF_INET, type, proto, flags)
+
+    socket.getaddrinfo = ipv4_only
+    socket._bskp_ipv4_only = True  # type: ignore[attr-defined]
+    log.debug("名前解決を IPv4 に固定しました")
 
 
 def safe_name(name: str, fallback: str = "file") -> str:
@@ -93,6 +114,7 @@ def fetch_all(rows: list[dict], raw_dir: Path, *, kinds: set[str] | None = None,
               user_agents: dict[str, str] | None = None) -> None:
     """user_agents は catalog_id -> UA。配信側の WAF が UA を見るカタログがある
     （G空間情報センターは既定 UA を 403 で弾く）ので、検索時と同じ UA を使う。"""
+    prefer_ipv4()
     manifest_path = raw_dir / "manifest.jsonl"
     done = load_manifest(manifest_path)
     user_agents = user_agents or {}

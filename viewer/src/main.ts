@@ -7,6 +7,7 @@ import {
   CONVENTIONAL, CONVENTIONAL_ORDER, GROUPS, GROUP_UNCLASSIFIED, UNCLASSIFIED,
   fillColor, type PaletteId,
 } from './palettes'
+import { getBasemapStyle, type Basemap } from './basemap'
 import { applyThemeAttr, initialTheme, type Theme } from './theme'
 import './style.css'
 
@@ -38,33 +39,10 @@ const protocol = new Protocol()
 maplibregl.addProtocol('pmtiles', protocol.tile)
 
 // ---- 背景地図 ----
-// 地理院淡色タイル。ダーク時は raster paint で沈める（別スタイルを持たない）。
-function basemapStyle(mode: Theme): maplibregl.StyleSpecification {
-  return {
-    version: 8,
-    sources: {
-      gsi: {
-        type: 'raster',
-        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        maxzoom: 18,
-        attribution:
-          '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>',
-      },
-    },
-    layers: [
-      {
-        id: 'basemap',
-        type: 'raster',
-        source: 'gsi',
-        paint:
-          mode === 'dark'
-            ? { 'raster-brightness-max': 0.42, 'raster-saturation': -0.5, 'raster-contrast': 0.1 }
-            : {},
-      },
-    ],
-  }
-}
+// 参考実装（mlit-urban-planning-converter/viewer）と同じ地理院最適化ベクトルタイル。
+// pale-style.json の source は pmtiles:// なので、上で登録したプロトコルが必要。
+// ダークは色を反転して生成する（basemap.ts）。写真は右下のボタンで切り替える。
+let basemap: Basemap = (localStorage.getItem('bskp-basemap') as Basemap) || 'pale'
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -72,7 +50,7 @@ const map = new maplibregl.Map({
   center: [137.5, 34.9],
   zoom: 8,
   attributionControl: { compact: true },
-  style: basemapStyle(theme),
+  style: getBasemapStyle(basemap, theme),
 })
 map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), 'top-right')
 map.addControl(new maplibregl.ScaleControl({ maxWidth: 120, unit: 'metric' }))
@@ -189,7 +167,7 @@ themeBtn.addEventListener('click', () => {
   applyThemeAttr(theme)
   renderThemeBtn()
   // 背景もデータ色も差し替わるのでスタイルごと作り直す
-  map.setStyle(basemapStyle(theme))
+  map.setStyle(getBasemapStyle(basemap, theme))
   map.once('styledata', () => {
     addDataLayers()
     buildToggles()
@@ -336,6 +314,47 @@ function setOpacity(def: ThemeDef, v: number): void {
   const strong = Math.min(1, v + 0.35)
   if (map.getLayer(lineId(def.key))) map.setPaintProperty(lineId(def.key), 'line-opacity', strong)
   if (map.getLayer(pointId(def.key))) map.setPaintProperty(pointId(def.key), 'circle-opacity', strong)
+}
+
+// ---- 背景地図の切替（右下） ----
+class BasemapControl implements maplibregl.IControl {
+  private container!: HTMLElement
+
+  onAdd(): HTMLElement {
+    this.container = document.createElement('div')
+    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group basemap-ctrl'
+    for (const [id, label] of [['pale', '淡色'], ['photo', '写真']] as const) {
+      const btn = document.createElement('button')
+      btn.type = 'button'
+      btn.textContent = label
+      btn.title = `背景を${label}に切替`
+      btn.className = basemap === id ? 'on' : ''
+      btn.addEventListener('click', () => setBasemap(id))
+      this.container.appendChild(btn)
+    }
+    return this.container
+  }
+
+  onRemove(): void {
+    this.container.remove()
+  }
+}
+
+const basemapCtrl = new BasemapControl()
+map.addControl(basemapCtrl, 'bottom-right')
+
+function setBasemap(next: Basemap): void {
+  if (next === basemap) return
+  basemap = next
+  localStorage.setItem('bskp-basemap', basemap)
+  // スタイルごと入れ替わるのでデータレイヤを張り直す
+  map.setStyle(getBasemapStyle(basemap, theme))
+  map.once('styledata', () => {
+    addDataLayers()
+    buildToggles()
+  })
+  map.removeControl(basemapCtrl)
+  map.addControl(basemapCtrl, 'bottom-right')
 }
 
 // ---- クリックで属性表示 ----

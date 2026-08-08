@@ -5822,3 +5822,32 @@
 2026-08-08T16:46:13 INFO    既存 index から 8 テーマを引き継ぎます
 2026-08-08T16:46:13 INFO    出典 53 件を attribution.json に書き出しました
 2026-08-08T16:46:13 INFO    --- end of tiles ---
+2026-08-08T17:21:56 INFO    $ bskp --inventory /tmp/tokyoinv fetch --max-mb 400
+2026-08-08T17:21:56 INFO    2/2 resources selected for download
+2026-08-08T17:21:56 DEBUG   Starting new HTTPS connection (1): data.storage.data.metro.tokyo.lg.jp:443
+2026-08-08T17:44:43 INFO    $ bskp --inventory /tmp/tokyoinv fetch --max-mb 400
+2026-08-08T17:44:43 DEBUG   名前解決を IPv4 に固定しました
+2026-08-08T17:44:43 INFO    2/2 resources selected for download
+2026-08-08T17:44:43 DEBUG   Starting new HTTPS connection (1): data.storage.data.metro.tokyo.lg.jp:443
+2026-08-08T17:44:43 DEBUG   https://data.storage.data.metro.tokyo.lg.jp:443 "GET /toshiseibi/R04.zip HTTP/11" 200 308827381
+2026-08-08T17:45:12 INFO    [1/2]    294.5 MiB  tokyo/t000008d2000000019/0000_R04.zip
+2026-08-08T17:45:13 DEBUG   https://data.storage.data.metro.tokyo.lg.jp:443 "GET /toshiseibi/R03.zip HTTP/11" 200 362584455
+2026-08-08T17:45:48 INFO    [2/2]    345.8 MiB  tokyo/t000008d2000000019/0001_R03.zip
+2026-08-08T17:45:48 INFO    downloaded 640.3 MiB in this run
+2026-08-08T17:45:48 INFO    --- end of fetch ---
+2026-08-08T17:46:45 INFO    $ bskp extract
+2026-08-08T17:46:45 INFO    549 個の書庫を展開します
+2026-08-08T17:46:46 WARNING ZIP として開けません: /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/raw/geospatial-jp/tosikeikaku202306fujieda/0108_03_.zip
+2026-08-08T17:46:46 INFO    [161/549] 0 ファイル <- geospatial-jp/tosikeikaku202306fujieda/0108_03_
+2026-08-08T17:47:03 INFO    [523/549] 40 ファイル <- tokyo/t000008d2000000019/0000_R04
+2026-08-08T17:47:17 INFO    [524/549] 14 ファイル <- tokyo/t000008d2000000019/0001_R03
+2026-08-08T17:47:44 INFO    --- end of extract ---
+2026-08-08T17:47:45 INFO    $ bskp convert
+2026-08-08T17:48:12 INFO    2450 件を変換します
+2026-08-08T17:48:33 INFO    [443/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306fukuroi/0287_05_/05_都市施設/03_GISデータ/5120_下水道網図/5120_下水道網図/pump.shp
+2026-08-08T17:48:51 INFO    [709/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306izu/0230_05_/05_都市施設/03_GISデータ/shorijo.shp
+2026-08-08T17:48:52 INFO    [728/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306izunokuni/0091_05_/05_都市施設/03_GISデータ/Pump.shp
+2026-08-08T17:48:56 INFO    [796/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306kikugawa/0254_00_/00_区域界/223_御前崎市_人口集中地区界.shp
+2026-08-08T17:49:00 INFO    [875/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306mori/0293_00_/00_区域界/461_森町_人口集中地区界.shp
+2026-08-08T17:49:02 INFO    [919/2450] 空のためスキップ: geospatial-jp/tosikeikaku202306omaezaki/0264_00_/00_区域界/223_御前崎市_人口集中地区界.shp
+2026-08-08T17:51:16 INFO    [2414/2450] Polygo 495407件 EPSG:6677      tokyo/t000008d2000000019/0000_R04/R04/R04多摩部全域/R04土地利用現況_ウ多摩全域.shp

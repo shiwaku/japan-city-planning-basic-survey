@@ -238,3 +238,14 @@ p.legend-note { margin: 0 0 4px; line-height: 1.5; }
 .legend.conventional { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }
 .legend.conventional li { font-size: 10px; }
 .legend.conventional .legend-note { display: none; }
+
+/* ---- 背景地図の切替 ---- */
+.basemap-ctrl { display: flex; }
+.basemap-ctrl button {
+  width: auto; padding: 0 10px; height: 29px;
+  font-size: 11px; color: var(--ink-2); background: transparent;
+  border: none; cursor: pointer;
+}
+.basemap-ctrl button + button { border-left: 1px solid var(--line); }
+.basemap-ctrl button:hover { background: var(--hover); }
+.basemap-ctrl button.on { background: var(--accent); color: var(--accent-ink); }

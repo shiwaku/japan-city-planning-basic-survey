@@ -48,8 +48,9 @@ GROUPS = [GROUP_NATURAL, GROUP_URBAN, GROUP_UNDERUSED, GROUP_UNKNOWN]
 #   tochiriyou       静岡県
 #   土地コード        津島市（愛知県）
 #   国コード          津島市。こちらは最初から国標準コードなので写像不要
+#   LU_1             東京都。LU_1〜LU_4 と段階があり、LU_1 が主用途
 LOCAL_CODE_FIELDS = ("LANDUSE", "LANDUSE_", "landuse", "tochiriyou",
-                     "土地コード", "lu_code", "youto", "YOUTO")
+                     "土地コード", "LU_1", "lu_code", "youto", "YOUTO")
 NATIONAL_CODE_FIELDS = ("国コード", "lui_code_national", "national_code")
 
 
