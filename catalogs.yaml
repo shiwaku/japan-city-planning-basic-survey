@@ -1,0 +1,159 @@
+# 都市計画基礎調査データを探索する CKAN カタログの一覧
+#
+# 各エントリ:
+#   id:      出力ディレクトリ名にも使う短い識別子（英小文字・ハイフン）
+#   name:    表示名
+#   api:     CKAN API のベース URL（末尾に /api/3/action/... が付く）
+#   site:    人間が見る用のポータル URL
+#   enabled: false にすると harvest 対象から外れる
+#   note:    備考
+#   user_agent: 既定 UA が弾かれるカタログだけ上書きする（省略可）
+#
+# 疎通確認は `python -m bskp probe` で行う。
+# 新しいカタログを足すときは api に CKAN のベース URL を書いて probe を回す。
+
+catalogs:
+  - id: geospatial-jp
+    name: G空間情報センター
+    api: https://www.geospatial.jp/ckan
+    site: https://front.geospatial.jp/
+    enabled: true
+    note: 静岡県・大分県・さいたま市・埼玉県などが基礎調査を登録している中核カタログ
+    # WAF が見慣れない UA を 403 で弾く。実際のクライアントである requests を名乗る
+    user_agent: python-requests/2.32.3
+
+  - id: bodik
+    name: BODIK ODCS
+    api: https://data.bodik.jp
+    site: https://odcs.bodik.jp/
+    enabled: true
+    note: 九州中心に約350自治体が参加。大分県の市町村データがまとまっている
+
+  - id: tokyo
+    name: 東京都オープンデータカタログサイト
+    api: https://catalog.data.metro.tokyo.lg.jp
+    site: https://catalog.data.metro.tokyo.lg.jp/
+    enabled: true
+    note: 全文検索のノイズが多いためタイトル一致フィルタが効く
+
+  - id: yokohama
+    name: 横浜市オープンデータポータル
+    api: https://data.city.yokohama.lg.jp
+    site: https://data.city.yokohama.lg.jp/
+    enabled: true
+
+  - id: sapporo
+    name: 札幌市 DATA-SMART CITY SAPPORO
+    api: https://ckan.pf-sapporo.jp
+    site: https://ckan.pf-sapporo.jp/
+    enabled: true
+
+  - id: sendai
+    name: 仙台市オープンデータ
+    api: https://data.city.sendai.jp
+    site: https://data.city.sendai.jp/
+    enabled: true
+    note: 総データセット16件と小規模
+
+  # --- search.ckan.jp「データカタログ横断検索システム」の対象サイト一覧から実測追加 ---
+  # https://search.ckan.jp/sites （39カタログ）を probe した結果、生きていたもの
+
+  - id: kanagawa
+    name: 神奈川県オープンデータカタログ
+    api: https://catalog.opendata.pref.kanagawa.jp
+    site: https://catalog.opendata.pref.kanagawa.jp/
+    enabled: true
+    note: 第11回（令和2年度）神奈川県都市計画基礎調査（県調査・市町調査・市町村別）を公開
+
+  - id: gifu
+    name: 岐阜県オープンデータ
+    api: https://gifu-opendata.pref.gifu.lg.jp
+    site: https://gifu-opendata.pref.gifu.lg.jp/
+    enabled: true
+
+  - id: utsunomiya
+    name: 宇都宮市オープンデータ
+    api: https://catalog.city.utsunomiya.tochigi.jp
+    site: https://catalog.city.utsunomiya.tochigi.jp/
+    enabled: true
+
+  - id: minato
+    name: 港区オープンデータ
+    api: https://opendata.city.minato.tokyo.jp
+    site: https://opendata.city.minato.tokyo.jp/
+    enabled: true
+
+  - id: data4citizen
+    name: data4citizen（武雄市ほか）
+    api: https://data.data4citizen.jp
+    site: https://data.data4citizen.jp/
+    enabled: true
+
+  - id: nasu
+    name: 那須町オープンデータ
+    api: http://opendata-nasu.opendatastack.jp
+    site: http://opendata-nasu.opendatastack.jp/
+    enabled: true
+
+  - id: kakogawa
+    name: 加古川市オープンデータ
+    api: https://opendata-api-kakogawa.jp/ckan
+    site: https://opendata-api-kakogawa.jp/
+    enabled: true
+
+  - id: machida
+    name: 町田市オープンデータ
+    api: http://opendata.city.machida.tokyo.jp
+    site: http://opendata.city.machida.tokyo.jp/
+    enabled: true
+
+  - id: sagamihara
+    name: 相模原市オープンデータ
+    api: http://opendata.city.sagamihara.kanagawa.jp
+    site: http://opendata.city.sagamihara.kanagawa.jp/
+    enabled: true
+
+  - id: niigata
+    name: 新潟市オープンデータ
+    api: http://opendata.city.niigata.lg.jp
+    site: http://opendata.city.niigata.lg.jp/
+    enabled: true
+
+  - id: kanazawa
+    name: 金沢市オープンデータ
+    api: https://catalog-data.city.kanazawa.ishikawa.jp
+    site: https://catalog-data.city.kanazawa.ishikawa.jp/
+    enabled: true
+
+  - id: jig-odp
+    name: オープンデータプラットフォーム（jig.jp）
+    api: https://ckan.odp.jig.jp
+    site: https://ckan.odp.jig.jp/
+    enabled: true
+
+  - id: yamaguchi
+    name: 山口県オープンデータカタログサイト
+    api: https://yamaguchi-opendata.jp/ckan
+    site: https://yamaguchi-opendata.jp/
+    enabled: true
+    note: >
+      【山口県】都市計画基礎調査結果 に県内19市町分がぶら下がる。
+      OpenSSL 3 の既定では TLSV1_ALERT_INSUFFICIENT_SECURITY で接続できないため
+      legacy_tls を有効にする（curl では通るので原因が分かりにくい）
+    legacy_tls: true
+
+  # --- 疎通は通るが対象データが無い / CKAN ではない ---
+  # probe の結果を残しておくための枠。enabled: true に上げれば harvest 対象になる。
+  - id: e-gov
+    name: e-Gov データポータル（旧 data.go.jp）
+    api: https://data.e-gov.go.jp/data
+    site: https://data.e-gov.go.jp/
+    enabled: false
+    note: 府省庁データ18,144件のみ。自治体の都市計画基礎調査は載っていない
+
+  - id: sabae
+    name: 鯖江市データシティ鯖江
+    api: https://data.city.sabae.lg.jp
+    site: https://data.city.sabae.lg.jp/
+    enabled: false
+    note: "Uknown method 'action' を返す。CKAN 3 系 API 非対応と思われる"

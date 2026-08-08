@@ -1,0 +1,60 @@
+# CKAN API を持たない配布サイトの登録簿。`python -m bskp scrape` が読む。
+#
+#   id / name / prefecture : 出力の catalog_id・organization になる
+#   start_urls : 最初に読むページ（複数可）
+#   follow     : このパターンに一致するリンクを「次に読むページ」として1段だけ辿る
+#   match      : リンクURLかリンクテキストがこれに一致するものだけ採用（省略時は拡張子のみで判定）
+#   pause      : 1リクエストごとの待ち時間（秒）
+#   license    : 分かっていれば書く。resources.csv の license 列に入る
+#
+# robots.txt は scrape 側が必ず確認し、禁止されていれば取得しない。
+# 無制限クロールはしない（follow は 1 段のみ）。
+
+sites:
+  - id: hiroshima-dobox
+    name: ひろしま DoboX データカタログ
+    prefecture: 広島県
+    start_urls:
+      - https://hiroshima-dobox.jp/datasets_condition
+    match: 都市計画|土地利用|建物|基礎調査
+    pause: 1.5
+    enabled: false
+    note: >
+      匿名では取得不可のため無効化。CKAN API は無く、内部APIの /api/datasets は
+      401 {"errors":"認証エラー"} を返す。データカタログ画面の <a> 54個は
+      すべてナビゲーションで、一覧は動的描画。ダウンロードにアカウントが要る。
+      robots.txt 自体は Disallow 空（全許可）なので、規約上の可否を確認したうえで
+      認証情報を用意すれば対象にできる。
+
+  - id: mlit-kisochosa
+    name: 国土交通省 都市計画基礎調査情報のオープン化
+    prefecture: 全国
+    start_urls:
+      - https://www.mlit.go.jp/toshi/city_plan/toshi_city_plan_tk_000049.html
+      - https://www.mlit.go.jp/toshi/tosiko/kisotyousa001.html
+    pause: 1.0
+    enabled: true
+    license: 出典明示（国土交通省）
+    note: >
+      実データではなく、様式テンプレートCSV・コード表XLSX・実施要領PDF。
+      変換フェーズの列マッピング（lui_201 等）とコード対照に使う。
+
+  - id: shizuoka-pref
+    name: 静岡県オープンデータ（ふじのくにオープンデータカタログ）
+    prefecture: 静岡県
+    start_urls:
+      - https://opendata.pref.shizuoka.jp/dataset/9925.html
+    pause: 1.0
+    enabled: true
+    note: >
+      CKAN 風の URL だが /api/3/action は 404。G空間情報センター側にも
+      同じ静岡県データがあるため重複しうる。突き合わせは未実装。
+
+  - id: tsushima
+    name: 津島市 都市計画関連情報のオープンデータ
+    prefecture: 愛知県津島市
+    start_urls:
+      - https://www.city.tsushima.lg.jp/kurashi/sumaikenchiku/toshikeikaku/tokeiopendeta.html
+    pause: 1.0
+    enabled: true
+    note: 市の通常ページから SHP の ZIP を直接配布している型。この型は全国に多数ある

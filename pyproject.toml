@@ -1,0 +1,19 @@
+[project]
+name = "bskp"
+version = "0.1.0"
+description = "都市計画基礎調査オープンデータをCKANカタログ横断で収集する"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+bskp = "bskp.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bskp"]
