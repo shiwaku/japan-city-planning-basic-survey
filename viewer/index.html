@@ -35,8 +35,9 @@
 
     <footer class="panel-foot">
       <span id="status" class="status">読み込み中…</span><br />
-      <span id="attribution"></span><br />
-      背景: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル（淡色）</a>
+      <span id="attribution"></span>
+      <!-- 背景地図の出典はスタイル側（pale-style.json の source.attribution）が持つので
+           MapLibre の attribution コントロールに出る。ここに書くと二重になる -->
     </footer>
   </section>
 
