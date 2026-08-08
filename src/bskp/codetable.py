@@ -238,8 +238,14 @@ def build_reference(crosswalk: Path, code_table: Path) -> dict:
     """対照表とコード表をまとめて、正規化に使える 1 つの辞書にする。"""
     codes = parse_code_table(code_table)
     walks = parse_crosswalk(crosswalk)
+    overrides = {}
+    ov_path = crosswalk.parent / "overrides.yaml"
+    if ov_path.exists():
+        import yaml
+        overrides = (yaml.safe_load(ov_path.read_text(encoding="utf-8")) or {}).get("overrides") or {}
     return {
         "national_codes": codes,
+        "overrides": overrides,
         "source": {
             "code_table": CODE_TABLE_URL,
             "crosswalk": CROSSWALK_URL,
@@ -260,15 +266,37 @@ def build_reference(crosswalk: Path, code_table: Path) -> dict:
 def normalize_code(reference: dict, pref_name: str, local_code: str) -> str | None:
     """県独自コードを国標準コードに写す。写せなければ None。
 
+    publisher の一次資料に基づく上書き（overrides.yaml）を対照表より優先する。
+    対照表は版が古いことがあり、静岡県では '10' が対照表だと農林漁業施設用地(219)、
+    同梱の定義書だと田(201) で食い違う。自分のデータに付いている定義書を正とする。
+
     上位桁からの推測はしない。埼玉県では 90 が農林漁業施設用地(219) なのに
     91-96 は公益施設用地(214) で、桁を落とす推測が実データで成り立たないため。
     """
+    code0 = str(local_code).strip()
+    override = (reference.get("overrides") or {}).get(pref_name)
+    if override:
+        table = override.get("to_national") or {}
+        if code0 in table:
+            return table[code0]
+        stripped0 = code0.lstrip("0")
+        if stripped0 and stripped0 in table:
+            return table[stripped0]
+        # 上書き表を持つ県は、その表が正。対照表へは落とさない
+        # （落とすと版違いの誤った対応が復活する）
+        return None
+
     entry = (reference.get("prefectures") or {}).get(pref_name)
     if not entry:
         return None
     code = str(local_code).strip()
     if code in entry["to_national"]:
         return entry["to_national"][code]
+    # ゼロ埋めの揺れ。埼玉県の実データは '091' で対照表は '91'。
+    # 同じ数値の別表記なので、意味の推測ではなく表記の正規化として扱う
+    stripped = code.lstrip("0")
+    if stripped and stripped in entry["to_national"]:
+        return entry["to_national"][stripped]
     # 県独自コードを持たない県は、データが最初から国標準コードで入っている
     if not entry["to_national"] and code in reference["national_codes"]:
         return code

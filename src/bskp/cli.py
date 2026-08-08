@@ -25,6 +25,7 @@ from .fetch import fetch_all
 from .codetable import build_reference, normalize_code
 from .convert import build_pmtiles, describe, extract_recursive, to_geojsonl
 from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
+from .normalize import GROUPS, annotate, code_field
 from .scrape import Site, scrape_site
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -248,6 +249,52 @@ def _layer_record(rel: Path, dest: Path, srs: str, count: int, geom: str) -> dic
         "geometry": geom,
         "themes": themes_for(rel.stem, *parts),
     }
+
+
+def cmd_normalize(args: argparse.Namespace) -> None:
+    """変換済みの土地利用 GeoJSONSeq に lui_code / lui_name / lui_group を足す。
+
+    convert が作った *.geojsonl を読み書きするだけなので、再変換は要らない。
+    """
+    reference = json.loads(
+        (args.reference / "landuse_codes.json").read_text(encoding="utf-8"))
+    index = _pref_index(args.inventory, reference)
+
+    targets = [p for p in args.processed.rglob("*.geojsonl")
+               if re.search(r"土地利用|tochiriyou|landuse", p.name, re.I)]
+    logging.info("%d レイヤを正規化します", len(targets))
+
+    stats: collections.Counter = collections.Counter()
+    for n, path in enumerate(targets, 1):
+        parts = path.relative_to(args.processed).parts
+        pref = args.pref or index.get(parts[1] if len(parts) > 1 else "", "")
+        lines_out = []
+        field: str | None = None
+        is_national = False
+        resolved = False
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            if not raw.strip():
+                continue
+            feature = json.loads(raw)
+            props = feature.get("properties") or {}
+            if not resolved:
+                field, is_national = code_field(list(props))
+                resolved = True
+            feature["properties"] = annotate(props, pref, reference, field, is_national)
+            stats[feature["properties"]["lui_group"]] += 1
+            lines_out.append(json.dumps(feature, ensure_ascii=False))
+        if not lines_out:
+            continue
+        path.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
+        if n % 100 == 0 or n == len(targets):
+            logging.info("[%d/%d] %s", n, len(targets), parts[1] if len(parts) > 1 else "")
+
+    total = sum(stats.values())
+    print(f"{len(targets)} レイヤ / {total:,} フィーチャ")
+    for group in GROUPS:
+        count = stats.get(group, 0)
+        if total:
+            print(f"  {group:<10} {count:>9,}  {count / total * 100:5.1f}%")
 
 
 def cmd_tiles(args: argparse.Namespace) -> None:
@@ -545,6 +592,12 @@ def main(argv: list[str] | None = None) -> None:
     scv.add_argument("--pref", help="都道府県名を明示する（推定に任せない場合）")
     scv.add_argument("--limit", type=int, default=40)
     scv.set_defaults(func=cmd_coverage)
+
+    sn = sub.add_parser("normalize", help="土地利用に全国共通の用途コードを付ける")
+    sn.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
+    sn.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
+    sn.add_argument("--pref", help="都道府県名を明示する")
+    sn.set_defaults(func=cmd_normalize)
 
     sr = sub.add_parser("report", help="インベントリを集計")
     sr.set_defaults(func=cmd_report)
