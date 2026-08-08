@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>都市計画基礎調査ビューア</title>
+  <meta name="description" content="全国の都市計画基礎調査オープンデータを PMTiles でベクター表示するビューア" />
+  <meta name="theme-color" content="#2a78d6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+</head>
+<body>
+  <div id="map"></div>
+
+  <section id="panel" class="panel" aria-label="コントロールパネル">
+    <header class="panel-head">
+      <div class="brand">
+        <h1>都市計画基礎調査</h1>
+        <p class="brand-sub">都市計画法第6条に基づく法定調査</p>
+      </div>
+      <div class="head-actions">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="テーマ切替"></button>
+        <button id="collapse-btn" class="icon-btn" type="button"
+                aria-label="パネル開閉" aria-expanded="true">▾</button>
+      </div>
+    </header>
+
+    <div id="panel-body" class="panel-body">
+      <div class="field-head">
+        <span class="field-label">調査項目</span>
+        <span class="field-hint">同時表示は3項目まで</span>
+      </div>
+      <div id="layers" class="layers"></div>
+      <p id="notice" class="notice" role="status"></p>
+    </div>
+
+    <footer class="panel-foot">
+      <span id="status" class="status">読み込み中…</span><br />
+      出典: 各自治体が公開する都市計画基礎調査オープンデータ<br />
+      背景: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル（淡色）</a>
+    </footer>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

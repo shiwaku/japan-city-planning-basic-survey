@@ -48,3 +48,59 @@ sites:
     pause: 1.0
     enabled: true
     note: 市の通常ページから SHP の ZIP を直接配布している型。この型は全国に多数ある
+
+  - id: kawasaki
+    name: 川崎市 都市計画基礎調査（オープンデータ）
+    prefecture: 神奈川県川崎市
+    start_urls:
+      - https://www.city.kawasaki.jp/500/page/0000185069.html
+    pause: 1.0
+    enabled: true
+
+  - id: isehara
+    name: 伊勢原市 オープンデータ（神奈川県都市計画基礎調査）
+    prefecture: 神奈川県伊勢原市
+    start_urls:
+      - https://www.city.isehara.kanagawa.jp/docs/2026022500029/
+    pause: 1.0
+    enabled: true
+
+  - id: nakatsugawa
+    name: 中津川市 都市計画基礎調査データの閲覧
+    prefecture: 岐阜県中津川市
+    start_urls:
+      - https://www.city.nakatsugawa.lg.jp/soshikikarasagasu/toshikeikakuka/3/4/27125.html
+    pause: 1.0
+    enabled: false
+    note: >
+      0件だが取りこぼしではない。実体は岐阜県オープンデータカタログ
+      （gifu-opendata.pref.gifu.lg.jp/dataset/c11654-039）にあり、そちらで収集済み。
+
+  - id: azumino
+    name: 安曇野市 オープンデータ（都市計画関連情報）
+    prefecture: 長野県安曇野市
+    start_urls:
+      - https://www.city.azumino.nagano.jp/site/kaihatsu/109027.html
+    pause: 1.0
+    enabled: true
+
+  - id: saitama-city
+    name: さいたま市 都市計画基礎調査結果のオープンデータ公開
+    prefecture: 埼玉県さいたま市
+    start_urls:
+      - https://www.city.saitama.lg.jp/001/010/014/002/p097965.html
+    pause: 1.0
+    enabled: false
+    note: >
+      0件だが取りこぼしではない。実体は G空間情報センターの
+      saitamacity-toshikeikaku_r2 にあり、そちらで収集済み。
+
+  - id: saitama-pref
+    name: 埼玉県 都市計画情報オープンデータ
+    prefecture: 埼玉県
+    start_urls:
+      - https://www.pref.saitama.lg.jp/a1102/tosikeikaku-data/index.html
+    follow: /a1102/tosikeikaku-data/
+    pause: 1.0
+    enabled: true
+    note: さいたま市のページからの被リンクで発見。県の通常ページから直接配布する型

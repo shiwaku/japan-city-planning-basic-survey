@@ -6,3 +6,5 @@ __pycache__/
 data/work/
 data/processed/
 data/tiles/
+viewer/node_modules/
+viewer/dist/

@@ -81,12 +81,11 @@ bskp extract     # data/raw の書庫を展開 → data/work/（入れ子ZIP・C
 bskp convert     # 地物ファイルをEPSG:4326のGeoJSONSeqに → data/processed/
 bskp tiles       # 調査項目ごとにPMTilesを作る → data/tiles/
 
-python scripts/serve.py        # http://localhost:8000/web/ を開く
+make dev         # ビューアを開発モードで起動
+make viewer      # ビルドして viewer/dist/ に配置
 ```
 
-`scripts/serve.py` は Range 対応の開発用サーバ。Python 標準の `http.server` は
-Range に対応しておらず、PMTiles を開くたびにファイル全体（自然環境は 34 MiB）を
-返してしまうため用意した。
+Makefile に一連の手順をまとめてある（`make help`）。
 
 ### 実測結果（2026-08-08 時点）
 
@@ -180,8 +179,11 @@ src/bskp/
   fetch.py               ダウンロード（sha256・レジューム）
   convert.py             再帰展開・素性判定・再投影・タイル生成
   cli.py                 probe/discover/harvest/scrape/extract/convert/tiles/report/fetch
-web/index.html           MapLibre GL JS + PMTiles のビューア
-scripts/serve.py         Range 対応の開発用サーバ
+viewer/                  Vite + TypeScript + MapLibre GL JS のビューア
+  src/layers.ts            テーマ定義と配色（根拠はファイル冒頭のコメント）
+  src/main.ts              地図・パネル・ポップアップ
+  vite.config.ts           開発時に ../data/tiles を /tiles へ中継（Range対応）
+Makefile                 収集→変換→表示の手順
 data/
   inventory/             datasets.jsonl, resources.csv, scraped.csv（git 管理）
   raw/ work/ processed/ tiles/   中間・成果物（git 管理外）
@@ -220,3 +222,35 @@ CKAN 側は概ね掘り尽くした。実測した内訳：
 残っているのは **CKAN も CKAN 互換 API も持たない配布**（県の通常ページ、
 認証付きポータル）で、これは `sites.yaml` に 1 件ずつ積むしかない。
 津島市の型（市の通常ページから SHP の ZIP を直接配布）は全国に多数あると見られる。
+
+## ビューアの配色について
+
+都市計画基礎調査には、用途地域のような**公表された標準配色が存在しない**ため
+色は自前で決める必要がある。ただし **10 テーマ分のカテゴリカル配色は検証を通せない**。
+
+地図の重ね合わせは「全ペアが同時に画面上で隣接しうる」条件（all-pairs）になる。
+検証済み 8 色パレットをこの条件にかけると落ちた：
+
+```
+緑 #008300 ↔ 橙 #eb6834   CVD ΔE 3.2 (protan)   ← 8 以上が目標
+赤 #e34948 ↔ 橙 #eb6834   通常視 ΔE 7.1          ← 15 以上が下限（ハードFAIL）
+```
+
+先頭 3 スロットだけならライト/ダーク両モードで全項目 PASS する：
+
+```
+最悪ペア CVD ΔE     9.2 (light) / 9.4 (dark)
+最悪ペア 通常視 ΔE  24.0 (light) / 20.9 (dark)
+```
+
+そこで **同時表示を 3 項目までに制限**し、色は 3 スロットから各テーマに固定で
+割り当てている。ON/OFF で他のテーマの色が変わることはない（「色は序列ではなく
+実体に従う」）。4 つ目を選ぼうとすると選択を拒否し、どれかを外すよう促す
+——足りないからといって色を勝手に増やさない。凡例には必ずテーマ名を出すので、
+識別は色だけに依存しない。
+
+| スロット | Light | Dark |
+|---|---|---|
+| 1 blue | `#2a78d6` | `#3987e5` |
+| 2 orange | `#eb6834` | `#d95926` |
+| 3 aqua | `#1baf7a` | `#199e70` |
