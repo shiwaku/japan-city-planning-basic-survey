@@ -2,7 +2,7 @@ import maplibregl from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-import { MAX_ACTIVE, THEMES, colorOf, themeOf, type ThemeDef } from './layers'
+import { THEMES, themeOf, type ThemeDef } from './layers'
 import {
   BUILDING, BUILDING_ORDER, CONVENTIONAL, CONVENTIONAL_ORDER, UNCLASSIFIED,
   buildingColor, fillColor,
@@ -63,11 +63,11 @@ const opacity = new Map<string, number>(THEMES.map((t) => [t.key, 0.45]))
 
 const srcId = (key: string): string => `src-${key}`
 const fillId = (key: string): string => `${key}-fill`
-const lineId = (key: string): string => `${key}-line`
-const pointId = (key: string): string => `${key}-point`
 const extrudeId = (key: string): string => `${key}-3d`
+// 収録している 2 テーマは、敷地／棟のポリゴンだけを通す形の検査を経ているので
+// 線・点のレイヤは持たない（cli.py の DEFINED_SHAPE）
 const allLayerIds = (key: string): string[] =>
-  [fillId(key), lineId(key), pointId(key), `${key}-hatch`, extrudeId(key)]
+  [fillId(key), `${key}-hatch`, extrudeId(key)]
 
 const interactiveIds = (): string[] =>
   [...active].flatMap(allLayerIds).filter((id) => map.getLayer(id))
@@ -91,13 +91,12 @@ function ensureHatch(): void {
 }
 
 /**
- * データレイヤを追加する。ジオメトリ型が混在した PMTiles なので、
- * 面・線・点の 3 レイヤを geometry-type で振り分けて重ねる。
+ * データレイヤを追加する。どちらのテーマも用途区分ごとの塗り分けを持つので、
+ * 塗りは palettes.ts の式で作る。写せなかったものはハッチで描く。
  */
 function addDataLayers(): void {
   for (const def of THEMES) {
     if (!available.has(def.key)) continue
-    const color = colorOf(def, theme)
     const visible = active.has(def.key) ? 'visible' : 'none'
     const alpha = opacity.get(def.key) ?? 0.45
 
@@ -109,7 +108,7 @@ function addDataLayers(): void {
     }
 
     if (def.key === 'landuse') {
-      // 土地利用だけは単色ではなく、正規化した lui_code で用途別に塗り分ける。
+      // 正規化した lui_code で用途別に塗り分ける。
       // 写せなかったものは色を持たせずハッチで描く（lui_code が空）
       ensureHatch()
       map.addLayer({
@@ -130,7 +129,7 @@ function addDataLayers(): void {
         },
       })
     } else if (def.key === 'building') {
-      // 建物も単色ではなく、正規化した bui_code で用途別に塗り分ける
+      // 建物は正規化した bui_code で塗り分ける
       ensureHatch()
       map.addLayer({
         id: `${def.key}-hatch`, type: 'fill', source: srcId(def.key), 'source-layer': def.key,
@@ -162,32 +161,7 @@ function addDataLayers(): void {
           'fill-extrusion-opacity': 0.9,
         },
       })
-    } else {
-      map.addLayer({
-        id: fillId(def.key), type: 'fill', source: srcId(def.key), 'source-layer': def.key,
-        filter: ['==', ['geometry-type'], 'Polygon'],
-        layout: { visibility: visible },
-        paint: { 'fill-color': color, 'fill-opacity': alpha, 'fill-outline-color': color },
-      })
     }
-    map.addLayer({
-      id: lineId(def.key), type: 'line', source: srcId(def.key), 'source-layer': def.key,
-      filter: ['==', ['geometry-type'], 'LineString'],
-      layout: { visibility: visible, 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': color, 'line-width': 2, 'line-opacity': Math.min(1, alpha + 0.35) },
-    })
-    map.addLayer({
-      id: pointId(def.key), type: 'circle', source: srcId(def.key), 'source-layer': def.key,
-      filter: ['==', ['geometry-type'], 'Point'],
-      layout: { visibility: visible },
-      paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 14, 5],
-        'circle-color': color,
-        'circle-opacity': Math.min(1, alpha + 0.35),
-        'circle-stroke-width': 1.5,
-        'circle-stroke-color': theme === 'dark' ? '#1b1e24' : '#ffffff',
-      },
-    })
   }
 }
 
@@ -222,17 +196,6 @@ collapseBtn.addEventListener('click', () => {
 
 // ---- レイヤートグル ----
 const layersDiv = document.getElementById('layers') as HTMLElement
-const noticeEl = document.getElementById('notice') as HTMLElement
-
-function canEnable(): boolean {
-  return active.size < MAX_ACTIVE
-}
-
-function showNotice(msg: string): void {
-  noticeEl.textContent = msg
-  noticeEl.classList.add('show')
-  window.setTimeout(() => noticeEl.classList.remove('show'), 3200)
-}
 
 function buildToggles(): void {
   layersDiv.textContent = ''
@@ -245,7 +208,6 @@ function buildToggles(): void {
     row.innerHTML = `
       <label class="layer-head">
         <input type="checkbox" ${on ? 'checked' : ''} ${entry ? '' : 'disabled'}>
-        <span class="swatch" style="background:${colorOf(def, theme)}"></span>
         <span class="layer-name">${def.name}</span>
         <span class="layer-count">${entry ? `${entry.layers}層` : '—'}</span>
       </label>
@@ -263,14 +225,6 @@ function buildToggles(): void {
     const checkbox = row.querySelector('input[type=checkbox]') as HTMLInputElement
     checkbox.addEventListener('change', () => {
       if (checkbox.checked) {
-        if (!canEnable()) {
-          checkbox.checked = false
-          showNotice(
-            `同時表示は${MAX_ACTIVE}項目までです。配色が識別可能なのが${MAX_ACTIVE}色までのため、` +
-            'どれかを外してから選んでください。',
-          )
-          return
-        }
         active.add(def.key)
       } else {
         active.delete(def.key)
@@ -341,9 +295,9 @@ function setVisible(def: ThemeDef, on: boolean): void {
 
 function setOpacity(def: ThemeDef, v: number): void {
   if (map.getLayer(fillId(def.key))) map.setPaintProperty(fillId(def.key), 'fill-opacity', v)
-  const strong = Math.min(1, v + 0.35)
-  if (map.getLayer(lineId(def.key))) map.setPaintProperty(lineId(def.key), 'line-opacity', strong)
-  if (map.getLayer(pointId(def.key))) map.setPaintProperty(pointId(def.key), 'circle-opacity', strong)
+  // ハッチは追加時と同じく濃いめにする。細い斜線なので同じ値だと消えてしまう
+  const hatch = `${def.key}-hatch`
+  if (map.getLayer(hatch)) map.setPaintProperty(hatch, 'fill-opacity', Math.min(1, v + 0.35))
   // 3D は半透明にしない。重なった箱は透かすと形が読めなくなる
 }
 

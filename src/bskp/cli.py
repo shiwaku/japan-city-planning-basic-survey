@@ -462,6 +462,25 @@ DEFINED_SHAPE = {
     BUILDING_THEME: building.non_building_reason,
 }
 
+# 配信タイルに載せる調査項目。収集と変換は 10 項目ぶん続けるが、タイルにするのは
+# この 2 つだけにする。
+#
+# 外した 8 項目（人口・産業・都市施設・地価・自然環境・災害・景観・その他）は、
+# どれも国が全国整備している一次データの劣化版になっていた:
+#
+#   人口・産業   250m/500m メッシュと小地域の集計値。国勢調査・経済センサスの
+#                同じ集計が e-Stat 統計 GIS に全国・全年次ぶんある
+#   地価         地価公示・都道府県地価調査は国土数値情報に全国・毎年更新
+#   災害         浸水想定区域・土砂災害・避難場所も国土数値情報
+#   景観         文化財も同上
+#   都市施設     公園・道路も同上
+#   その他       用途地域・都市計画区域・行政区域も同上
+#
+# こちらは自治体ごとに虫食いで、年次もばらばらで、正規化もしていない。
+# 対して土地利用と建物は国の全国整備がなく、自治体のオープンデータを横断して
+# 国標準コードに正規化したこのタイル自体に意味がある。
+PUBLISHED_THEMES = (LANDUSE_THEME, BUILDING_THEME)
+
 
 def _drop_reason(theme: str, layer: dict) -> str | None:
     """そのテーマから外す理由。定義どおりの形なら None。"""
@@ -475,7 +494,7 @@ def _drop_reason(theme: str, layer: dict) -> str | None:
 
 
 def cmd_tiles(args: argparse.Namespace) -> None:
-    """調査項目ごとに GeoJSONSeq をまとめて PMTiles にする。"""
+    """PUBLISHED_THEMES の GeoJSONSeq をまとめて PMTiles にする。"""
     manifest_path = args.processed / "layers.json"
     if not manifest_path.exists():
         sys.exit(f"not found: {manifest_path}  (先に `python -m bskp convert` を実行)")
@@ -496,9 +515,14 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     groups: dict[str, list[Path]] = collections.defaultdict(list)
     tiled: list[dict] = []
     dropped: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
+    out_of_scope = 0
     for layer in layers:
+        in_scope = [t for t in (layer["themes"] or []) if t in PUBLISHED_THEMES]
+        if not in_scope:
+            out_of_scope += 1
+            continue
         themes = []
-        for theme in layer["themes"] or ["その他"]:
+        for theme in in_scope:
             if reason := _drop_reason(theme, layer):
                 dropped[theme][reason] += 1
                 continue
@@ -508,6 +532,9 @@ def cmd_tiles(args: argparse.Namespace) -> None:
         for theme in themes:
             groups[theme].append(Path(layer["path"]))
         tiled.append(layer)
+    if out_of_scope:
+        logging.info("配信対象の調査項目でない %d レイヤを除外しました"
+                     "（収集と変換はしているので data/processed には残る）", out_of_scope)
     for theme, reasons in dropped.items():
         logging.info("%s から定義どおりでない %d レイヤを除外しました（%s）",
                      theme, sum(reasons.values()),
@@ -517,7 +544,7 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     for theme, inputs in sorted(groups.items(), key=lambda kv: -len(kv[1])):
         if args.theme and theme not in args.theme:
             continue
-        slug = THEME_SLUGS.get(theme, "other")
+        slug = THEME_SLUGS[theme]
         dest = args.tiles / f"{slug}.pmtiles"
         logging.info("%s: %d レイヤ -> %s", theme, len(inputs), dest.name)
         if build_pmtiles(inputs, dest, layer_name=slug,
@@ -592,12 +619,8 @@ def _attribution_for(layers: list[dict], inventory: Path,
     return sorted(grouped.values(), key=lambda e: -e["datasets"])
 
 
-# 調査項目名 → ファイル名に使える slug
-THEME_SLUGS = {
-    "人口": "population", "産業": "industry", "土地利用": "landuse",
-    "建物": "building", "都市施設": "facility", "地価": "landprice",
-    "自然環境": "nature", "災害": "hazard", "景観": "landscape", "その他": "other",
-}
+# 調査項目名 → ファイル名に使える slug。PUBLISHED_THEMES と対で持つ
+THEME_SLUGS = {LANDUSE_THEME: "landuse", BUILDING_THEME: "building"}
 
 
 def cmd_codetable(args: argparse.Namespace) -> None:
@@ -799,11 +822,12 @@ def main(argv: list[str] | None = None) -> None:
     sv.add_argument("--force", action="store_true")
     sv.set_defaults(func=cmd_convert)
 
-    st = sub.add_parser("tiles", help="調査項目ごとにPMTilesを作る")
+    st = sub.add_parser("tiles", help="土地利用・建物のPMTilesを作る")
     st.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
     st.add_argument("--tiles", type=Path, default=DEFAULT_TILES)
     st.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
-    st.add_argument("--theme", action="append", help="対象の調査項目（複数可）")
+    st.add_argument("--theme", action="append", choices=PUBLISHED_THEMES,
+                    help="対象の調査項目（複数可。既定は両方）")
     st.add_argument("--min-zoom", type=int, default=4)
     st.add_argument("--max-zoom", type=int, default=14)
     st.set_defaults(func=cmd_tiles)
