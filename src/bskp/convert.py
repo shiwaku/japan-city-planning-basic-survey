@@ -284,6 +284,21 @@ def _env() -> dict:
     return dict(os.environ)
 
 
+# タイルに入れない属性。GIS ソフトが自動で持つ行番号と、面積・周長の再計算値。
+# 実測で土地利用の属性ペイロードの 51% がこれらだった（SHAPE_Area 12.2% /
+# SHAPE_Leng 12.1% / PRIMETER 8.8% / OBJECTID 4.7% / ID 2.3% …）。
+#
+# 面積・周長を落とすのは容量のためだけではない。再投影と簡略化を通った時点で
+# タイル上の形と値が合わなくなるので、載せると嘘になる。元データ自身の実測値
+# （AREA・面積・lui_area など）は内容なので残す。
+DROP_FIELDS = (
+    "OBJECTID", "OBJECTID_", "ID", "ID_", "UserID",   # ArcGIS の行番号・編集者記録
+    "__ID", "__QID", "__TEXT",                        # ArcInfo カバレッジ由来の内部ID
+    "SHAPE_Leng", "SHAPE_Area", "Shape_Leng", "Shape_Area",
+    "PRIMETER", "PRIMETER_",                          # 原データの綴りのまま（perimeter）
+)
+
+
 def build_pmtiles(inputs: list[Path], dest: Path, layer_name: str,
                   min_zoom: int = 4, max_zoom: int = 14) -> bool:
     """tippecanoe → pmtiles。
@@ -295,10 +310,15 @@ def build_pmtiles(inputs: list[Path], dest: Path, layer_name: str,
         return False
     dest.parent.mkdir(parents=True, exist_ok=True)
     mbtiles = dest.with_suffix(".mbtiles")
+    # 埼玉県の DBF はフィールド名に \r が入っている（'PRIMETER\r'）。名前は
+    # 一致比較なので、素の名前だけ指定しても落ちない。変種も並べて渡す
+    exclude = [arg for name in DROP_FIELDS
+               for variant in (name, name + "\r")
+               for arg in ("-x", variant)]
     cmd = ["tippecanoe", "-o", str(mbtiles), "--force",
            "-l", layer_name, "-Z", str(min_zoom), "-z", str(max_zoom),
            "--drop-densest-as-needed", "--extend-zooms-if-still-dropping",
-           "--no-tile-size-limit"] + [str(p) for p in inputs]
+           "--no-tile-size-limit"] + exclude + [str(p) for p in inputs]
     try:
         subprocess.run(cmd, capture_output=True, check=True, timeout=7200)
     except subprocess.CalledProcessError as exc:

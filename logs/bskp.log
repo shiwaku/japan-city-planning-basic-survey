@@ -6002,3 +6002,32 @@
 2026-08-09T09:55:24 INFO    既存 index から 9 テーマを引き継ぎます
 2026-08-09T09:55:24 INFO    出典 54 件を attribution.json に書き出しました
 2026-08-09T09:55:24 INFO    --- end of tiles ---
+2026-08-09T10:06:06 INFO    $ bskp tiles --theme 土地利用
+2026-08-09T10:06:06 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T10:06:09 INFO    土地利用から敷地ベースでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T10:06:09 INFO    土地利用: 90 レイヤ -> landuse.pmtiles
+2026-08-09T10:19:26 INFO    既存 index から 9 テーマを引き継ぎます
+2026-08-09T10:19:26 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-09T10:19:26 INFO    --- end of tiles ---
+2026-08-09T10:27:06 INFO    $ bskp tiles --theme 建物 --theme 人口 --theme 自然環境 --theme その他 --theme 都市施設 --theme 産業 --theme 災害 --theme 景観 --theme 地価
+2026-08-09T10:27:06 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T10:27:08 INFO    土地利用から敷地ベースでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T10:27:08 INFO    その他: 601 レイヤ -> other.pmtiles
+2026-08-09T10:28:12 INFO    建物: 415 レイヤ -> building.pmtiles
+2026-08-09T10:36:08 INFO    人口: 211 レイヤ -> population.pmtiles
+2026-08-09T10:37:40 INFO    都市施設: 159 レイヤ -> facility.pmtiles
+2026-08-09T10:38:12 INFO    自然環境: 152 レイヤ -> nature.pmtiles
+2026-08-09T10:38:58 INFO    災害: 131 レイヤ -> hazard.pmtiles
+2026-08-09T10:39:06 INFO    産業: 107 レイヤ -> industry.pmtiles
+2026-08-09T10:39:40 INFO    景観: 42 レイヤ -> landscape.pmtiles
+2026-08-09T10:39:44 INFO    地価: 33 レイヤ -> landprice.pmtiles
+2026-08-09T10:39:53 INFO    既存 index から 1 テーマを引き継ぎます
+2026-08-09T10:39:53 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-09T10:39:53 INFO    --- end of tiles ---
+2026-08-09T10:41:59 INFO    $ bskp tiles --theme 土地利用
+2026-08-09T10:41:59 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T10:42:02 INFO    土地利用から敷地ベースでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T10:42:02 INFO    土地利用: 90 レイヤ -> landuse.pmtiles
+2026-08-09T10:53:31 INFO    既存 index から 9 テーマを引き継ぎます
+2026-08-09T10:53:31 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-09T10:53:31 INFO    --- end of tiles ---
