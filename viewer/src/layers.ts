@@ -60,7 +60,7 @@ export interface ThemeDef {
 export const THEMES: ThemeDef[] = [
   {
     key: 'landuse', name: '土地利用', on: true, slot: 0,
-    desc: '用途別土地利用面積、宅地開発状況、農地・未利用地など。小地域単位のポリゴンで提供されることが多い。',
+    desc: '土地利用現況。敷地単位のポリゴンに用途を持つものだけを収録し、国標準の用途コードで塗り分けている。小地域集計・開発許可の点などは別物なので入れていない。',
   },
   {
     key: 'building', name: '建物', on: true, slot: 1,

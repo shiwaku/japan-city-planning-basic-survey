@@ -23,9 +23,11 @@ import yaml
 from .ckan import Catalog, CkanClient
 from .fetch import fetch_all
 from .codetable import build_reference, normalize_code
-from .convert import build_pmtiles, describe, extract_recursive, to_geojsonl
+from .convert import (build_pmtiles, dataset_srs, describe, extract_recursive,
+                      is_empty_output, to_geojsonl)
 from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
-from .normalize import GROUPS, annotate, code_field, is_aggregate
+from .normalize import (GROUPS, annotate, code_field, is_aggregate,
+                        non_parcel_reason, strip_annotation)
 from .scrape import Site, scrape_site
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -231,16 +233,36 @@ def cmd_convert(args: argparse.Namespace) -> None:
         if count == 0:
             logging.info("[%d/%d] 空のためスキップ: %s", n, len(sources), rel)
             continue
-        if dest.exists() and not args.force:
+        # 空の出力は「変換済み」と見なさない。件数は変換元から数えているので、
+        # 空のまま manifest に載ると欠測に気づけないまま公開してしまう
+        if dest.exists() and not is_empty_output(dest) and not args.force:
             manifest.append(_layer_record(rel, dest, srs, count, geom))
             continue
-        if to_geojsonl(src, dest):
+        # 座標系が読めないと ogr2ogr は終了コード 0 のまま空を書く。.prj が無い
+        # だけなら同じデータセットの他レイヤから借りる
+        source_srs = dataset_srs(src, args.work) if not srs else ""
+        if to_geojsonl(src, dest, source_srs):
+            if is_empty_output(dest):
+                logging.warning("[%d/%d] 変換結果が空です（%d件のはず）: %s",
+                                n, len(sources), count, rel)
+                continue
             logging.info("[%d/%d] %-6s %6d件 %-14s %s", n, len(sources),
-                         geom[:6], count, srs or "SRS不明", rel)
-            manifest.append(_layer_record(rel, dest, srs, count, geom))
+                         geom[:6], count, srs or source_srs or "SRS不明", rel)
+            manifest.append(_layer_record(rel, dest, srs or source_srs, count, geom))
 
     args.processed.mkdir(parents=True, exist_ok=True)
     out = args.processed / "layers.json"
+
+    # --match で一部だけ変換したとき、対象外のレイヤを manifest から消さない
+    # （scrape --site / tiles --theme と同じ落とし穴）。今回試した変換元は
+    # 結果がどうであれ入れ替える。失敗したものの古い記録を残さないため。
+    if args.match and out.exists():
+        tried = {p.relative_to(args.work).as_posix() for p in sources}
+        kept = [m for m in json.loads(out.read_text(encoding="utf-8"))
+                if m["source"] not in tried]
+        logging.info("既存 layers.json から %d レイヤを引き継ぎます", len(kept))
+        manifest = kept + manifest
+
     out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     total = sum(m["features"] for m in manifest)
     print(f"{len(manifest)} レイヤ / {total:,} フィーチャ -> {args.processed}")
@@ -283,6 +305,7 @@ def cmd_normalize(args: argparse.Namespace) -> None:
         field: str | None = None
         is_national = False
         resolved = False
+        aggregate = False
         for raw in path.read_text(encoding="utf-8").splitlines():
             if not raw.strip():
                 continue
@@ -293,12 +316,17 @@ def cmd_normalize(args: argparse.Namespace) -> None:
                 if is_aggregate(list(props)):
                     # 小地域集計型は敷地ベースの土地利用とは別物なので正規化しない
                     skipped_aggregate += 1
-                    lines_out = []
+                    aggregate = True
                     break
                 field, is_national = code_field(list(props))
             feature["properties"] = annotate(props, pref, reference, field, is_national)
             stats[feature["properties"]["lui_group"]] += 1
             lines_out.append(json.dumps(feature, ensure_ascii=False))
+        if aggregate:
+            # 集計型と判定する前の実行が注釈を書き込んでいることがある。
+            # 残しておくと「小地域まるごとに用途1つ」の嘘になるので消す
+            _strip_annotation(path)
+            continue
         if not lines_out:
             continue
         path.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
@@ -312,6 +340,49 @@ def cmd_normalize(args: argparse.Namespace) -> None:
         count = stats.get(group, 0)
         if total:
             print(f"  {group:<10} {count:>9,}  {count / total * 100:5.1f}%")
+
+
+def _strip_annotation(path: Path) -> bool:
+    """正規化の注釈（lui_code など）が付いていたら取り除く。消したら True。"""
+    lines = []
+    changed = False
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        if not raw.strip():
+            continue
+        feature = json.loads(raw)
+        props = feature.get("properties") or {}
+        stripped = strip_annotation(props)
+        if len(stripped) != len(props):
+            changed = True
+            feature["properties"] = stripped
+        lines.append(json.dumps(feature, ensure_ascii=False))
+    if changed:
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        logging.info("集計型に残っていた注釈を削除: %s", path.name)
+    return changed
+
+
+def _first_properties(path: Path) -> dict | None:
+    """先頭フィーチャの属性を返す。空ファイルなら None。"""
+    try:
+        with path.open(encoding="utf-8") as fh:
+            for raw in fh:
+                if raw.strip():
+                    return json.loads(raw).get("properties") or {}
+    except (OSError, json.JSONDecodeError):
+        return None
+    return None
+
+
+LANDUSE_THEME = "土地利用"
+
+
+def _landuse_drop_reason(layer: dict) -> str | None:
+    """土地利用テーマから外す理由。敷地ベースなら None。"""
+    props = _first_properties(Path(layer["path"]))
+    if props is None:
+        return "空ファイル"
+    return non_parcel_reason(layer["geometry"], list(props))
 
 
 def cmd_tiles(args: argparse.Namespace) -> None:
@@ -333,10 +404,25 @@ def cmd_tiles(args: argparse.Namespace) -> None:
         if before != len(layers):
             logging.info("ライセンス不明のため %d レイヤを除外しました", before - len(layers))
 
+    # 土地利用は敷地ベースのポリゴンだけを載せる。調査項目名での振り分けでは
+    # 開発許可の点や町丁目単位の集計まで入ってきて、同じ凡例では読めない
     groups: dict[str, list[Path]] = collections.defaultdict(list)
+    tiled: list[dict] = []
+    dropped: collections.Counter = collections.Counter()
     for layer in layers:
-        for theme in layer["themes"] or ["その他"]:
+        themes = list(layer["themes"] or ["その他"])
+        if LANDUSE_THEME in themes and (reason := _landuse_drop_reason(layer)):
+            dropped[reason] += 1
+            themes.remove(LANDUSE_THEME)
+        if not themes:
+            continue
+        for theme in themes:
             groups[theme].append(Path(layer["path"]))
+        tiled.append(layer)
+    if dropped:
+        logging.info("土地利用から敷地ベースでない %d レイヤを除外しました（%s）",
+                     sum(dropped.values()),
+                     " / ".join(f"{k} {v}" for k, v in dropped.most_common()))
 
     made = []
     for theme, inputs in sorted(groups.items(), key=lambda kv: -len(kv[1])):
@@ -368,7 +454,7 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     # 出典表示。CC-BY も GNU FDL も再配布には表示が要るので、
     # タイルの元になったデータセットから実際の提供元とライセンスを拾って出す。
     # 手書きにすると変換対象が変わったときに嘘になる。
-    attribution = _attribution_for(layers, args.inventory)
+    attribution = _attribution_for(tiled, args.inventory)
     (args.tiles / "attribution.json").write_text(
         json.dumps(attribution, ensure_ascii=False, indent=2), encoding="utf-8")
     logging.info("出典 %d 件を attribution.json に書き出しました", len(attribution))

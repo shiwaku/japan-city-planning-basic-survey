@@ -5876,3 +5876,129 @@
 2026-08-08T20:58:44 INFO    既存 index から 9 テーマを引き継ぎます
 2026-08-08T20:58:44 INFO    出典 54 件を attribution.json に書き出しました
 2026-08-08T20:58:44 INFO    --- end of tiles ---
+2026-08-09T09:14:27 INFO    $ bskp convert --match C0304_jigyo_214213\.shp|C0304_kaihatukyoka_213837\.shp|C0304_kaihatukyoka_214213\.shp|c0304_jigyo_213837\.shp|c0304_kaihatsu_21215\.shp|c0304_kaihatukyoka_213039\.shp|①H23_土地利用_100_さいたま市\.shp|①H23_土地利用_201_川越市\.shp|①H23_土地利用_202_熊谷市\.shp|①H23_土地利用_210_加須市\.shp|①H23_土地利用_212_東松山市\.shp|①H23_土地利用_214_春日部市\.shp|①H23_土地利用_218_深谷市\.shp|①秩父市_土地利用\.shp|②H23_土地利用_100_さいたま市\.shp|②H23_土地利用_201_川越市\.shp|②H23_土地利用_202_熊谷市\.shp|②H23_土地利用_210_加須市\.shp|②H23_土地利用_212_東松山市\.shp|②H23_土地利用_214_春日部市\.shp|②H23_土地利用_218_深谷市\.shp|②秩父市_土地利用\.shp|③H23_土地利用_100_さいたま市\.shp|③H23_土地利用_202_熊谷市\.shp|③H23_土地利用_218_深谷市\.shp|④H23_土地利用_100_さいたま市\.shp|④H23_土地利用_202_熊谷市\.shp|④H23_土地利用_218_深谷市\.shp|⑤H23_土地利用_100_さいたま市\.shp|⑥H23_土地利用_100_さいたま市\.shp|土地利用現況_用途別土地利用面積\.shp
+2026-08-09T09:15:02 INFO    61 件を変換します
+2026-08-09T09:15:03 WARNING [1/61] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/土地利用現況_用途別土地利用面積.shp
+2026-08-09T09:15:04 WARNING [16/61] 変換結果が空です（6009件のはず）: geospatial-jp/11000-101/0378_1saitamasi01/1saitamasi01/①H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:04 WARNING [17/61] 変換結果が空です（18365件のはず）: geospatial-jp/11000-101/0379_1saitamasi02/1saitamasi02/②H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:04 WARNING [18/61] 変換結果が空です（40249件のはず）: geospatial-jp/11000-101/0380_1saitamasi03/1saitamasi03/③H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:04 WARNING [19/61] 変換結果が空です（36188件のはず）: geospatial-jp/11000-101/0381_1saitamasi04/1saitamasi04/④H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:05 WARNING [20/61] 変換結果が空です（22689件のはず）: geospatial-jp/11000-101/0382_1saitamasi05/1saitamasi05/⑤H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:05 WARNING [21/61] 変換結果が空です（24928件のはず）: geospatial-jp/11000-101/0383_1saitamasi06/1saitamasi06/⑥H23_土地利用_100_さいたま市.shp
+2026-08-09T09:15:05 WARNING [22/61] 変換結果が空です（14731件のはず）: geospatial-jp/11000-101/0385_2kawagoesi01/川越市①/①H23_土地利用_201_川越市.shp
+2026-08-09T09:15:05 WARNING [23/61] 変換結果が空です（24455件のはず）: geospatial-jp/11000-101/0386_2kawagoesi02/川越市②/②H23_土地利用_201_川越市.shp
+2026-08-09T09:15:05 WARNING [24/61] 変換結果が空です（11696件のはず）: geospatial-jp/11000-101/0387_3kumagayasi01/3kumagayasi01/①H23_土地利用_202_熊谷市.shp
+2026-08-09T09:15:05 WARNING [25/61] 変換結果が空です（13600件のはず）: geospatial-jp/11000-101/0388_3kumagayasi02/3kumagayasi02/②H23_土地利用_202_熊谷市.shp
+2026-08-09T09:15:05 WARNING [26/61] 変換結果が空です（13329件のはず）: geospatial-jp/11000-101/0389_3kumagayasi03/3kumagayasi03/③H23_土地利用_202_熊谷市.shp
+2026-08-09T09:15:05 WARNING [27/61] 変換結果が空です（24211件のはず）: geospatial-jp/11000-101/0390_3kumagayasi04/3kumagayasi04/④H23_土地利用_202_熊谷市.shp
+2026-08-09T09:15:06 WARNING [28/61] 変換結果が空です（17899件のはず）: geospatial-jp/11000-101/0393_6titibusi01/秩父市①/①秩父市_土地利用.shp
+2026-08-09T09:15:06 WARNING [29/61] 変換結果が空です（7237件のはず）: geospatial-jp/11000-101/0394_6titibusi02/秩父市②/②秩父市_土地利用.shp
+2026-08-09T09:15:06 WARNING [30/61] 変換結果が空です（18689件のはず）: geospatial-jp/11000-101/0397_9kazosi01/加須市①/①H23_土地利用_210_加須市.shp
+2026-08-09T09:15:06 WARNING [31/61] 変換結果が空です（25160件のはず）: geospatial-jp/11000-101/0398_9kazosi02/加須市②/②H23_土地利用_210_加須市.shp
+2026-08-09T09:15:06 WARNING [32/61] 変換結果が空です（7752件のはず）: geospatial-jp/11000-101/0400_11higasimatuyamasi01/東松山市①/①H23_土地利用_212_東松山市.shp
+2026-08-09T09:15:06 WARNING [33/61] 変換結果が空です（10877件のはず）: geospatial-jp/11000-101/0401_11higasimatuyamasi02/東松山市②/②H23_土地利用_212_東松山市.shp
+2026-08-09T09:15:07 WARNING [34/61] 変換結果が空です（15980件のはず）: geospatial-jp/11000-101/0402_12kasukabesi01/春日部市①/①H23_土地利用_214_春日部市.shp
+2026-08-09T09:15:07 WARNING [35/61] 変換結果が空です（20332件のはず）: geospatial-jp/11000-101/0403_12kasukabesi02/春日部市②/②H23_土地利用_214_春日部市.shp
+2026-08-09T09:15:07 WARNING [36/61] 変換結果が空です（13675件のはず）: geospatial-jp/11000-101/0407_16hukayasi01/深谷市①/①H23_土地利用_218_深谷市.shp
+2026-08-09T09:15:07 WARNING [37/61] 変換結果が空です（30631件のはず）: geospatial-jp/11000-101/0408_16hukayasi02/深谷市②/②H23_土地利用_218_深谷市.shp
+2026-08-09T09:15:07 WARNING [38/61] 変換結果が空です（13572件のはず）: geospatial-jp/11000-101/0409_16hukayasi03/深谷市③/③H23_土地利用_218_深谷市.shp
+2026-08-09T09:15:07 WARNING [39/61] 変換結果が空です（14854件のはず）: geospatial-jp/11000-101/0410_16hukayasi04/深谷市④/④H23_土地利用_218_深谷市.shp
+2026-08-09T09:15:08 WARNING [47/61] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/土地利用現況_用途別土地利用面積.shp
+2026-08-09T09:15:08 WARNING [50/61] 変換結果が空です（56件のはず）: gifu/c11654-056/1147_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp
+2026-08-09T09:15:08 WARNING [51/61] 変換結果が空です（161件のはず）: gifu/c11654-062/1189_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/C0304_kaihatukyoka_213837.shp
+2026-08-09T09:15:08 WARNING [52/61] 変換結果が空です（4件のはず）: gifu/c11654-062/1189_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/c0304_jigyo_213837.shp
+2026-08-09T09:15:08 WARNING [53/61] 変換結果が空です（7件のはず）: gifu/c11654-066/1174_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_jigyo_214213.shp
+2026-08-09T09:15:09 WARNING [54/61] 変換結果が空です（10件のはず）: gifu/c11654-066/1174_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_kaihatukyoka_214213.shp
+2026-08-09T09:15:09 WARNING [55/61] 変換結果が空です（56件のはず）: gifu/c11654-073/0950_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp
+2026-08-09T09:15:09 WARNING [56/61] 変換結果が空です（161件のはず）: gifu/c11654-073/0956_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/C0304_kaihatukyoka_213837.shp
+2026-08-09T09:15:09 WARNING [57/61] 変換結果が空です（4件のはず）: gifu/c11654-073/0956_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/c0304_jigyo_213837.shp
+2026-08-09T09:15:09 WARNING [58/61] 変換結果が空です（7件のはず）: gifu/c11654-073/0960_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_jigyo_214213.shp
+2026-08-09T09:15:09 WARNING [59/61] 変換結果が空です（10件のはず）: gifu/c11654-073/0960_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_kaihatukyoka_214213.shp
+2026-08-09T09:15:10 WARNING [60/61] 変換結果が空です（13件のはず）: gifu/c11654-091/1046_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp
+2026-08-09T09:15:10 WARNING [61/61] 変換結果が空です（13件のはず）: gifu/c11654-116/1108_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp
+2026-08-09T09:15:10 INFO    既存 layers.json から 2383 レイヤを引き継ぎます
+2026-08-09T09:15:10 INFO    --- end of convert ---
+2026-08-09T09:25:31 INFO    $ bskp convert --match C0304_jigyo_214213\.shp|C0304_kaihatukyoka_213837\.shp|C0304_kaihatukyoka_214213\.shp|c0304_jigyo_213837\.shp|c0304_kaihatsu_21215\.shp|c0304_kaihatukyoka_213039\.shp|①H23_土地利用_100_さいたま市\.shp|①H23_土地利用_201_川越市\.shp|①H23_土地利用_202_熊谷市\.shp|①H23_土地利用_210_加須市\.shp|①H23_土地利用_212_東松山市\.shp|①H23_土地利用_214_春日部市\.shp|①H23_土地利用_218_深谷市\.shp|①秩父市_土地利用\.shp|②H23_土地利用_100_さいたま市\.shp|②H23_土地利用_201_川越市\.shp|②H23_土地利用_202_熊谷市\.shp|②H23_土地利用_210_加須市\.shp|②H23_土地利用_212_東松山市\.shp|②H23_土地利用_214_春日部市\.shp|②H23_土地利用_218_深谷市\.shp|②秩父市_土地利用\.shp|③H23_土地利用_100_さいたま市\.shp|③H23_土地利用_202_熊谷市\.shp|③H23_土地利用_218_深谷市\.shp|④H23_土地利用_100_さいたま市\.shp|④H23_土地利用_202_熊谷市\.shp|④H23_土地利用_218_深谷市\.shp|⑤H23_土地利用_100_さいたま市\.shp|⑥H23_土地利用_100_さいたま市\.shp|土地利用現況_用途別土地利用面積\.shp
+2026-08-09T09:26:00 INFO    61 件を変換します
+2026-08-09T09:26:00 WARNING [1/61] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/土地利用現況_用途別土地利用面積.shp
+2026-08-09T09:26:07 INFO    geospatial-jp/11000-101/0378_1saitamasi01/1saitamasi01/①H23_土地利用_100_さいたま市.shp: .prj が無いので同じデータセットの EPSG:2451 を使います
+2026-08-09T09:26:08 INFO    [16/61] Polygo   6009件 EPSG:2451      geospatial-jp/11000-101/0378_1saitamasi01/1saitamasi01/①H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:10 INFO    [17/61] Polygo  18365件 EPSG:2451      geospatial-jp/11000-101/0379_1saitamasi02/1saitamasi02/②H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:15 INFO    [18/61] Polygo  40249件 EPSG:2451      geospatial-jp/11000-101/0380_1saitamasi03/1saitamasi03/③H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:20 INFO    [19/61] Polygo  36188件 EPSG:2451      geospatial-jp/11000-101/0381_1saitamasi04/1saitamasi04/④H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:23 INFO    [20/61] Polygo  22689件 EPSG:2451      geospatial-jp/11000-101/0382_1saitamasi05/1saitamasi05/⑤H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:25 INFO    [21/61] Polygo  24928件 EPSG:2451      geospatial-jp/11000-101/0383_1saitamasi06/1saitamasi06/⑥H23_土地利用_100_さいたま市.shp
+2026-08-09T09:26:28 INFO    [22/61] Polygo  14731件 EPSG:2451      geospatial-jp/11000-101/0385_2kawagoesi01/川越市①/①H23_土地利用_201_川越市.shp
+2026-08-09T09:26:32 INFO    [23/61] Polygo  24455件 EPSG:2451      geospatial-jp/11000-101/0386_2kawagoesi02/川越市②/②H23_土地利用_201_川越市.shp
+2026-08-09T09:26:34 INFO    [24/61] Polygo  11696件 EPSG:2451      geospatial-jp/11000-101/0387_3kumagayasi01/3kumagayasi01/①H23_土地利用_202_熊谷市.shp
+2026-08-09T09:26:35 INFO    [25/61] Polygo  13600件 EPSG:2451      geospatial-jp/11000-101/0388_3kumagayasi02/3kumagayasi02/②H23_土地利用_202_熊谷市.shp
+2026-08-09T09:26:40 INFO    [26/61] Polygo  13329件 EPSG:2451      geospatial-jp/11000-101/0389_3kumagayasi03/3kumagayasi03/③H23_土地利用_202_熊谷市.shp
+2026-08-09T09:26:43 INFO    [27/61] Polygo  24211件 EPSG:2451      geospatial-jp/11000-101/0390_3kumagayasi04/3kumagayasi04/④H23_土地利用_202_熊谷市.shp
+2026-08-09T09:26:47 INFO    [28/61] Polygo  17899件 EPSG:2451      geospatial-jp/11000-101/0393_6titibusi01/秩父市①/①秩父市_土地利用.shp
+2026-08-09T09:26:48 INFO    [29/61] Polygo   7237件 EPSG:2451      geospatial-jp/11000-101/0394_6titibusi02/秩父市②/②秩父市_土地利用.shp
+2026-08-09T09:26:51 INFO    [30/61] Polygo  18689件 EPSG:2451      geospatial-jp/11000-101/0397_9kazosi01/加須市①/①H23_土地利用_210_加須市.shp
+2026-08-09T09:26:55 INFO    [31/61] Polygo  25160件 EPSG:2451      geospatial-jp/11000-101/0398_9kazosi02/加須市②/②H23_土地利用_210_加須市.shp
+2026-08-09T09:26:58 INFO    [32/61] Polygo   7752件 EPSG:2451      geospatial-jp/11000-101/0400_11higasimatuyamasi01/東松山市①/①H23_土地利用_212_東松山市.shp
+2026-08-09T09:27:00 INFO    [33/61] Polygo  10877件 EPSG:2451      geospatial-jp/11000-101/0401_11higasimatuyamasi02/東松山市②/②H23_土地利用_212_東松山市.shp
+2026-08-09T09:27:02 INFO    [34/61] Polygo  15980件 EPSG:2451      geospatial-jp/11000-101/0402_12kasukabesi01/春日部市①/①H23_土地利用_214_春日部市.shp
+2026-08-09T09:27:09 INFO    [35/61] Polygo  20332件 EPSG:2451      geospatial-jp/11000-101/0403_12kasukabesi02/春日部市②/②H23_土地利用_214_春日部市.shp
+2026-08-09T09:27:16 INFO    [36/61] Polygo  13675件 EPSG:2451      geospatial-jp/11000-101/0407_16hukayasi01/深谷市①/①H23_土地利用_218_深谷市.shp
+2026-08-09T09:27:22 INFO    [37/61] Polygo  30631件 EPSG:2451      geospatial-jp/11000-101/0408_16hukayasi02/深谷市②/②H23_土地利用_218_深谷市.shp
+2026-08-09T09:27:24 INFO    [38/61] Polygo  13572件 EPSG:2451      geospatial-jp/11000-101/0409_16hukayasi03/深谷市③/③H23_土地利用_218_深谷市.shp
+2026-08-09T09:27:27 INFO    [39/61] Polygo  14854件 EPSG:2451      geospatial-jp/11000-101/0410_16hukayasi04/深谷市④/④H23_土地利用_218_深谷市.shp
+2026-08-09T09:27:27 WARNING [47/61] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/土地利用現況_用途別土地利用面積.shp
+2026-08-09T09:27:27 INFO    gifu/c11654-056/1147_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:27:28 INFO    [50/61] Point      56件 EPSG:2449      gifu/c11654-056/1147_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp
+2026-08-09T09:27:28 INFO    gifu/c11654-062/1189_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/C0304_kaihatukyoka_213837.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:27:28 INFO    [51/61] Polygo    161件 EPSG:2449      gifu/c11654-062/1189_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/C0304_kaihatukyoka_213837.shp
+2026-08-09T09:27:28 INFO    [52/61] Polygo      4件 EPSG:2449      gifu/c11654-062/1189_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/c0304_jigyo_213837.shp
+2026-08-09T09:27:28 INFO    gifu/c11654-066/1174_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_jigyo_214213.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:27:28 INFO    [53/61] Polygo      7件 EPSG:2449      gifu/c11654-066/1174_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_jigyo_214213.shp
+2026-08-09T09:27:28 INFO    [54/61] Point      10件 EPSG:2449      gifu/c11654-066/1174_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_kaihatukyoka_214213.shp
+2026-08-09T09:27:37 INFO    gifu/c11654-073/0950_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:27:37 INFO    [55/61] Point      56件 EPSG:2449      gifu/c11654-073/0950_213039_09_t.kasamatsu/213039_09_t.kasamatsu/C0304_宅地開発状況/c0304_kaihatukyoka_213039.shp
+2026-08-09T09:27:37 INFO    [56/61] Polygo    161件 EPSG:2449      gifu/c11654-073/0956_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/C0304_kaihatukyoka_213837.shp
+2026-08-09T09:27:37 INFO    [57/61] Polygo      4件 EPSG:2449      gifu/c11654-073/0956_213837_09_t.anpachi/213837_09_t.anpachi/C0304_宅地開発状況/c0304_jigyo_213837.shp
+2026-08-09T09:27:37 INFO    [58/61] Polygo      7件 EPSG:2449      gifu/c11654-073/0960_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_jigyo_214213.shp
+2026-08-09T09:27:38 INFO    [59/61] Point      10件 EPSG:2449      gifu/c11654-073/0960_214213_09_t.kitagata/214213_09_t.kitagata/C0304_宅地開発状況/C0304_kaihatukyoka_214213.shp
+2026-08-09T09:27:38 INFO    gifu/c11654-091/1046_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:27:38 INFO    [60/61] MultiP     13件 EPSG:2449      gifu/c11654-091/1046_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp
+2026-08-09T09:28:04 INFO    gifu/c11654-116/1108_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T09:28:04 INFO    [61/61] MultiP     13件 EPSG:2449      gifu/c11654-116/1108_212156_10_c.yamagata/212156_10_c.yamagata/C0304_宅地開発状況/c0304_kaihatsu_21215.shp
+2026-08-09T09:28:04 INFO    既存 layers.json から 2383 レイヤを引き継ぎます
+2026-08-09T09:28:04 INFO    --- end of convert ---
+2026-08-09T09:39:06 INFO    $ bskp normalize
+2026-08-09T09:39:26 INFO    115 レイヤを正規化します
+2026-08-09T09:39:26 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:26 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:26 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:26 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:39:27 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:43 INFO    [100/115] tosikeikaku202306shizuoka
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:40:44 INFO    集計型に残っていた注釈を削除: 土地利用現況_用途別土地利用面積.geojsonl
+2026-08-09T09:41:58 INFO    [115/115] tsushima
+2026-08-09T09:41:58 INFO    --- end of normalize ---
+2026-08-09T09:42:38 INFO    $ bskp tiles --theme 土地利用
+2026-08-09T09:42:38 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T09:42:41 INFO    土地利用から敷地ベースでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T09:42:41 INFO    土地利用: 90 レイヤ -> landuse.pmtiles
+2026-08-09T09:55:24 INFO    既存 index から 9 テーマを引き継ぎます
+2026-08-09T09:55:24 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-09T09:55:24 INFO    --- end of tiles ---

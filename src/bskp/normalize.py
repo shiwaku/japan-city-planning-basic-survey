@@ -107,6 +107,40 @@ def is_aggregate(fields: list[str]) -> bool:
     return any(_LUI_RE.match(n) for n in names)
 
 
+ANNOTATED_FIELDS = ("lui_code", "lui_name", "lui_group")
+
+
+def strip_annotation(props: dict) -> dict:
+    """annotate が足した属性を落とす。
+
+    集計型と判定する前に注釈してしまった名残を消すため。付いたままだと
+    「1 ポリゴン = 小地域まるごと」に用途 1 つが割り当たった状態になり、
+    ビューアが敷地ベースと同じ色で塗ってしまう。
+    """
+    return {k: v for k, v in props.items() if k not in ANNOTATED_FIELDS}
+
+
+def non_parcel_reason(geometry: str, fields: list[str]) -> str | None:
+    """敷地ベースの土地利用でないなら、その理由を返す。該当すれば None。
+
+    土地利用現況は「1 ポリゴン = 1 敷地、属性に用途」が本来の姿。ところが
+    調査項目名での振り分けでは、同じ「土地利用」に別物が入ってくる:
+
+        点            開発許可・大規模事業所などの位置
+        用途コード列なし  町丁目単位の集計、市街化区域界、DID、既成市街地界
+        小地域集計型     用途別の面積が lui_201… と列で並ぶ（形と属性が対応しない）
+
+    どれも敷地の用途は表さないので、同じ凡例では読めない。
+    """
+    if not geometry.startswith(("Polygon", "MultiPolygon")):
+        return f"ポリゴンでない({geometry or '不明'})"
+    if is_aggregate(fields):
+        return "小地域集計型"
+    if code_field(fields)[0] is None:
+        return "用途コード列なし"
+    return None
+
+
 def annotate(props: dict, pref: str, reference: dict,
              field: str | None, is_national: bool = False) -> dict:
     """1 フィーチャの属性に lui_code / lui_name / lui_group を足して返す。

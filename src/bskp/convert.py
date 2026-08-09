@@ -179,6 +179,8 @@ def to_geojsonl(source: Path, dest: Path, source_srs: str = "") -> bool:
     # 出力は必ず妥当な UTF-8 になるが、UTF-8 を指定すると生バイトが素通りして
     # 不正な UTF-8 が出る。そこで出力の妥当性で最終判断する。
     for encoding in (detect_encoding(source), "CP932"):
+        # 残っていると ogr2ogr が「already exists」で落ちる。作り直しでも同じ
+        dest.unlink(missing_ok=True)
         try:
             subprocess.run(cmd, capture_output=True, check=True, timeout=1800,
                            env={**_env(), "SHAPE_ENCODING": encoding})
@@ -194,6 +196,70 @@ def to_geojsonl(source: Path, dest: Path, source_srs: str = "") -> bool:
         log.info("%s: %s では不正な UTF-8 になったので CP932 で作り直します",
                  source.name, encoding)
     return True
+
+
+def _srs_of_prj(prj: Path) -> str:
+    """.prj を EPSG コードに解決する。できなければ空。
+
+    同じ座標系でも WKT の書き方が 2 通り出てくる（ESRI 版 JGD_2000_Japan_Zone_7 と
+    EPSG 版 JGD2000 / Japan Plane Rectangular CS VII）。文字列のままでは
+    別物に見えるので、コードに揃えてから比べる。
+    """
+    try:
+        out = subprocess.run(["gdalsrsinfo", "-o", "epsg", str(prj)],
+                             capture_output=True, timeout=60).stdout
+    except (OSError, subprocess.TimeoutExpired):
+        return ""
+    text = out.decode("utf-8", "replace").strip()
+    return text if text.startswith("EPSG:") else ""
+
+
+_dataset_srs_cache: dict[Path, str] = {}
+
+
+def dataset_srs(source: Path, work: Path) -> str:
+    """.prj が無いレイヤに、同じデータセット内の .prj から座標系を借りる。
+
+    埼玉県の分割ファイル（さいたま市①〜⑥など）は .shp/.dbf/.shx だけで .prj が無い。
+    その場合 ogr2ogr は「source layer has no coordinate system」と言いながら
+    **終了コード 0 で 0 件のファイルを書く**ため、失敗として検出できない。
+    同じデータセットの他レイヤは 56 件すべて JGD2000 Zone 9 で揃っているので、
+    1 つに定まるときだけ借りる。割れているときは推測しない。
+    """
+    try:
+        rel = source.relative_to(work)
+    except ValueError:
+        return ""
+    if len(rel.parts) < 2:
+        return ""
+    root = work / rel.parts[0] / rel.parts[1]
+    if root in _dataset_srs_cache:
+        return _dataset_srs_cache[root]
+    codes = {code for prj in root.rglob("*.prj") if (code := _srs_of_prj(prj))}
+    if len(codes) == 1:
+        srs = codes.pop()
+        log.info("%s: .prj が無いので同じデータセットの %s を使います", rel, srs)
+    else:
+        srs = ""
+        if codes:
+            log.warning("%s: .prj が無く、データセット内の座標系が %d 種類に割れています",
+                        rel, len(codes))
+    _dataset_srs_cache[root] = srs
+    return srs
+
+
+def is_empty_output(dest: Path) -> bool:
+    """変換結果が実質空なら True。
+
+    GeoJSONSeq は 1 行 1 フィーチャなので、中身があれば必ず数十バイト以上になる。
+    0〜1 バイトで残っているのは変換の失敗か事故の跡で、そのまま「変換済み」と
+    見なすと欠測に気づけない（実際に土地利用 26 レイヤ・448,986 フィーチャが
+    空のまま「変換済み」として扱われ、公開データから抜け落ちていた）。
+    """
+    try:
+        return dest.stat().st_size <= 1
+    except OSError:
+        return True
 
 
 def _is_valid_utf8(path: Path, sample: int = 1 << 20) -> bool:
