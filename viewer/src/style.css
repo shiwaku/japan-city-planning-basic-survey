@@ -198,8 +198,25 @@ body {
 .maplibregl-ctrl-attrib a { color: var(--ink-2); }
 
 @media (max-width: 640px) {
-  .panel { width: 100%; max-width: none; top: auto; height: 52vh; }
-  .panel.collapsed { height: auto; }
+  /* 横幅が無いので左サイドバーではなく下寄せのシートにする。
+     ホームインジケータに潜り込まないよう safe-area ぶんだけ内側に余白を取る */
+  .panel {
+    width: 100%; max-width: none;
+    top: auto; height: 52vh;
+    border-right: none; border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  /* 閉じたときも下に張り付いたままにする。bottom を auto に戻すと
+     top も bottom も auto になり、絶対配置の静的位置＝画面上端へ飛ぶ */
+  .panel.collapsed { height: auto; bottom: 0; }
+
+  /* 下のコントロール（背景地図・2D/3D・スケール・出典）はパネルの下敷きに
+     なって触れない。右上はナビゲーションと現在地が使っているので、空いている
+     左上へ逃がす。出典は CC-BY の表示義務があるので隠さない */
+  .maplibregl-ctrl-bottom-right {
+    bottom: auto; top: 0; right: auto; left: 0;
+  }
+  .maplibregl-ctrl-bottom-left { bottom: auto; top: 96px; }
 }
 
 /* ---- 土地利用の凡例 ---- */

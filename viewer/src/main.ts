@@ -214,7 +214,9 @@ const panel = document.getElementById('panel') as HTMLElement
 const collapseBtn = document.getElementById('collapse-btn') as HTMLButtonElement
 collapseBtn.addEventListener('click', () => {
   const collapsed = panel.classList.toggle('collapsed')
-  collapseBtn.textContent = collapsed ? '▸' : '▾'
+  // 上下どちらに畳むかは幅で変わる（広い画面は左サイドバー、狭い画面は下シート）。
+  // どちらでも「▾ で閉じる / ▴ で開く」と読める向きにしておく
+  collapseBtn.textContent = collapsed ? '▴' : '▾'
   collapseBtn.setAttribute('aria-expanded', String(!collapsed))
 })
 
