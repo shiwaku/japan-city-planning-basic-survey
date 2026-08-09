@@ -6031,3 +6031,15 @@
 2026-08-09T10:53:31 INFO    既存 index から 9 テーマを引き継ぎます
 2026-08-09T10:53:31 INFO    出典 54 件を attribution.json に書き出しました
 2026-08-09T10:53:31 INFO    --- end of tiles ---
+2026-08-09T12:46:56 INFO    $ bskp normalize
+2026-08-09T12:47:14 INFO    115 レイヤを正規化します
+2026-08-09T12:48:41 INFO    [100/115] tosikeikaku202306shizuoka
+2026-08-09T12:50:00 INFO    [115/115] tsushima
+2026-08-09T12:50:00 INFO    --- end of normalize ---
+2026-08-09T12:50:01 INFO    $ bskp tiles --theme 土地利用
+2026-08-09T12:50:01 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T12:50:03 INFO    土地利用から敷地ベースでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T12:50:03 INFO    土地利用: 90 レイヤ -> landuse.pmtiles
+2026-08-09T13:08:09 INFO    既存 index から 9 テーマを引き継ぎます
+2026-08-09T13:08:09 INFO    出典 54 件を attribution.json に書き出しました
+2026-08-09T13:08:09 INFO    --- end of tiles ---

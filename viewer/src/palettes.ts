@@ -1,39 +1,24 @@
 /**
- * 土地利用の配色。2 つを切り替えられるようにしてある。
+ * 土地利用の配色。国標準の用途コード（201-253）を 20 区分で塗り分ける。
  *
- * ## なぜ 2 つあるか
+ * ## 3 系統への集約はやめた
  *
- * 都市計画の実務で見慣れた慣行配色と、色覚特性への配慮は、この用途数では両立しない。
+ * 以前は「自然的／都市的／低未利用」の 3 色を既定にしていた。20 色の
+ * カテゴリカル配色は色の分離検証を通せない、という理由だった。
  *
- * - 慣行配色は 20 区分を塗り分けるため、色の分離を検証すると必ず落ちる。
- *   検証済み 8 色パレットですら全ペア条件で 緑↔橙 CVD ΔE 3.2 で落ちる。
- * - 検証を通せるのは 3 色まで（all-pairs で両モード PASS）。
+ * これは検証の当てどころを間違えていた。all-pairs の ΔE 検証は、重ね合わせた
+ * テーマを**色だけで**見分けるための条件で、単一レイヤ内の用途区分には、
+ * 凡例・空間パターン・クリックでの属性表示・慣行（田は水色、商業は赤）が効く。
  *
- * どちらか一方を選ぶのではなく、既定を検証済みにして安全側に倒し、
- * 慣行配色が要る場面では切り替える。
+ * 実害のほうが大きかった。実測で都市的土地利用が 75.9%（2,106,459/2,776,003）を
+ * 占めるため、市街地を見にいくと画面の 4 分の 3 が同じ色になり、
+ * 「住宅か商業か工場か」という肝心の情報が消えていた。
  */
 
-export type PaletteId = 'validated' | 'conventional'
 export type Mode = 'light' | 'dark'
 
-// ---- 検証済み（既定） ----
-
-/**
- * 実施要領の大分類に集約した 3 系統。
- * all-pairs 条件で両モード PASS（最悪 CVD ΔE 9.2/9.4、通常視 24.0/20.9）。
- * 4 つ目の未分類は色ではなくハッチで描く。ダークモードでは灰と aqua 系が
- * どの明度でも通常視 ΔE 13.3 前後まで近づき、分離できないため。
- */
-export const GROUPS = [
-  { value: '自然的土地利用', light: '#1baf7a', dark: '#199e70' },
-  { value: '都市的土地利用', light: '#eb6834', dark: '#d95926' },
-  { value: '低未利用土地', light: '#2a78d6', dark: '#3987e5' },
-] as const
-
+/** 未分類（対照表に記載がなく写せなかったもの）のハッチ色。 */
 export const UNCLASSIFIED = { light: '#6b7078', dark: '#9aa0a6' } as const
-export const GROUP_UNCLASSIFIED = '未分類'
-
-// ---- 慣行配色 ----
 
 /**
  * 国標準の土地利用コード（201-253）に対する慣行配色。
@@ -79,16 +64,10 @@ export const CONVENTIONAL_ORDER = [
   '220', '221', '222', '223', '253', '231',
 ]
 
-/** MapLibre の fill-color 式。palette に応じて lui_group か lui_code で分岐する。 */
-export function fillColor(palette: PaletteId, mode: Mode): unknown[] {
-  if (palette === 'conventional') {
-    const expr: unknown[] = ['match', ['get', 'lui_code']]
-    for (const code of CONVENTIONAL_ORDER) expr.push(code, CONVENTIONAL[code][mode])
-    expr.push('rgba(0,0,0,0)')   // 未分類はハッチで描くのでここでは塗らない
-    return expr
-  }
-  const expr: unknown[] = ['match', ['get', 'lui_group']]
-  for (const g of GROUPS) expr.push(g.value, g[mode])
-  expr.push('rgba(0,0,0,0)')
+/** MapLibre の fill-color 式。lui_code で 20 区分に塗り分ける。 */
+export function fillColor(mode: Mode): unknown[] {
+  const expr: unknown[] = ['match', ['get', 'lui_code']]
+  for (const code of CONVENTIONAL_ORDER) expr.push(code, CONVENTIONAL[code][mode])
+  expr.push('rgba(0,0,0,0)')   // 未分類はハッチで描くのでここでは塗らない
   return expr
 }

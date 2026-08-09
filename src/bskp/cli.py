@@ -26,7 +26,7 @@ from .codetable import build_reference, normalize_code
 from .convert import (build_pmtiles, dataset_srs, describe, extract_recursive,
                       is_empty_output, to_geojsonl)
 from .harvest import ResourceRow, harvest_catalog, themes_for, write_inventory
-from .normalize import (GROUPS, annotate, code_field, is_aggregate,
+from .normalize import (GROUPS, annotate, code_field, group_of, is_aggregate,
                         non_parcel_reason, strip_annotation)
 from .scrape import Site, scrape_site
 
@@ -320,7 +320,8 @@ def cmd_normalize(args: argparse.Namespace) -> None:
                     break
                 field, is_national = code_field(list(props))
             feature["properties"] = annotate(props, pref, reference, field, is_national)
-            stats[feature["properties"]["lui_group"]] += 1
+            # 系統は集計表示のためだけに数える。属性としては書かない
+            stats[group_of(feature["properties"]["lui_code"])] += 1
             lines_out.append(json.dumps(feature, ensure_ascii=False))
         if aggregate:
             # 集計型と判定する前の実行が注釈を書き込んでいることがある。

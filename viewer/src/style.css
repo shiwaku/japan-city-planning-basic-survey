@@ -224,17 +224,7 @@ p.legend-note { margin: 0 0 4px; line-height: 1.5; }
 .sources dd { margin: 1px 0 0; padding-left: 8px; }
 
 /* ---- 配色の切替 ---- */
-.palette-switch { display: flex; gap: 4px; margin: 0 0 7px; }
-.palette-switch button {
-  flex: 1; padding: 4px 6px; font-size: 10.5px; cursor: pointer;
-  border: 1px solid var(--line-2); border-radius: var(--radius-sm);
-  background: transparent; color: var(--ink-2);
-}
-.palette-switch button:hover { background: var(--hover); }
-.palette-switch button.on {
-  background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
-}
-/* 慣行配色は20区分あるので2列にして縦を抑える */
+/* 土地利用は20区分あるので2列にして縦を抑える */
 .legend.conventional { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }
 .legend.conventional li { font-size: 10px; }
 .legend.conventional .legend-note { display: none; }

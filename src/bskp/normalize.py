@@ -1,24 +1,24 @@
 """土地利用レイヤに、全国で共通の用途コードを付ける。
 
 自治体ごとに属性名も値の体系も違うので、そのままでは全国を同じ凡例で描けない。
-国交省の対照表（codetable.py が解析）を使って、次の 3 つの属性を足す:
+国交省の対照表（codetable.py が解析）を使って、次の 2 つの属性を足す:
 
     lui_code   国標準の土地コード（201-253）。写せなければ空
     lui_name   その用途名（田・住宅用地 など）
-    lui_group  3 系統への集約（自然的土地利用 / 都市的土地利用 / 低未利用土地）
 
-## なぜ 3 系統に束ねるか
+## 3 系統は属性として持たない
 
-国標準の用途は 20 区分あるが、20 色のカテゴリカル配色は検証を通せない。
-地図の重ね合わせは「全ペアが同時に隣接しうる」条件になり、検証済み 8 色でも
-緑↔橙が CVD ΔE 3.2、赤↔橙が通常視 ΔE 7.1 で落ちる。3 色なら両モードで通る。
+自然的／都市的／低未利用の 3 系統は実施要領の章立てだが、地図の塗り分けには
+使わない。実測で都市的土地利用が 75.9% を占め、市街地がほぼ一色になって
+「住宅か商業か工場か」という肝心の情報が消えるため。ビューアは lui_code の
+20 区分で塗る。系統は normalize の集計表示にだけ使い、lui_code から求まるので
+属性としては書かない（group_of）。
 
 ## 写せなかったものを消さない
 
 対照表は公式だが実データを完全にはカバーしない。さいたま市の 141-144・150 は
 埼玉県のシートに載っておらず、実測で 12.6% が写せなかった。
-これらは lui_group="未分類" として残す。ビューア側では色ではなくハッチで描く
-（4 色目の中立色はダークモードで aqua と ΔE 13.3 まで近づき、分離できないため）。
+これらは lui_code="" のまま残し、ビューア側では色ではなくハッチで描く。
 """
 
 from __future__ import annotations
@@ -143,9 +143,12 @@ def non_parcel_reason(geometry: str, fields: list[str]) -> str | None:
 
 def annotate(props: dict, pref: str, reference: dict,
              field: str | None, is_national: bool = False) -> dict:
-    """1 フィーチャの属性に lui_code / lui_name / lui_group を足して返す。
+    """1 フィーチャの属性に lui_code / lui_name を足して返す。
 
     優先順は (1) 国標準コードを持つ列があればそれ、(2) 県独自コードを対照表で写す。
+
+    前回の実行が付けた注釈は落としてから付け直す。付け方を変えたときに
+    古い属性（lui_group など）が残らないようにするため。
 
     小地域集計型からの「主たる用途」の導出はしない。1 ポリゴンが小地域まるごとで
     複数用途の面積を持つため、代表値を1つ選ぶと元データに無い値を作ることになる。
@@ -163,8 +166,7 @@ def annotate(props: dict, pref: str, reference: dict,
             code = text if text in reference["national_codes"] else None
         else:
             code = normalize_code(reference, pref, text)
-    props = dict(props)
+    props = strip_annotation(props)
     props["lui_code"] = code or ""
     props["lui_name"] = reference["national_codes"].get(code, "") if code else ""
-    props["lui_group"] = group_of(code) if code else GROUP_UNKNOWN
     return props
