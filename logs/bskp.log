@@ -6043,3 +6043,168 @@
 2026-08-09T13:08:09 INFO    既存 index から 9 テーマを引き継ぎます
 2026-08-09T13:08:09 INFO    出典 54 件を attribution.json に書き出しました
 2026-08-09T13:08:09 INFO    --- end of tiles ---
+2026-08-09T13:18:48 INFO    $ bskp convert --match HouseR03\.shp|hinan_A\.shp|下呂都市計画（人口分布）\.shp|下呂都市計画（市町村界）\.shp|下呂都市計画（用途地域指定区域）\.shp|下呂都市計画（都市計画区域）\.shp|中津川都市計画（DID）\.shp|中津川都市計画（人口分布）\.shp|中津川都市計画（市町村界）\.shp|中津川都市計画（用途地域指定区域）\.shp|中津川都市計画（都市計画区域）\.shp|八幡都市計画（人口分布）\.shp|八幡都市計画（市町村界）\.shp|八幡都市計画（用途地域指定区域）\.shp|八幡都市計画（都市計画区域）\.shp|八百津都市計画（人口規模）\.shp|八百津都市計画（市町村界）\.shp|八百津都市計画（都市計画区域）\.shp|古川・神岡都市計画（人口分布）\.shp|古川・神岡都市計画（市町村界）\.shp|古川都市計画（DID）\.shp|古川都市計画（用途地域指定区域）\.shp|古川都市計画（都市計画区域）\.shp|可児都市計画（DID）\.shp|可児都市計画（人口分布）\.shp|可児都市計画（市町村界）\.shp|可児都市計画（用途地域指定区域）\.shp|可児都市計画（都市計画区域）\.shp|各務原都市計画（DID）\.shp|各務原都市計画（人口分布）\.shp|各務原都市計画（市町村界）\.shp|各務原都市計画（市街化区域）\.shp|各務原都市計画（市街化調整区域）\.shp|各務原都市計画（都市計画区域）\.shp|土岐都市計画（DID）\.shp|土岐都市計画（人口分布）\.shp|土岐都市計画（市町村界）\.shp|土岐都市計画（用途地域指定区域）\.shp|土岐都市計画（都市計画区域）\.shp|多治見都市計画（DID）\.shp|多治見都市計画（人口分布）\.shp|多治見都市計画（市町村界）\.shp|多治見都市計画（市街化区域）\.shp|多治見都市計画（市街化調整区域）\.shp|多治見都市計画（都市計画区域）\.shp|大垣都市計画（DID）\.shp|大垣都市計画（人口分布）\.shp|大垣都市計画（市町村界）\.shp|大垣都市計画（市街化区域）\.shp|大垣都市計画（市街化調整区域）\.shp|大垣都市計画（都市計画区域）\.shp|小調査区\.shp|岐阜都市計画（DID）\.shp|岐阜都市計画（人口分布）\.shp|岐阜都市計画（市町村界）\.shp|岐阜都市計画（市街化区域）\.shp|岐阜都市計画（市街化調整区域）\.shp|岐阜都市計画（都市計画区域）\.shp|建物利用現況_延床面積\.shp|建物利用現況_建物用途（延床面積）\.shp|建物利用現況_建物用途（建築面積）\.shp|建物利用現況_建物用途（棟数）\.shp|建物利用現況_建築年\.shp|建物利用現況_建築面積\.shp|建物利用現況_構造\.shp|建物利用現況_耐火構造種別\.shp|建物利用現況_階数（地下、地上）\.shp|御嵩都市計画（人口分布）\.shp|御嵩都市計画（市町村界）\.shp|御嵩都市計画（用途地域指定区域）\.shp|御嵩都市計画（都市計画区域）\.shp|恵那都市計画（DID）\.shp|恵那都市計画（人口分布）\.shp|恵那都市計画（市町村界）\.shp|恵那都市計画（用途地域指定区域）\.shp|恵那都市計画（都市計画区域）\.shp|揖斐都市計画（人口分布）\.shp|揖斐都市計画（市町村界）\.shp|揖斐都市計画（用途地域指定区域）\.shp|揖斐都市計画（都市計画区域）\.shp|本巣都市計画（人口分布）\.shp|本巣都市計画（市町村界）\.shp|本巣都市計画（用途地域指定区域）\.shp|本巣都市計画（都市計画区域）\.shp|海津都市計画（人口分布）\.shp|海津都市計画（市町村界）\.shp|海津都市計画（都市計画区域）\.shp|瑞浪都市計画（DID）\.shp|瑞浪都市計画（人口分布）\.shp|瑞浪都市計画（市町村界）\.shp|瑞浪都市計画（用途地域指定区域）\.shp|瑞浪都市計画（都市計画区域）\.shp|瑞穂準都市計画（人口密度）\.shp|瑞穂準都市計画（市町村界）\.shp|瑞穂準都市計画（準都市計画区域）\.shp|神岡都市計画（都市計画区域）\.shp|美濃加茂都市計画（人口分布）\.shp|美濃加茂都市計画（市町村界）\.shp|美濃加茂都市計画（用途地域指定区域）\.shp|美濃加茂都市計画（都市計画区域）\.shp|美濃都市計画（人口分布）\.shp|美濃都市計画（市町村界）\.shp|美濃都市計画（用途地域指定区域）\.shp|美濃都市計画（都市計画区域）\.shp|羽島都市計画（DID）\.shp|羽島都市計画（人口分布）\.shp|羽島都市計画（市町村界）\.shp|羽島都市計画（市街化区域）\.shp|羽島都市計画（市街化調整区域）\.shp|羽島都市計画（都市計画区域）\.shp|輪之内都市計画（人口分布）\.shp|輪之内都市計画（市町村界）\.shp|輪之内都市計画（都市計画区域）\.shp|関ヶ原都市計画（人口分布）\.shp|関ヶ原都市計画（市町村界）\.shp|関ヶ原都市計画（用途地域指定区域）\.shp|関ヶ原都市計画（都市計画区域）\.shp|関都市計画（DID）\.shp|関都市計画（人口分布）\.shp|関都市計画（市町村界）\.shp|関都市計画（用途地域指定区域）\.shp|関都市計画（都市計画区域）\.shp|養老都市計画（人口分布）\.shp|養老都市計画（市町村界）\.shp|養老都市計画（都市計画区域）\.shp|高富都市計画（人口分布）\.shp|高富都市計画（市町村界）\.shp|高富都市計画（用途地域指定区域）\.shp|高富都市計画（都市計画区域）\.shp|高山都市計画（DID）\.shp|高山都市計画（人口分布）\.shp|高山都市計画（市町村界）\.shp|高山都市計画（用途地域指定区域）\.shp|高山都市計画（都市計画区域）\.shp
+2026-08-09T13:19:18 INFO    369 件を変換します
+2026-08-09T13:19:18 WARNING [1/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_延床面積.shp
+2026-08-09T13:19:18 WARNING [2/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（延床面積）.shp
+2026-08-09T13:19:18 WARNING [3/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（建築面積）.shp
+2026-08-09T13:19:18 WARNING [4/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（棟数）.shp
+2026-08-09T13:19:19 WARNING [5/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建築年.shp
+2026-08-09T13:19:19 WARNING [6/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建築面積.shp
+2026-08-09T13:19:19 WARNING [7/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_構造.shp
+2026-08-09T13:19:19 WARNING [8/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_耐火構造種別.shp
+2026-08-09T13:19:19 WARNING [9/369] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_階数（地下、地上）.shp
+2026-08-09T13:19:30 INFO    geospatial-jp/11000-101/0384_02syotyosaku/小調査区　個別DL/小調査区.shp: .prj が無いので同じデータセットの EPSG:2451 を使います
+2026-08-09T13:19:38 INFO    [143/369] Polygo   7346件 EPSG:2451      geospatial-jp/11000-101/0384_02syotyosaku/小調査区　個別DL/小調査区.shp
+2026-08-09T13:19:41 WARNING [207/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_延床面積.shp
+2026-08-09T13:19:42 WARNING [208/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（延床面積）.shp
+2026-08-09T13:19:42 WARNING [209/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（建築面積）.shp
+2026-08-09T13:19:42 WARNING [210/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（棟数）.shp
+2026-08-09T13:19:42 WARNING [211/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建築年.shp
+2026-08-09T13:19:42 WARNING [212/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建築面積.shp
+2026-08-09T13:19:42 WARNING [213/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_構造.shp
+2026-08-09T13:19:42 WARNING [214/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_耐火構造種別.shp
+2026-08-09T13:19:42 WARNING [215/369] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_階数（地下、地上）.shp
+2026-08-09T13:19:45 INFO    geospatial-jp/saitamacity-toshikeikaku_r2/0375_tatemono/建物現況調査（市独自調査）/GISデータ/HouseR03.shp: .prj が無いので同じデータセットの EPSG:6677 を使います
+2026-08-09T13:20:39 INFO    [234/369] Polygo 448576件 EPSG:6677      geospatial-jp/saitamacity-toshikeikaku_r2/0375_tatemono/建物現況調査（市独自調査）/GISデータ/HouseR03.shp
+2026-08-09T13:20:40 INFO    geospatial-jp/tosikeikaku202306atami/0242_08_/08_公害および災害/03_GISデータ/hinan_A.shp: .prj が無いので同じデータセットの EPSG:2450 を使います
+2026-08-09T13:20:40 INFO    [235/369] Polygo     15件 EPSG:2450      geospatial-jp/tosikeikaku202306atami/0242_08_/08_公害および災害/03_GISデータ/hinan_A.shp
+2026-08-09T13:20:42 INFO    gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/00_区域データ/岐阜都市計画（市町村界）.shp: .prj が無いので同じデータセットの EPSG:2449 を使います
+2026-08-09T13:20:43 INFO    [247/369] Polygo      5件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/00_区域データ/岐阜都市計画（市町村界）.shp
+2026-08-09T13:20:43 INFO    [248/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/00_区域データ/岐阜都市計画（市街化区域）.shp
+2026-08-09T13:20:43 INFO    [249/369] Polygo      2件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/00_区域データ/岐阜都市計画（市街化調整区域）.shp
+2026-08-09T13:20:43 INFO    [250/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/00_区域データ/岐阜都市計画（都市計画区域）.shp
+2026-08-09T13:20:47 INFO    [251/369] Polygo   2446件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/C0101_人口規模/岐阜都市計画（人口分布）.shp
+2026-08-09T13:20:47 INFO    [252/369] Polygo      9件 EPSG:2449      gifu/c11654-074/0899_01_09_gifutokei/01_09_gifutokei/C0102_DID/岐阜都市計画（DID）.shp
+2026-08-09T13:20:48 INFO    [253/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/00_区域データ/羽島都市計画（市町村界）.shp
+2026-08-09T13:20:48 INFO    [254/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/00_区域データ/羽島都市計画（市街化区域）.shp
+2026-08-09T13:20:48 INFO    [255/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/00_区域データ/羽島都市計画（市街化調整区域）.shp
+2026-08-09T13:20:48 INFO    [256/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/00_区域データ/羽島都市計画（都市計画区域）.shp
+2026-08-09T13:20:48 INFO    [257/369] Polygo    288件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/C0101_人口規模/羽島都市計画（人口分布）.shp
+2026-08-09T13:20:48 INFO    [258/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0900_02_09_hashimatokei/02_09_hashimatokei/C0102_DID/羽島都市計画（DID）.shp
+2026-08-09T13:20:49 INFO    [259/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/00_区域データ/各務原都市計画（市町村界）.shp
+2026-08-09T13:20:49 INFO    [260/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/00_区域データ/各務原都市計画（市街化区域）.shp
+2026-08-09T13:20:49 INFO    [261/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/00_区域データ/各務原都市計画（市街化調整区域）.shp
+2026-08-09T13:20:49 INFO    [262/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/00_区域データ/各務原都市計画（都市計画区域）.shp
+2026-08-09T13:20:49 INFO    [263/369] Polygo    667件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/C0101_人口規模/各務原都市計画（人口分布）.shp
+2026-08-09T13:20:49 INFO    [264/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0901_03_09_kakamigaharatokei/03_09_kakamigaharatokei/C0102_DID/各務原都市計画（DID）.shp
+2026-08-09T13:20:50 INFO    [265/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0902_04_09_motosutokei/04_09_motosutokei/00_区域データ/本巣都市計画（市町村界）.shp
+2026-08-09T13:20:50 INFO    [266/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0902_04_09_motosutokei/04_09_motosutokei/00_区域データ/本巣都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:50 INFO    [267/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0902_04_09_motosutokei/04_09_motosutokei/00_区域データ/本巣都市計画（都市計画区域）.shp
+2026-08-09T13:20:50 INFO    [268/369] Polygo    125件 EPSG:2449      gifu/c11654-074/0902_04_09_motosutokei/04_09_motosutokei/C0101_人口規模/本巣都市計画（人口分布）.shp
+2026-08-09T13:20:50 INFO    [269/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0903_05_09_takatomitokei/05_09_takatomitokei/00_区域データ/高富都市計画（市町村界）.shp
+2026-08-09T13:20:50 INFO    [270/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0903_05_09_takatomitokei/05_09_takatomitokei/00_区域データ/高富都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:51 INFO    [271/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0903_05_09_takatomitokei/05_09_takatomitokei/00_区域データ/高富都市計画（都市計画区域）.shp
+2026-08-09T13:20:51 INFO    [272/369] Polygo    104件 EPSG:2449      gifu/c11654-074/0903_05_09_takatomitokei/05_09_takatomitokei/C0101_人口規模/高富都市計画（人口分布）.shp
+2026-08-09T13:20:51 INFO    [273/369] Polygo      4件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/00_区域データ/大垣都市計画（市町村界）.shp
+2026-08-09T13:20:51 INFO    [274/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/00_区域データ/大垣都市計画（市街化区域）.shp
+2026-08-09T13:20:51 INFO    [275/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/00_区域データ/大垣都市計画（市街化調整区域）.shp
+2026-08-09T13:20:52 INFO    [276/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/00_区域データ/大垣都市計画（都市計画区域）.shp
+2026-08-09T13:20:52 INFO    [277/369] Polygo    726件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/C0101_人口規模/大垣都市計画（人口分布）.shp
+2026-08-09T13:20:52 INFO    [278/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0904_06_09_ogakitokei/06_09_ogakitokei/C0102_DID/大垣都市計画（DID）.shp
+2026-08-09T13:20:52 INFO    [279/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0905_07_09_kaizutokei/07_09_kaizutokei/00_区域データ/海津都市計画（市町村界）.shp
+2026-08-09T13:20:53 INFO    [280/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0905_07_09_kaizutokei/07_09_kaizutokei/00_区域データ/海津都市計画（都市計画区域）.shp
+2026-08-09T13:20:53 INFO    [281/369] Polygo     80件 EPSG:2449      gifu/c11654-074/0905_07_09_kaizutokei/07_09_kaizutokei/C0101_人口規模/海津都市計画（人口分布）.shp
+2026-08-09T13:20:53 INFO    [282/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0906_08_09_yorotokei/08_09_yorotokei/00_区域データ/養老都市計画（市町村界）.shp
+2026-08-09T13:20:53 INFO    [283/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0906_08_09_yorotokei/08_09_yorotokei/00_区域データ/養老都市計画（都市計画区域）.shp
+2026-08-09T13:20:54 INFO    [284/369] Polygo    187件 EPSG:2449      gifu/c11654-074/0906_08_09_yorotokei/08_09_yorotokei/C0101_人口規模/養老都市計画（人口分布）.shp
+2026-08-09T13:20:54 INFO    [285/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0907_09_09_sekigaharatokei/09_09_sekigaharatokei/00_区域データ/関ヶ原都市計画（市町村界）.shp
+2026-08-09T13:20:54 INFO    [286/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0907_09_09_sekigaharatokei/09_09_sekigaharatokei/00_区域データ/関ヶ原都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:54 INFO    [287/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0907_09_09_sekigaharatokei/09_09_sekigaharatokei/00_区域データ/関ヶ原都市計画（都市計画区域）.shp
+2026-08-09T13:20:54 INFO    [288/369] Polygo     58件 EPSG:2449      gifu/c11654-074/0907_09_09_sekigaharatokei/09_09_sekigaharatokei/C0101_人口規模/関ヶ原都市計画（人口分布）.shp
+2026-08-09T13:20:55 INFO    [289/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0908_10_09_wanouchitokei/10_09_wanouchitokei/00_区域データ/輪之内都市計画（市町村界）.shp
+2026-08-09T13:20:55 INFO    [290/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0908_10_09_wanouchitokei/10_09_wanouchitokei/00_区域データ/輪之内都市計画（都市計画区域）.shp
+2026-08-09T13:20:55 INFO    [291/369] Polygo     32件 EPSG:2449      gifu/c11654-074/0908_10_09_wanouchitokei/10_09_wanouchitokei/C0101_人口規模/輪之内都市計画（人口分布）.shp
+2026-08-09T13:20:55 INFO    [292/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0909_11_09_ibitokei/11_09_ibitokei/00_区域データ/揖斐都市計画（市町村界）.shp
+2026-08-09T13:20:55 INFO    [293/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0909_11_09_ibitokei/11_09_ibitokei/00_区域データ/揖斐都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:55 INFO    [294/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0909_11_09_ibitokei/11_09_ibitokei/00_区域データ/揖斐都市計画（都市計画区域）.shp
+2026-08-09T13:20:56 INFO    [295/369] Polygo    136件 EPSG:2449      gifu/c11654-074/0909_11_09_ibitokei/11_09_ibitokei/C0101_人口規模/揖斐都市計画（人口分布）.shp
+2026-08-09T13:20:56 INFO    [296/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0910_12_09_sekitokei/12_09_sekitokei/00_区域データ/関都市計画（市町村界）.shp
+2026-08-09T13:20:56 INFO    [297/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0910_12_09_sekitokei/12_09_sekitokei/00_区域データ/関都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:56 INFO    [298/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0910_12_09_sekitokei/12_09_sekitokei/00_区域データ/関都市計画（都市計画区域）.shp
+2026-08-09T13:20:57 INFO    [299/369] Polygo    421件 EPSG:2449      gifu/c11654-074/0910_12_09_sekitokei/12_09_sekitokei/C0101_人口規模/関都市計画（人口分布）.shp
+2026-08-09T13:20:57 INFO    [300/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0910_12_09_sekitokei/12_09_sekitokei/C0102_DID/関都市計画（DID）.shp
+2026-08-09T13:20:57 INFO    [301/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0911_13_09_minotokei/13_09_minotokei/00_区域データ/美濃都市計画（市町村界）.shp
+2026-08-09T13:20:57 INFO    [302/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0911_13_09_minotokei/13_09_minotokei/00_区域データ/美濃都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:57 INFO    [303/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0911_13_09_minotokei/13_09_minotokei/00_区域データ/美濃都市計画（都市計画区域）.shp
+2026-08-09T13:20:58 INFO    [304/369] Polygo    163件 EPSG:2449      gifu/c11654-074/0911_13_09_minotokei/13_09_minotokei/C0101_人口規模/美濃都市計画（人口分布）.shp
+2026-08-09T13:20:58 INFO    [305/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0912_14_09_hachimantokei/14_09_hachimantokei/00_区域データ/八幡都市計画（市町村界）.shp
+2026-08-09T13:20:58 INFO    [306/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0912_14_09_hachimantokei/14_09_hachimantokei/00_区域データ/八幡都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:58 INFO    [307/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0912_14_09_hachimantokei/14_09_hachimantokei/00_区域データ/八幡都市計画（都市計画区域）.shp
+2026-08-09T13:20:59 INFO    [308/369] Polygo    241件 EPSG:2449      gifu/c11654-074/0912_14_09_hachimantokei/14_09_hachimantokei/C0101_人口規模/八幡都市計画（人口分布）.shp
+2026-08-09T13:20:59 INFO    [309/369] Polygo      4件 EPSG:2449      gifu/c11654-074/0913_15_09_minokamotokei/15_09_minokamotokei/00_区域データ/美濃加茂都市計画（市町村界）.shp
+2026-08-09T13:20:59 INFO    [310/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0913_15_09_minokamotokei/15_09_minokamotokei/00_区域データ/美濃加茂都市計画（用途地域指定区域）.shp
+2026-08-09T13:20:59 INFO    [311/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0913_15_09_minokamotokei/15_09_minokamotokei/00_区域データ/美濃加茂都市計画（都市計画区域）.shp
+2026-08-09T13:20:59 INFO    [312/369] Polygo    160件 EPSG:2449      gifu/c11654-074/0913_15_09_minokamotokei/15_09_minokamotokei/C0101_人口規模/美濃加茂都市計画（人口分布）.shp
+2026-08-09T13:21:00 INFO    [313/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0914_16_09_kanitokei/16_09_kanitokei/00_区域データ/可児都市計画（市町村界）.shp
+2026-08-09T13:21:00 INFO    [314/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0914_16_09_kanitokei/16_09_kanitokei/00_区域データ/可児都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:00 INFO    [315/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0914_16_09_kanitokei/16_09_kanitokei/00_区域データ/可児都市計画（都市計画区域）.shp
+2026-08-09T13:21:00 INFO    [316/369] Polygo    163件 EPSG:2449      gifu/c11654-074/0914_16_09_kanitokei/16_09_kanitokei/C0101_人口規模/可児都市計画（人口分布）.shp
+2026-08-09T13:21:00 INFO    [317/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0914_16_09_kanitokei/16_09_kanitokei/C0102_DID/可児都市計画（DID）.shp
+2026-08-09T13:21:00 INFO    [318/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0915_17_09_yaotsutokei/17_09_yaotsutokei/00_区域データ/八百津都市計画（市町村界）.shp
+2026-08-09T13:21:01 INFO    [319/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0915_17_09_yaotsutokei/17_09_yaotsutokei/00_区域データ/八百津都市計画（都市計画区域）.shp
+2026-08-09T13:21:01 INFO    [320/369] Polygo     13件 EPSG:2449      gifu/c11654-074/0915_17_09_yaotsutokei/17_09_yaotsutokei/C0101_人口規模/八百津都市計画（人口規模）.shp
+2026-08-09T13:21:01 INFO    [321/369] Polygo      2件 EPSG:2449      gifu/c11654-074/0916_18_09_mitaketokei/18_09_mitaketokei/00_区域データ/御嵩都市計画（市町村界）.shp
+2026-08-09T13:21:01 INFO    [322/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0916_18_09_mitaketokei/18_09_mitaketokei/00_区域データ/御嵩都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:01 INFO    [323/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0916_18_09_mitaketokei/18_09_mitaketokei/00_区域データ/御嵩都市計画（都市計画区域）.shp
+2026-08-09T13:21:02 INFO    [324/369] Polygo     30件 EPSG:2449      gifu/c11654-074/0916_18_09_mitaketokei/18_09_mitaketokei/C0101_人口規模/御嵩都市計画（人口分布）.shp
+2026-08-09T13:21:02 INFO    [325/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/00_区域データ/多治見都市計画（市町村界）.shp
+2026-08-09T13:21:02 INFO    [326/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/00_区域データ/多治見都市計画（市街化区域）.shp
+2026-08-09T13:21:02 INFO    [327/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/00_区域データ/多治見都市計画（市街化調整区域）.shp
+2026-08-09T13:21:02 INFO    [328/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/00_区域データ/多治見都市計画（都市計画区域）.shp
+2026-08-09T13:21:03 INFO    [329/369] Polygo    461件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/C0101_人口規模/多治見都市計画（人口分布）.shp
+2026-08-09T13:21:03 INFO    [330/369] Polygo      3件 EPSG:2449      gifu/c11654-074/0917_19_09_tajimitokei/19_09_tajimitokei/C0102_DID/多治見都市計画（DID）.shp
+2026-08-09T13:21:03 INFO    [331/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0918_20_09_nakatsugawatokei/20_09_nakatsugawatokei/00_区域データ/中津川都市計画（市町村界）.shp
+2026-08-09T13:21:03 INFO    [332/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0918_20_09_nakatsugawatokei/20_09_nakatsugawatokei/00_区域データ/中津川都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:03 INFO    [333/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0918_20_09_nakatsugawatokei/20_09_nakatsugawatokei/00_区域データ/中津川都市計画（都市計画区域）.shp
+2026-08-09T13:21:03 INFO    [334/369] Polygo     85件 EPSG:2449      gifu/c11654-074/0918_20_09_nakatsugawatokei/20_09_nakatsugawatokei/C0101_人口規模/中津川都市計画（人口分布）.shp
+2026-08-09T13:21:04 INFO    [335/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0918_20_09_nakatsugawatokei/20_09_nakatsugawatokei/C0102_DID/中津川都市計画（DID）.shp
+2026-08-09T13:21:04 INFO    [336/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0919_21_09_enatokei/21_09_enatokei/00_区域データ/恵那都市計画（市町村界）.shp
+2026-08-09T13:21:04 INFO    [337/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0919_21_09_enatokei/21_09_enatokei/00_区域データ/恵那都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:04 INFO    [338/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0919_21_09_enatokei/21_09_enatokei/00_区域データ/恵那都市計画（都市計画区域）.shp
+2026-08-09T13:21:04 INFO    [339/369] Polygo    116件 EPSG:2449      gifu/c11654-074/0919_21_09_enatokei/21_09_enatokei/C0101_人口規模/恵那都市計画（人口分布）.shp
+2026-08-09T13:21:05 INFO    [340/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0919_21_09_enatokei/21_09_enatokei/C0102_DID/恵那都市計画（DID）.shp
+2026-08-09T13:21:05 INFO    [341/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0920_22_09_tokitokei/22_09_tokitokei/00_区域データ/土岐都市計画（市町村界）.shp
+2026-08-09T13:21:05 INFO    [342/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0920_22_09_tokitokei/22_09_tokitokei/00_区域データ/土岐都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:05 INFO    [343/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0920_22_09_tokitokei/22_09_tokitokei/00_区域データ/土岐都市計画（都市計画区域）.shp
+2026-08-09T13:21:05 INFO    [344/369] Polygo    150件 EPSG:2449      gifu/c11654-074/0920_22_09_tokitokei/22_09_tokitokei/C0101_人口規模/土岐都市計画（人口分布）.shp
+2026-08-09T13:21:05 INFO    [345/369] Polygo      2件 EPSG:2449      gifu/c11654-074/0920_22_09_tokitokei/22_09_tokitokei/C0102_DID/土岐都市計画（DID）.shp
+2026-08-09T13:21:06 INFO    [346/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0921_23_09_mizunamitokei/23_09_mizunamitokei/00_区域データ/瑞浪都市計画（市町村界）.shp
+2026-08-09T13:21:06 INFO    [347/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0921_23_09_mizunamitokei/23_09_mizunamitokei/00_区域データ/瑞浪都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:06 INFO    [348/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0921_23_09_mizunamitokei/23_09_mizunamitokei/00_区域データ/瑞浪都市計画（都市計画区域）.shp
+2026-08-09T13:21:06 INFO    [349/369] Polygo    104件 EPSG:2449      gifu/c11654-074/0921_23_09_mizunamitokei/23_09_mizunamitokei/C0101_人口規模/瑞浪都市計画（人口分布）.shp
+2026-08-09T13:21:06 INFO    [350/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0921_23_09_mizunamitokei/23_09_mizunamitokei/C0102_DID/瑞浪都市計画（DID）.shp
+2026-08-09T13:21:06 INFO    [351/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0922_24_09_takayamatokei/24_09_takayamatokei/00_区域データ/高山都市計画（市町村界）.shp
+2026-08-09T13:21:07 INFO    [352/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0922_24_09_takayamatokei/24_09_takayamatokei/00_区域データ/高山都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:07 INFO    [353/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0922_24_09_takayamatokei/24_09_takayamatokei/00_区域データ/高山都市計画（都市計画区域）.shp
+2026-08-09T13:21:07 INFO    [354/369] Polygo    373件 EPSG:2449      gifu/c11654-074/0922_24_09_takayamatokei/24_09_takayamatokei/C0101_人口規模/高山都市計画（人口分布）.shp
+2026-08-09T13:21:07 INFO    [355/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0922_24_09_takayamatokei/24_09_takayamatokei/C0102_DID/高山都市計画（DID）.shp
+2026-08-09T13:21:07 INFO    [356/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0923_25_09_gerotokei/25_09_gerotokei/00_区域データ/下呂都市計画（市町村界）.shp
+2026-08-09T13:21:08 INFO    [357/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0923_25_09_gerotokei/25_09_gerotokei/00_区域データ/下呂都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:08 INFO    [358/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0923_25_09_gerotokei/25_09_gerotokei/00_区域データ/下呂都市計画（都市計画区域）.shp
+2026-08-09T13:21:08 INFO    [359/369] Polygo    183件 EPSG:2449      gifu/c11654-074/0923_25_09_gerotokei/25_09_gerotokei/C0101_人口規模/下呂都市計画（人口分布）.shp
+2026-08-09T13:21:08 INFO    [360/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/00_区域データ/古川・神岡都市計画（市町村界）.shp
+2026-08-09T13:21:08 INFO    [361/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/00_区域データ/古川都市計画（用途地域指定区域）.shp
+2026-08-09T13:21:09 INFO    [362/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/00_区域データ/古川都市計画（都市計画区域）.shp
+2026-08-09T13:21:09 INFO    [363/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/00_区域データ/神岡都市計画（都市計画区域）.shp
+2026-08-09T13:21:09 INFO    [364/369] Polygo    158件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/C0101_人口規模/古川・神岡都市計画（人口分布）.shp
+2026-08-09T13:21:09 INFO    [365/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0924_26_27_09_furukawa_kamiokatokei/26_27_09_furukawa_kamiokatokei/C0102_DID/古川都市計画（DID）.shp
+2026-08-09T13:21:09 INFO    [366/369] Polygo     11件 EPSG:2449      gifu/c11654-074/0925_28_09_mizuhojuntokei/28_09_mizuhojuntokei/00_区域データ/瑞穂準都市計画（人口密度）.shp
+2026-08-09T13:21:09 INFO    [367/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0925_28_09_mizuhojuntokei/28_09_mizuhojuntokei/00_区域データ/瑞穂準都市計画（市町村界）.shp
+2026-08-09T13:21:10 INFO    [368/369] Polygo      1件 EPSG:2449      gifu/c11654-074/0925_28_09_mizuhojuntokei/28_09_mizuhojuntokei/00_区域データ/瑞穂準都市計画（準都市計画区域）.shp
+2026-08-09T13:21:10 INFO    [369/369] Polygo     11件 EPSG:2449      gifu/c11654-074/0925_28_09_mizuhojuntokei/28_09_mizuhojuntokei/C0101_人口規模/瑞穂準都市計画（人口密度）.shp
+2026-08-09T13:21:10 INFO    既存 layers.json から 2073 レイヤを引き継ぎます
+2026-08-09T13:21:10 INFO    --- end of convert ---
+2026-08-09T13:29:03 INFO    $ bskp normalize --target building
+2026-08-09T13:29:25 INFO    建物 252 レイヤを見ます
+2026-08-09T13:29:51 INFO    [148/252] HouseR03.geojsonl 446851棟
+2026-08-09T13:30:56 INFO    [246/252] R04建物現況_ウ多摩全域.geojsonl 1170417棟
+2026-08-09T13:30:57 INFO    [247/252] R04建物現況（伊豆）.geojsonl 29514棟
+2026-08-09T13:30:58 INFO    [248/252] R04建物現況（小笠原）.geojsonl 1894棟
+2026-08-09T13:32:23 INFO    [249/252] R03建物現況.geojsonl 1808305棟
+2026-08-09T13:32:24 INFO    --- end of normalize ---
+2026-08-09T13:40:34 INFO    $ bskp tiles --theme 建物 --theme 土地利用
+2026-08-09T13:40:34 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-09T13:40:41 INFO    建物 から定義どおりでない 392 レイヤを除外しました（小地域集計型 217 / 用途コード列なし 169 / ポリゴンでない(LineString) 6）
+2026-08-09T13:40:41 INFO    土地利用 から定義どおりでない 511 レイヤを除外しました（用途コード列なし 340 / ポリゴンでない(Point) 116 / 小地域集計型 25 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-09T13:40:41 INFO    土地利用: 90 レイヤ -> landuse.pmtiles

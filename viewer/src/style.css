@@ -239,3 +239,9 @@ p.legend-note { margin: 0 0 4px; line-height: 1.5; }
 .basemap-ctrl button + button { border-left: 1px solid var(--line); }
 .basemap-ctrl button:hover { background: var(--hover); }
 .basemap-ctrl button.on { background: var(--accent); color: var(--accent-ink); }
+
+/* ポップアップの属性名。和名の下に配布元の原名を小さく添える */
+.popup .field-raw {
+  display: block; font-size: 9.5px; font-weight: 400;
+  color: var(--ink-3, var(--ink-2)); opacity: .75;
+}

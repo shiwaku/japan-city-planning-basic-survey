@@ -71,3 +71,55 @@ export function fillColor(mode: Mode): unknown[] {
   expr.push('rgba(0,0,0,0)')   // 未分類はハッチで描くのでここでは塗らない
   return expr
 }
+
+// ---- 建物用途 ----
+
+/**
+ * 国標準の建物用途コード（401-471）の配色。
+ *
+ * 土地利用と同じ「東京都土地利用現況図〔建物用途別〕（区部）」の凡例の色調を
+ * 参照している（図そのものは複製しない）。土地利用側と系統をそろえた:
+ *
+ *   住宅系   青緑   商業・業務系 赤橙   公共系 黄
+ *   工業系   青     運輸倉庫    青灰   農林漁業 緑
+ *
+ * 併用住宅は「住宅×商業」「住宅×工業」なので、両者の中間色を当てている。
+ * 空家は法定の調査項目（施行規則第5条第9号）なので独立した色を持たせる。
+ */
+export const BUILDING: Record<string, { name: string; light: string; dark: string }> = {
+  '401': { name: '業務施設', light: '#f07f3c', dark: '#b85f28' },
+  '402': { name: '商業施設', light: '#e8390c', dark: '#b83214' },
+  '403': { name: '宿泊施設', light: '#d1568f', dark: '#9c3f6b' },
+  '404': { name: '商業系用途複合施設', light: '#f2a25e', dark: '#ad7340' },
+  '411': { name: '住宅', light: '#7ecfd2', dark: '#2b6f72' },
+  '412': { name: '共同住宅', light: '#3aa9ad', dark: '#1f7a7d' },
+  '413': { name: '店舗等併用住宅', light: '#e8a48f', dark: '#8f5a49' },
+  '414': { name: '店舗等併用共同住宅', light: '#d98a6e', dark: '#7d4a37' },
+  '415': { name: '作業所併用住宅', light: '#b9a3d1', dark: '#5f5175' },
+  '421': { name: '官公庁施設', light: '#e7af00', dark: '#9c7700' },
+  '422': { name: '文教厚生施設', light: '#f2d35a', dark: '#8f7a2a' },
+  '431': { name: '運輸倉庫施設', light: '#8fa8c8', dark: '#4a5f7d' },
+  '441': { name: '工場', light: '#0192d5', dark: '#1a6a99' },
+  '451': { name: '農林漁業用施設', light: '#77a22e', dark: '#4f6b20' },
+  '452': { name: '供給処理施設', light: '#a9a194', dark: '#6b665c' },
+  '453': { name: '防衛施設', light: '#6b7f6b', dark: '#44523f' },
+  '454': { name: 'その他', light: '#cfcabf', dark: '#55524b' },
+  '461': { name: '不明', light: '#bdbdbd', dark: '#4f4f4f' },
+  '471': { name: '空家', light: '#efe3b8', dark: '#6b6040' },
+}
+
+/** 凡例の並び。コード表の順（業務・商業 → 住宅 → 公共 → 産業 → その他）。 */
+export const BUILDING_ORDER = [
+  '401', '402', '403', '404',
+  '411', '412', '413', '414', '415',
+  '421', '422', '431', '441', '451', '452', '453',
+  '454', '461', '471',
+]
+
+/** MapLibre の fill-color 式。bui_code で塗り分ける。 */
+export function buildingColor(mode: Mode): unknown[] {
+  const expr: unknown[] = ['match', ['get', 'bui_code']]
+  for (const code of BUILDING_ORDER) expr.push(code, BUILDING[code][mode])
+  expr.push('rgba(0,0,0,0)')   // 未分類はハッチで描く
+  return expr
+}

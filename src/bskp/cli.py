@@ -20,6 +20,7 @@ from pathlib import Path
 
 import yaml
 
+from . import building
 from .ckan import Catalog, CkanClient
 from .fetch import fetch_all
 from .codetable import build_reference, normalize_code
@@ -284,10 +285,19 @@ def _layer_record(rel: Path, dest: Path, srs: str, count: int, geom: str) -> dic
 
 
 def cmd_normalize(args: argparse.Namespace) -> None:
-    """変換済みの土地利用 GeoJSONSeq に lui_code / lui_name / lui_group を足す。
+    """変換済みの GeoJSONSeq に、全国共通の用途コードを足す。
 
+    土地利用は lui_code / lui_name、建物は bui_code / bui_name（＋実測の高さ）。
     convert が作った *.geojsonl を読み書きするだけなので、再変換は要らない。
     """
+    if args.target in ("landuse", "all"):
+        _normalize_landuse(args)
+    if args.target in ("building", "all"):
+        _normalize_buildings(args)
+
+
+def _normalize_landuse(args: argparse.Namespace) -> None:
+    """土地利用に lui_code / lui_name を足す。"""
     reference = json.loads(
         (args.reference / "landuse_codes.json").read_text(encoding="utf-8"))
     index = _pref_index(args.inventory, reference)
@@ -343,7 +353,72 @@ def cmd_normalize(args: argparse.Namespace) -> None:
             print(f"  {group:<10} {count:>9,}  {count / total * 100:5.1f}%")
 
 
-def _strip_annotation(path: Path) -> bool:
+def _normalize_buildings(args: argparse.Namespace) -> None:
+    """建物に bui_code / bui_name と、実測があれば bui_height / bui_floors を足す。
+
+    対照表を持つのは用途コード列がある publisher だけ（東京都 BV_6・さいたま市
+    RIYOU）。無いレイヤは触らない。建物フットプリントとしては正しくても、
+    用途を持たないものに用途を作ることはできない。
+    """
+    targets = [p for p in args.processed.rglob("*.geojsonl")
+               if re.search(r"建物|建築|tatemono|house", p.name, re.I)]
+    logging.info("建物 %d レイヤを見ます", len(targets))
+
+    stats: collections.Counter = collections.Counter()
+    heights = 0
+    dropped = 0
+    skipped: collections.Counter = collections.Counter()
+    done = 0
+    for n, path in enumerate(targets, 1):
+        lines_out = []
+        field: str | None = None
+        resolved = False
+        skip = ""
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            if not raw.strip():
+                continue
+            feature = json.loads(raw)
+            props = feature.get("properties") or {}
+            if not resolved:
+                resolved = True
+                if is_aggregate(list(props)):
+                    skip = "小地域集計型"
+                    break
+                field = building.code_field(list(props))
+                if field is None:
+                    skip = "用途コード列なし"
+                    break
+            if building.is_not_a_building(props, field):
+                # さいたま市 RIYOU=88「建物としてカウントしない構造物等」。
+                # 写せなかったのではなく、提供元が建物ではないと言っている
+                dropped += 1
+                continue
+            feature["properties"] = building.annotate(props, field)
+            stats[feature["properties"]["bui_name"] or "未分類"] += 1
+            if "bui_height" in feature["properties"]:
+                heights += 1
+            lines_out.append(json.dumps(feature, ensure_ascii=False))
+        if skip:
+            skipped[skip] += 1
+            _strip_annotation(path, building.strip_annotation)
+            continue
+        if not lines_out:
+            continue
+        path.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
+        done += 1
+        logging.info("[%d/%d] %s %d棟", n, len(targets), path.name, len(lines_out))
+
+    total = sum(stats.values())
+    print(f"建物 {done} レイヤ / {total:,} 棟に用途コードを付けました"
+          f"（実測の高さあり {heights:,} 棟 / "
+          f"{'  '.join(f'{k} {v}レイヤ' for k, v in skipped.most_common())}）")
+    if dropped:
+        print(f"  建物としてカウントしない構造物 {dropped:,} 件は出力しない")
+    for name, count in stats.most_common():
+        print(f"  {name:<12} {count:>9,}  {count / total * 100:5.1f}%")
+
+
+def _strip_annotation(path: Path, strip=strip_annotation) -> bool:
     """正規化の注釈（lui_code など）が付いていたら取り除く。消したら True。"""
     lines = []
     changed = False
@@ -352,7 +427,7 @@ def _strip_annotation(path: Path) -> bool:
             continue
         feature = json.loads(raw)
         props = feature.get("properties") or {}
-        stripped = strip_annotation(props)
+        stripped = strip(props)
         if len(stripped) != len(props):
             changed = True
             feature["properties"] = stripped
@@ -376,14 +451,27 @@ def _first_properties(path: Path) -> dict | None:
 
 
 LANDUSE_THEME = "土地利用"
+BUILDING_THEME = "建物"
+
+# 調査項目の定義どおりの形をしているレイヤだけタイルに入れる。
+# 土地利用現況は「1ポリゴン=1敷地に用途」、建物利用現況は「1ポリゴン=1棟に用途」。
+# 調査項目名での振り分けには、同じ名前で別物（小地域集計・区域界・施設の点）が
+# 入ってくるので、データ自身の形と属性で判定する
+DEFINED_SHAPE = {
+    LANDUSE_THEME: non_parcel_reason,
+    BUILDING_THEME: building.non_building_reason,
+}
 
 
-def _landuse_drop_reason(layer: dict) -> str | None:
-    """土地利用テーマから外す理由。敷地ベースなら None。"""
+def _drop_reason(theme: str, layer: dict) -> str | None:
+    """そのテーマから外す理由。定義どおりの形なら None。"""
+    check = DEFINED_SHAPE.get(theme)
+    if check is None:
+        return None
     props = _first_properties(Path(layer["path"]))
     if props is None:
         return "空ファイル"
-    return non_parcel_reason(layer["geometry"], list(props))
+    return check(layer["geometry"], list(props))
 
 
 def cmd_tiles(args: argparse.Namespace) -> None:
@@ -405,25 +493,25 @@ def cmd_tiles(args: argparse.Namespace) -> None:
         if before != len(layers):
             logging.info("ライセンス不明のため %d レイヤを除外しました", before - len(layers))
 
-    # 土地利用は敷地ベースのポリゴンだけを載せる。調査項目名での振り分けでは
-    # 開発許可の点や町丁目単位の集計まで入ってきて、同じ凡例では読めない
     groups: dict[str, list[Path]] = collections.defaultdict(list)
     tiled: list[dict] = []
-    dropped: collections.Counter = collections.Counter()
+    dropped: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
     for layer in layers:
-        themes = list(layer["themes"] or ["その他"])
-        if LANDUSE_THEME in themes and (reason := _landuse_drop_reason(layer)):
-            dropped[reason] += 1
-            themes.remove(LANDUSE_THEME)
+        themes = []
+        for theme in layer["themes"] or ["その他"]:
+            if reason := _drop_reason(theme, layer):
+                dropped[theme][reason] += 1
+                continue
+            themes.append(theme)
         if not themes:
             continue
         for theme in themes:
             groups[theme].append(Path(layer["path"]))
         tiled.append(layer)
-    if dropped:
-        logging.info("土地利用から敷地ベースでない %d レイヤを除外しました（%s）",
-                     sum(dropped.values()),
-                     " / ".join(f"{k} {v}" for k, v in dropped.most_common()))
+    for theme, reasons in dropped.items():
+        logging.info("%s から定義どおりでない %d レイヤを除外しました（%s）",
+                     theme, sum(reasons.values()),
+                     " / ".join(f"{k} {v}" for k, v in reasons.most_common()))
 
     made = []
     for theme, inputs in sorted(groups.items(), key=lambda kv: -len(kv[1])):
@@ -731,10 +819,12 @@ def main(argv: list[str] | None = None) -> None:
     scv.add_argument("--limit", type=int, default=40)
     scv.set_defaults(func=cmd_coverage)
 
-    sn = sub.add_parser("normalize", help="土地利用に全国共通の用途コードを付ける")
+    sn = sub.add_parser("normalize", help="土地利用・建物に全国共通の用途コードを付ける")
     sn.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
     sn.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     sn.add_argument("--pref", help="都道府県名を明示する")
+    sn.add_argument("--target", choices=("all", "landuse", "building"), default="all",
+                    help="対象の調査項目（既定は両方）")
     sn.set_defaults(func=cmd_normalize)
 
     sr = sub.add_parser("report", help="インベントリを集計")

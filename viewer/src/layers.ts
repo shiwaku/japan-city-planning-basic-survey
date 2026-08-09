@@ -64,7 +64,7 @@ export const THEMES: ThemeDef[] = [
   },
   {
     key: 'building', name: '建物', on: true, slot: 1,
-    desc: '建物利用現況。用途・階数・構造・建築年・耐火構造種別・延床面積など。',
+    desc: '建物利用現況。1棟ごとのポリゴンに用途を持つものだけを収録し、国標準の建物用途コードで塗り分けている。実測の高さがある棟は、地図を傾けると立体で表示される。',
   },
   {
     key: 'population', name: '人口', on: false, slot: 2,

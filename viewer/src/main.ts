@@ -4,8 +4,10 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 import { MAX_ACTIVE, THEMES, colorOf, themeOf, type ThemeDef } from './layers'
 import {
-  CONVENTIONAL, CONVENTIONAL_ORDER, UNCLASSIFIED, fillColor,
+  BUILDING, BUILDING_ORDER, CONVENTIONAL, CONVENTIONAL_ORDER, UNCLASSIFIED,
+  buildingColor, fillColor,
 } from './palettes'
+import { labelOf } from './field-names'
 import { getBasemapStyle, type Basemap } from './basemap'
 import { applyThemeAttr, initialTheme, type Theme } from './theme'
 import './style.css'
@@ -29,6 +31,9 @@ interface Attribution {
 
 let theme: Theme = initialTheme()
 applyThemeAttr(theme)
+
+// 建物の LOD1 表示。傾けていないと立体が見えないので、地図の pitch と連動させる
+let pitched = localStorage.getItem('bskp-pitch') === 'on'
 
 const protocol = new Protocol()
 maplibregl.addProtocol('pmtiles', protocol.tile)
@@ -60,8 +65,9 @@ const srcId = (key: string): string => `src-${key}`
 const fillId = (key: string): string => `${key}-fill`
 const lineId = (key: string): string => `${key}-line`
 const pointId = (key: string): string => `${key}-point`
+const extrudeId = (key: string): string => `${key}-3d`
 const allLayerIds = (key: string): string[] =>
-  [fillId(key), lineId(key), pointId(key), `${key}-hatch`]
+  [fillId(key), lineId(key), pointId(key), `${key}-hatch`, extrudeId(key)]
 
 const interactiveIds = (): string[] =>
   [...active].flatMap(allLayerIds).filter((id) => map.getLayer(id))
@@ -121,6 +127,39 @@ function addDataLayers(): void {
         paint: {
           'fill-color': fillColor(theme) as never,
           'fill-opacity': alpha,
+        },
+      })
+    } else if (def.key === 'building') {
+      // 建物も単色ではなく、正規化した bui_code で用途別に塗り分ける
+      ensureHatch()
+      map.addLayer({
+        id: `${def.key}-hatch`, type: 'fill', source: srcId(def.key), 'source-layer': def.key,
+        filter: ['all', ['==', ['geometry-type'], 'Polygon'],
+                 ['==', ['get', 'bui_code'], '']],
+        layout: { visibility: visible },
+        paint: { 'fill-pattern': 'hatch-unclassified', 'fill-opacity': Math.min(1, alpha + 0.35) },
+      })
+      map.addLayer({
+        id: fillId(def.key), type: 'fill', source: srcId(def.key), 'source-layer': def.key,
+        filter: ['all', ['==', ['geometry-type'], 'Polygon'],
+                 ['!=', ['get', 'bui_code'], '']],
+        layout: { visibility: visible },
+        paint: { 'fill-color': buildingColor(theme) as never, 'fill-opacity': alpha },
+      })
+      // LOD1。高さは実測値がある棟だけ立ち上げる（推定値は作らない）。
+      // 施行規則第5条第5号が「建築物の……高さ」を調査項目に挙げており、
+      // 東京都 BV_15・さいたま市 TAKASA がその実測値にあたる
+      map.addLayer({
+        id: extrudeId(def.key), type: 'fill-extrusion',
+        source: srcId(def.key), 'source-layer': def.key,
+        minzoom: 14,
+        filter: ['all', ['==', ['geometry-type'], 'Polygon'], ['has', 'bui_height']],
+        layout: { visibility: visible && pitched ? 'visible' : 'none' },
+        paint: {
+          'fill-extrusion-color': buildingColor(theme) as never,
+          'fill-extrusion-height': ['get', 'bui_height'],
+          'fill-extrusion-base': 0,
+          'fill-extrusion-opacity': 0.9,
         },
       })
     } else {
@@ -211,6 +250,7 @@ function buildToggles(): void {
       <div class="layer-body">
         <p class="layer-desc">${def.desc}</p>
         ${def.key === 'landuse' ? landuseLegend() : ''}
+        ${def.key === 'building' ? buildingLegend() : ''}
         <label class="opacity">
           <span>不透明度</span>
           <input type="range" min="0.05" max="1" step="0.05"
@@ -271,9 +311,29 @@ function landuseLegend(): string {
 }
 
 
+/**
+ * 建物の凡例。国標準の建物用途 19 区分。
+ * 実データに出ない区分まで並べても読みにくいので、出たものだけ載せる。
+ */
+function buildingLegend(): string {
+  const items = BUILDING_ORDER.map((code) =>
+    `<li><span class="key" style="background:${BUILDING[code][theme]}"></span>` +
+    `${BUILDING[code].name}</li>`).join('')
+  const hatch =
+    `<li><span class="key hatch" style="--hatch:${UNCLASSIFIED[theme]}"></span>` +
+    '未分類<span class="legend-note">対照表に記載なし</span></li>'
+  return `<ul class="legend conventional">${items}${hatch}</ul>
+    <p class="legend-note">国土交通省「C0401建物用途コード表」の区分。
+    地図を傾けると、実測の高さを持つ棟が立ち上がる（東京都 BV_15・
+    さいたま市 TAKASA。階数からの推定はしていない）。</p>`
+}
+
 function setVisible(def: ThemeDef, on: boolean): void {
   for (const id of allLayerIds(def.key)) {
-    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
+    if (!map.getLayer(id)) continue
+    // 3D は「テーマが ON」かつ「地図を傾けている」ときだけ出す
+    const show = id === extrudeId(def.key) ? on && pitched : on
+    map.setLayoutProperty(id, 'visibility', show ? 'visible' : 'none')
   }
 }
 
@@ -282,6 +342,7 @@ function setOpacity(def: ThemeDef, v: number): void {
   const strong = Math.min(1, v + 0.35)
   if (map.getLayer(lineId(def.key))) map.setPaintProperty(lineId(def.key), 'line-opacity', strong)
   if (map.getLayer(pointId(def.key))) map.setPaintProperty(pointId(def.key), 'circle-opacity', strong)
+  // 3D は半透明にしない。重なった箱は透かすと形が読めなくなる
 }
 
 // ---- 背景地図の切替（右下） ----
@@ -311,6 +372,36 @@ class BasemapControl implements maplibregl.IControl {
 const basemapCtrl = new BasemapControl()
 map.addControl(basemapCtrl, 'bottom-right')
 
+/** 2D / 3D の切替。傾けると建物が立ち上がる。 */
+class PitchControl implements maplibregl.IControl {
+  private container!: HTMLElement
+
+  onAdd(): HTMLElement {
+    this.container = document.createElement('div')
+    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group basemap-ctrl'
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.textContent = pitched ? '2D' : '3D'
+    btn.title = pitched ? '真上から見る' : '傾けて建物を立体表示する'
+    btn.addEventListener('click', () => {
+      pitched = !pitched
+      localStorage.setItem('bskp-pitch', pitched ? 'on' : 'off')
+      map.easeTo({ pitch: pitched ? 55 : 0, duration: 400 })
+      for (const def of THEMES) if (available.has(def.key)) setVisible(def, active.has(def.key))
+      btn.textContent = pitched ? '2D' : '3D'
+      btn.title = pitched ? '真上から見る' : '傾けて建物を立体表示する'
+    })
+    this.container.appendChild(btn)
+    return this.container
+  }
+
+  onRemove(): void {
+    this.container.remove()
+  }
+}
+
+map.addControl(new PitchControl(), 'bottom-right')
+
 function setBasemap(next: Basemap): void {
   if (next === basemap) return
   basemap = next
@@ -334,9 +425,17 @@ map.on('click', (ev) => {
 
   const f = hits[0]
   const def = themeOf(f.layer.id.replace(/-(fill|line|point)$/, ''))
+  // 属性名は配布元のまま（LU_1, BV_15 …）なので、定義書に載っている和名で出す。
+  // 原名も併記して、配布元データと突き合わせられるようにしておく
   const rows = Object.entries(f.properties ?? {})
     .filter(([, v]) => v !== null && v !== '')
-    .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(String(v))}</td></tr>`)
+    .map(([k, v]) => {
+      const { label, raw } = labelOf(k)
+      const name = raw
+        ? `${esc(label)}<span class="field-raw">${esc(raw)}</span>`
+        : esc(label)
+      return `<tr><th>${name}</th><td>${esc(String(v))}</td></tr>`
+    })
     .join('')
 
   new maplibregl.Popup({ maxWidth: '320px', closeButton: true })
