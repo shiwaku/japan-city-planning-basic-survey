@@ -127,6 +127,56 @@ body {
 
 .layer-desc { margin: 0 0 6px; font-size: 11px; line-height: 1.55; color: var(--ink-2); }
 
+/* ---- 対象地域 ---- */
+/* 収録は数都県ぶんしかないので、どこが入っているかを名前で引けるようにする */
+.areas { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+.area-note { margin: 0 2px 8px; font-size: 11px; line-height: 1.55; color: var(--ink-3); }
+
+.area-filter {
+  width: 100%; box-sizing: border-box;
+  padding: 6px 8px; margin-bottom: 6px;
+  border: 1px solid var(--line-2); border-radius: var(--radius-sm);
+  background: var(--surface-solid); color: var(--ink);
+  font: inherit; font-size: 12px;
+}
+.area-filter:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+.area-groups { display: flex; flex-direction: column; gap: 2px; }
+
+.area-group > summary {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+.area-group > summary:hover { background: var(--hover); }
+.area-provider { flex: 1; font-weight: 600; color: var(--ink-2); }
+.area-count {
+  flex: none; font-size: 11px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.area-list { list-style: none; margin: 0 0 4px; padding: 0 0 0 8px; }
+
+.area-item {
+  display: flex; align-items: baseline; gap: 8px; width: 100%;
+  padding: 5px 8px;
+  border: 0; border-radius: var(--radius-sm);
+  background: none; color: inherit;
+  font: inherit; font-size: 12px; text-align: left;
+  cursor: pointer;
+}
+.area-item:hover { background: var(--hover); }
+.area-item:disabled { opacity: .45; cursor: default; }
+.area-name { flex: 1; }
+.area-themes { flex: none; font-size: 10px; color: var(--ink-3); }
+.area-features {
+  flex: none; min-width: 4.5em; text-align: right;
+  font-size: 10px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
 .opacity { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink-3); }
 .opacity span { flex: none; }
 .opacity input[type='range'] { flex: 1; accent-color: var(--accent); min-width: 0; }

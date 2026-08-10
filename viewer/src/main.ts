@@ -4,6 +4,9 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 import { THEMES, themeOf, type ThemeDef } from './layers'
 import {
+  addCoverageLayer, fetchAreas, renderAreaPanel, type Area, type AreaGroup,
+} from './areas'
+import {
   BUILDING, BUILDING_ORDER, CONVENTIONAL, CONVENTIONAL_ORDER, UNCLASSIFIED,
   buildingColor, fillColor,
 } from './palettes'
@@ -60,6 +63,8 @@ map.addControl(new maplibregl.GeolocateControl({ trackUserLocation: true }), 'to
 const active = new Set(THEMES.filter((t) => t.on).map((t) => t.key))
 const available = new Map<string, TileEntry>()
 const opacity = new Map<string, number>(THEMES.map((t) => [t.key, 0.45]))
+// 収録範囲。スタイルを張り替えるたびに地図へ描き直すので手元に持っておく
+let areaGroups: AreaGroup[] = []
 
 const srcId = (key: string): string => `src-${key}`
 const fillId = (key: string): string => `${key}-fill`
@@ -95,6 +100,10 @@ function ensureHatch(): void {
  * 塗りは palettes.ts の式で作る。写せなかったものはハッチで描く。
  */
 function addDataLayers(): void {
+  // 収録範囲を先に置く。あとから足すデータレイヤがこの上に載るので、
+  // 範囲の色が用途区分の塗りにかぶらない
+  addCoverageLayer(map, areaGroups, theme)
+
   for (const def of THEMES) {
     if (!available.has(def.key)) continue
     const visible = active.has(def.key) ? 'visible' : 'none'
@@ -193,6 +202,28 @@ collapseBtn.addEventListener('click', () => {
   collapseBtn.textContent = collapsed ? '▴' : '▾'
   collapseBtn.setAttribute('aria-expanded', String(!collapsed))
 })
+
+// ---- 対象地域 ----
+const areasDiv = document.getElementById('areas') as HTMLElement
+
+function buildAreas(): void {
+  if (!areaGroups.length) {
+    areasDiv.hidden = true
+    return
+  }
+  areasDiv.hidden = false
+  renderAreaPanel(areasDiv, areaGroups, flyToArea)
+}
+
+/** その地域の収録範囲へ寄せる。矩形なので padding を取って全体を入れる。 */
+function flyToArea(area: Area): void {
+  if (!area.bbox) return
+  map.fitBounds(area.bbox, { padding: 48, maxZoom: 14, duration: 900 })
+  // 狭い画面ではパネルが地図を覆うので、飛んだ先が見えるように畳む
+  if (window.matchMedia('(max-width: 640px)').matches && !panel.classList.contains('collapsed')) {
+    collapseBtn.click()
+  }
+}
 
 // ---- レイヤートグル ----
 const layersDiv = document.getElementById('layers') as HTMLElement
@@ -441,9 +472,17 @@ async function boot(): Promise<void> {
   // データが無いテーマは ON のままにしない
   for (const key of [...active]) if (!available.has(key)) active.delete(key)
 
+  // 収録範囲。無くてもタイルは出せるので、読めなくても起動は止めない
+  try {
+    areaGroups = await fetchAreas(tilesBase)
+  } catch {
+    areasDiv.hidden = true
+  }
+
   await new Promise<void>((r) => (map.loaded() ? r() : map.once('load', () => r())))
   addDataLayers()
   buildToggles()
+  buildAreas()
 
   const layers = index.reduce((a, e) => a + e.layers, 0)
   const mib = index.reduce((a, e) => a + e.bytes, 0) / 1048576

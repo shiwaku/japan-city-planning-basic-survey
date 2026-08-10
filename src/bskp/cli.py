@@ -574,6 +574,15 @@ def cmd_tiles(args: argparse.Namespace) -> None:
     (args.tiles / "attribution.json").write_text(
         json.dumps(attribution, ensure_ascii=False, indent=2), encoding="utf-8")
     logging.info("出典 %d 件を attribution.json に書き出しました", len(attribution))
+
+    # 対象自治体。全国を配れているように見せない（実際は数都県ぶんしかない）ため、
+    # どこが入っているかをビューアが出せる形にしておく。
+    areas = _areas_for(tiled, args.inventory, args.reference, args.work)
+    (args.tiles / "areas.json").write_text(
+        json.dumps(areas, ensure_ascii=False, indent=2), encoding="utf-8")
+    logging.info("対象地域 %d 件（提供元 %d）を areas.json に書き出しました",
+                 sum(len(g["areas"]) for g in areas), len(areas))
+
     for t, s, d, n in made:
         print(f"  {t:<10} {d.name:<20} {d.stat().st_size / 1048576:8.1f} MiB  ({n} レイヤ)")
 
@@ -617,6 +626,132 @@ def _attribution_for(layers: list[dict], inventory: Path,
         })
         entry["datasets"] += 1
     return sorted(grouped.values(), key=lambda e: -e["datasets"])
+
+
+def _shp_bbox(path: Path) -> tuple[float, float, float, float] | None:
+    """シェープファイルのヘッダに入っている外接矩形。
+
+    先頭 100 バイトを読むだけで済む。変換後の GeoJSONSeq を走査すると
+    東京都の建物だけで 1.2 GiB あり、範囲を出すためだけに払うには重い。
+    """
+    import struct
+    try:
+        with path.open("rb") as f:
+            head = f.read(100)
+    except OSError:
+        return None
+    if len(head) < 100 or head[:4] != b"\x00\x00\x27\x0a":  # ファイルコード 9994
+        return None
+    xmin, ymin, xmax, ymax = struct.unpack("<4d", head[36:68])
+    if not (xmin <= xmax and ymin <= ymax):
+        return None
+    return xmin, ymin, xmax, ymax
+
+
+def _to_wgs84(srs: str, points: list[tuple[float, float]]) -> list[tuple[float, float]] | None:
+    """gdaltransform に一括で通す。SRS ごとに 1 プロセスで済ませる。"""
+    import subprocess
+    if not points:
+        return []
+    stdin = "".join(f"{x} {y}\n" for x, y in points)
+    try:
+        done = subprocess.run(["gdaltransform", "-s_srs", srs, "-t_srs", "EPSG:4326"],
+                              input=stdin, capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if done.returncode != 0:
+        return None
+    moved = [(float(p[0]), float(p[1])) for line in done.stdout.splitlines()
+             if len(p := line.split()) >= 2]
+    return moved if len(moved) == len(points) else None
+
+
+def _bboxes(layers: list[dict], work: Path) -> dict[str, list[float]]:
+    """レイヤの path → EPSG:4326 の [w, s, e, n]。
+
+    投影が違えば矩形は変換後に傾くので、4 隅を通してから min/max を取る。
+    """
+    per_srs: dict[str, list[tuple[str, tuple]]] = collections.defaultdict(list)
+    for layer in layers:
+        if box := _shp_bbox(work / layer["source"]):
+            per_srs[layer["srs"] or "EPSG:4326"].append((layer["path"], box))
+
+    out: dict[str, list[float]] = {}
+    for srs, items in per_srs.items():
+        corners = [pt for _, (xmin, ymin, xmax, ymax) in items
+                   for pt in ((xmin, ymin), (xmax, ymin), (xmax, ymax), (xmin, ymax))]
+        moved = _to_wgs84(srs, corners)
+        if not moved:
+            logging.warning("%s の座標変換に失敗しました。%d レイヤの範囲を出せません",
+                            srs, len(items))
+            continue
+        for i, (path, _) in enumerate(items):
+            quad = moved[i * 4:i * 4 + 4]
+            lon = [p[0] for p in quad]
+            lat = [p[1] for p in quad]
+            out[path] = [min(lon), min(lat), max(lon), max(lat)]
+    return out
+
+
+def _area_name(layer: dict, rules: dict) -> str:
+    """レイヤ名から対象自治体を拾う。拾えなければレイヤ名をそのまま返す。"""
+    ds = (rules.get("datasets") or {}).get(layer["dataset_name"]) or {}
+    if name := (ds.get("layers") or {}).get(layer["layer"]):
+        return name
+    if name := ds.get("name"):
+        return name
+    for pattern in rules.get("patterns") or []:
+        if m := re.match(pattern, layer["layer"]):
+            return m.group(1)
+    return layer["layer"]
+
+
+def _areas_for(layers: list[dict], inventory: Path, reference: Path,
+               work: Path) -> list[dict]:
+    """タイルに入った範囲を、提供元 → 対象自治体の形にまとめる。
+
+    全国の基礎調査を配れているように見えてしまうのを防ぐためのもの。実際は
+    東京・埼玉・静岡市・津島市しか入っていない。名前の付け方は自治体ごとに
+    ばらばらなので、拾う規則は areas.yaml に持たせる。
+    """
+    rules = {}
+    rule_path = reference / "areas.yaml"
+    if rule_path.exists():
+        rules = yaml.safe_load(rule_path.read_text(encoding="utf-8")) or {}
+
+    provider: dict[tuple[str, str], tuple[str, str, str]] = {}
+    for row in _read_inventory(inventory):
+        provider.setdefault((row["catalog_id"], row["dataset_name"]),
+                            (row["organization"], row["catalog_name"], row["dataset_url"]))
+
+    boxes = _bboxes(layers, work)
+    groups: dict[str, dict] = {}
+    for layer in layers:
+        who = provider.get((layer["catalog_id"], layer["dataset_name"]))
+        if not who:
+            continue
+        organization, catalog, url = who
+        group = groups.setdefault(organization, {
+            "provider": organization, "catalog": catalog, "url": url, "areas": {}})
+        name = _area_name(layer, rules)
+        area = group["areas"].setdefault(name, {
+            "name": name, "themes": set(), "features": 0, "bbox": None})
+        area["themes"].update(t for t in (layer["themes"] or [])
+                              if t in PUBLISHED_THEMES and not _drop_reason(t, layer))
+        area["features"] += layer.get("features") or 0
+        if box := boxes.get(layer["path"]):
+            area["bbox"] = box if not area["bbox"] else [
+                min(area["bbox"][0], box[0]), min(area["bbox"][1], box[1]),
+                max(area["bbox"][2], box[2]), max(area["bbox"][3], box[3])]
+
+    out = []
+    for group in groups.values():
+        areas = sorted(group["areas"].values(), key=lambda a: -a["features"])
+        for area in areas:
+            area["themes"] = [t for t in PUBLISHED_THEMES if t in area["themes"]]
+        out.append({**group, "areas": areas,
+                    "features": sum(a["features"] for a in areas)})
+    return sorted(out, key=lambda g: -g["features"])
 
 
 # 調査項目名 → ファイル名に使える slug。PUBLISHED_THEMES と対で持つ
@@ -826,6 +961,8 @@ def main(argv: list[str] | None = None) -> None:
     st.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
     st.add_argument("--tiles", type=Path, default=DEFAULT_TILES)
     st.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
+    # areas.json の範囲はシェープファイルのヘッダから作るので data/work が要る
+    st.add_argument("--work", type=Path, default=DEFAULT_WORK)
     st.add_argument("--theme", action="append", choices=PUBLISHED_THEMES,
                     help="対象の調査項目（複数可。既定は両方）")
     st.add_argument("--min-zoom", type=int, default=4)
