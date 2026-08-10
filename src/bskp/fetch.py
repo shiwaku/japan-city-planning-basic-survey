@@ -111,9 +111,14 @@ def download(url: str, dest: Path, session: requests.Session, timeout: int = 120
 def fetch_all(rows: list[dict], raw_dir: Path, *, kinds: set[str] | None = None,
               max_bytes: int | None = None, pause: float = 0.5,
               dry_run: bool = False, limit: int | None = None,
-              user_agents: dict[str, str] | None = None) -> None:
+              user_agents: dict[str, str] | None = None,
+              datasets: list[str] | None = None) -> None:
     """user_agents は catalog_id -> UA。配信側の WAF が UA を見るカタログがある
-    （G空間情報センターは既定 UA を 403 で弾く）ので、検索時と同じ UA を使う。"""
+    （G空間情報センターは既定 UA を 403 で弾く）ので、検索時と同じ UA を使う。
+
+    datasets を渡すと、データセット名かタイトルにその文字列を含むものだけ取る。
+    インベントリ全体は 26 GiB あり、1 件を足すために全部落とすのは無駄なため。
+    """
     prefer_ipv4()
     manifest_path = raw_dir / "manifest.jsonl"
     done = load_manifest(manifest_path)
@@ -125,6 +130,9 @@ def fetch_all(rows: list[dict], raw_dir: Path, *, kinds: set[str] | None = None,
     selected = []
     for idx, row in enumerate(rows):
         if kinds and row["kind"] not in kinds:
+            continue
+        if datasets and not any(
+                d in row["dataset_name"] or d in row["dataset_title"] for d in datasets):
             continue
         if not row["url"]:
             continue

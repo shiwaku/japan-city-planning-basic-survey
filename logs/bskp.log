@@ -6212,3 +6212,66 @@
 2026-08-09T14:04:24 INFO    既存 index から 8 テーマを引き継ぎます
 2026-08-09T14:04:24 INFO    出典 15 件を attribution.json に書き出しました
 2026-08-09T14:04:24 INFO    --- end of tiles ---
+2026-08-10T12:01:40 INFO    $ bskp fetch --dataset 135c1f13-4242-48c9-b0fc-fdc6885b07af --kind archive --dry-run
+2026-08-10T12:01:40 DEBUG   名前解決を IPv4 に固定しました
+2026-08-10T12:01:40 INFO    1/1720 resources selected for download
+2026-08-10T12:01:40 INFO    downloaded 0.0 MiB in this run
+2026-08-10T12:01:40 INFO    --- end of fetch ---
+2026-08-10T12:01:57 INFO    $ bskp fetch --dataset 135c1f13-4242-48c9-b0fc-fdc6885b07af --kind archive
+2026-08-10T12:01:58 DEBUG   名前解決を IPv4 に固定しました
+2026-08-10T12:01:58 INFO    1/1720 resources selected for download
+2026-08-10T12:01:58 DEBUG   Starting new HTTPS connection (1): opendata.pref.shizuoka.jp:443
+2026-08-10T12:01:58 DEBUG   https://opendata.pref.shizuoka.jp:443 "GET /fs/8/0/8/9/5/5/_/__________________.zip HTTP/11" 200 6900955
+2026-08-10T12:01:58 INFO    [1/1]      6.6 MiB  shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________.zip
+2026-08-10T12:01:59 INFO    downloaded 6.6 MiB in this run
+2026-08-10T12:01:59 INFO    --- end of fetch ---
+2026-08-10T12:02:36 INFO    $ bskp extract
+2026-08-10T12:02:37 INFO    550 個の書庫を展開します
+2026-08-10T12:02:37 WARNING ZIP として開けません: /mnt/c/Users/yshiw/Documents/GIS/basic-survey-of-city-planning/data/raw/geospatial-jp/tosikeikaku202306fujieda/0108_03_.zip
+2026-08-10T12:02:37 INFO    [161/550] 0 ファイル <- geospatial-jp/tosikeikaku202306fujieda/0108_03_
+2026-08-10T12:02:39 INFO    [523/550] 40 ファイル <- shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________
+2026-08-10T12:03:08 INFO    --- end of extract ---
+2026-08-10T12:03:18 INFO    $ bskp convert
+2026-08-10T12:03:47 INFO    2455 件を変換します
+2026-08-10T12:03:48 WARNING [22/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/土地利用現況_用途別土地利用面積.shp
+2026-08-10T12:03:48 WARNING [23/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_延床面積.shp
+2026-08-10T12:03:48 WARNING [24/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（延床面積）.shp
+2026-08-10T12:03:48 WARNING [25/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（建築面積）.shp
+2026-08-10T12:03:49 WARNING [26/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建物用途（棟数）.shp
+2026-08-10T12:03:49 WARNING [27/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建築年.shp
+2026-08-10T12:03:49 WARNING [28/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_建築面積.shp
+2026-08-10T12:03:49 WARNING [29/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_構造.shp
+2026-08-10T12:03:49 WARNING [30/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_耐火構造種別.shp
+2026-08-10T12:03:49 WARNING [31/2455] 変換結果が空です（688件のはず）: bodik/440001_city_plan_442011/0525_2022oita_gis/GIS/建物利用現況_階数（地下、地上）.shp
+2026-08-10T12:04:08 WARNING [339/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/土地利用現況_用途別土地利用面積.shp
+2026-08-10T12:04:08 WARNING [340/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_延床面積.shp
+2026-08-10T12:04:08 WARNING [341/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（延床面積）.shp
+2026-08-10T12:04:08 WARNING [342/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（建築面積）.shp
+2026-08-10T12:04:08 WARNING [343/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建物用途（棟数）.shp
+2026-08-10T12:04:08 WARNING [344/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建築年.shp
+2026-08-10T12:04:08 WARNING [345/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_建築面積.shp
+2026-08-10T12:04:09 WARNING [346/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_構造.shp
+2026-08-10T12:04:09 WARNING [347/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_耐火構造種別.shp
+2026-08-10T12:04:09 WARNING [348/2455] 変換結果が空です（688件のはず）: geospatial-jp/_r4-oita-oita/0354_oitakenoitashp/建物利用現況_階数（地下、地上）.shp
+2026-08-10T12:04:14 INFO    [443/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306fukuroi/0287_05_/05_都市施設/03_GISデータ/5120_下水道網図/5120_下水道網図/pump.shp
+2026-08-10T12:04:28 INFO    [709/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306izu/0230_05_/05_都市施設/03_GISデータ/shorijo.shp
+2026-08-10T12:04:29 INFO    [728/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306izunokuni/0091_05_/05_都市施設/03_GISデータ/Pump.shp
+2026-08-10T12:04:36 INFO    [796/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306kikugawa/0254_00_/00_区域界/223_御前崎市_人口集中地区界.shp
+2026-08-10T12:04:41 INFO    [875/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306mori/0293_00_/00_区域界/461_森町_人口集中地区界.shp
+2026-08-10T12:04:43 INFO    [919/2455] 空のためスキップ: geospatial-jp/tosikeikaku202306omaezaki/0264_00_/00_区域界/223_御前崎市_人口集中地区界.shp
+2026-08-10T12:06:14 INFO    [2414/2455] LineSt     10件 EPSG:2450      shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________/都市計画基礎調査（建物利用現況調査）/01_GISデータ/06 GISデータ/gyousei/gyousei.shp
+2026-08-10T12:06:18 INFO    [2415/2455] Polygo  50513件 EPSG:2450      shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________/都市計画基礎調査（建物利用現況調査）/01_GISデータ/06 GISデータ/kaoku/kaoku.shp
+2026-08-10T12:06:18 INFO    [2416/2455] Point     464件 EPSG:2450      shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________/都市計画基礎調査（建物利用現況調査）/01_GISデータ/06 GISデータ/messitu/messitu.shp
+2026-08-10T12:06:18 INFO    [2417/2455] LineSt      9件 EPSG:2450      shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________/都市計画基礎調査（建物利用現況調査）/01_GISデータ/06 GISデータ/toshi/toshi.shp
+2026-08-10T12:06:18 INFO    [2418/2455] LineSt    239件 EPSG:2450      shizuoka-pref/135c1f13-4242-48c9-b0fc-fdc6885b07af/1276___________________/都市計画基礎調査（建物利用現況調査）/01_GISデータ/06 GISデータ/yoto/yoto.shp
+2026-08-10T12:06:24 INFO    --- end of convert ---
+2026-08-10T12:10:03 INFO    $ bskp tiles --theme 建物
+2026-08-10T12:10:03 INFO    ライセンス不明のため 3 レイヤを除外しました
+2026-08-10T12:10:08 INFO    配信対象の調査項目でない 1424 レイヤを除外しました（収集と変換はしているので data/processed には残る）
+2026-08-10T12:10:08 INFO    建物 から定義どおりでない 396 レイヤを除外しました（小地域集計型 379 / ポリゴンでない(LineString) 9 / 用途コード列なし 7 / ポリゴンでない(Point) 1）
+2026-08-10T12:10:08 INFO    土地利用 から定義どおりでない 511 レイヤを除外しました（用途コード列なし 190 / 小地域集計型 175 / ポリゴンでない(Point) 116 / ポリゴンでない(PointZ) 15 / ポリゴンでない(MultiPoint) 13 / ポリゴンでない(LineString) 2）
+2026-08-10T12:10:08 INFO    建物: 6 レイヤ -> building.pmtiles
+2026-08-10T12:19:24 INFO    既存 index から 1 テーマを引き継ぎます
+2026-08-10T12:19:24 INFO    出典 8 件を attribution.json に書き出しました
+2026-08-10T12:19:25 INFO    対象地域 75 件（提供元 8）を areas.json に書き出しました
+2026-08-10T12:19:25 INFO    --- end of tiles ---
