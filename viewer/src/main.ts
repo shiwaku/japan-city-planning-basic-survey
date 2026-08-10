@@ -335,6 +335,7 @@ function setOpacity(def: ThemeDef, v: number): void {
 // ---- 背景地図の切替（右下） ----
 class BasemapControl implements maplibregl.IControl {
   private container!: HTMLElement
+  private buttons = new Map<Basemap, HTMLButtonElement>()
 
   onAdd(): HTMLElement {
     this.container = document.createElement('div')
@@ -344,15 +345,28 @@ class BasemapControl implements maplibregl.IControl {
       btn.type = 'button'
       btn.textContent = label
       btn.title = `背景を${label}に切替`
-      btn.className = basemap === id ? 'on' : ''
       btn.addEventListener('click', () => setBasemap(id))
+      this.buttons.set(id, btn)
       this.container.appendChild(btn)
     }
+    this.sync()
     return this.container
+  }
+
+  /**
+   * 選択中のボタンを塗り直す。
+   *
+   * コントロールごと付け替えて作り直してはいけない。MapLibre は下側のコーナーに
+   * 追加するとき先頭へ差し込む（addControl → insertBefore firstChild）ので、
+   * 付け替えるたびに淡色/写真が 3D ボタンの上下を行き来してしまう。
+   */
+  sync(): void {
+    for (const [id, btn] of this.buttons) btn.classList.toggle('on', id === basemap)
   }
 
   onRemove(): void {
     this.container.remove()
+    this.buttons.clear()
   }
 }
 
@@ -399,8 +413,7 @@ function setBasemap(next: Basemap): void {
     addDataLayers()
     buildToggles()
   })
-  map.removeControl(basemapCtrl)
-  map.addControl(basemapCtrl, 'bottom-right')
+  basemapCtrl.sync()
 }
 
 // ---- クリックで属性表示 ----
