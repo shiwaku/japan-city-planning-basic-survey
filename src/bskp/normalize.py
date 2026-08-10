@@ -61,6 +61,23 @@ def _clean(name: str) -> str:
 # 小地域集計型の列名（lui_201 など）。この型は用途コード列を持たない
 _LUI_RE = re.compile(r"^lui_(\d{3})$")
 
+# 集計値が列で横に並ぶ型。lui_201 のように国標準コードを列名にするものだけでなく、
+# 通し番号や別の体系で並べるものもある。実測で見つかった型:
+#
+#   LUI_1 … LUI_16          用途別土地利用面積（埼玉県ほか。1〜2 桁なので _LUI_RE を素通りする）
+#   B_AGE_1 … B_AGE_999     建築年別の棟数
+#   B_FLR_*, B_BFA_*        階数別・建築面積規模別の棟数
+#   b_use_401 …             建物用途別の棟数
+#   b_area_701 …, b_fl_a_801 …   用途別の建築面積・延床面積
+#
+# いずれも 1 ポリゴン = 1 小地域で、地物の形と属性の意味が対応しない。
+_WIDE_RE = re.compile(r"^(lui|bui|b_use|b_age|b_flr|b_bfa|b_area|b_fl_a)_?\d+$",
+                      re.IGNORECASE)
+
+# 何列並んでいれば「横に並べた集計」と見なすか。1 列だけなら単なる属性名の
+# 可能性があるので、敷地ベースのレイヤを巻き込まないよう 3 列以上を条件にする
+_WIDE_MIN = 3
+
 
 def group_of(code: str) -> str:
     if code in NATURAL:
@@ -100,11 +117,19 @@ def is_aggregate(fields: list[str]) -> bool:
     集計型は 1 ポリゴンが小地域まるごとを指す別物。同じ地図記号では描けない。
     実測では土地利用の 99.8%（984,681/986,643 フィーチャ）が個別ポリゴンで、
     集計型は 0.2% しかない。混ぜると凡例の意味が壊れるので分けて扱う。
+
+    判定は 3 つ。どれか 1 つでも当たれば集計型:
+
+      1. small_area と area_id_no を両方持つ（大分県ほか）
+      2. lui_201 のように国標準コードを列名にした列がある
+      3. 集計値を横に並べた列が 3 列以上ある（LUI_1…、B_AGE_1… など）
     """
     names = {_clean(f) for f in fields}
     if all(m in names for m in AGGREGATE_MARKERS):
         return True
-    return any(_LUI_RE.match(n) for n in names)
+    if any(_LUI_RE.match(n) for n in names):
+        return True
+    return sum(1 for n in names if _WIDE_RE.match(n)) >= _WIDE_MIN
 
 
 ANNOTATED_FIELDS = ("lui_code", "lui_name", "lui_group")
