@@ -595,20 +595,27 @@ def _attribution_for(layers: list[dict], inventory: Path,
     licenses.yaml で補う。再配布するのに条件不明のまま出さないため。
     """
     verified: dict[str, dict] = {}
+    per_dataset: dict[str, dict] = {}
     ref_dir = reference or (inventory.parent / "reference")
     lic_path = ref_dir / "licenses.yaml"
     if lic_path.exists():
-        verified = (yaml.safe_load(lic_path.read_text(encoding="utf-8")) or {}).get("overrides") or {}
+        loaded = yaml.safe_load(lic_path.read_text(encoding="utf-8")) or {}
+        verified = loaded.get("overrides") or {}
+        per_dataset = loaded.get("datasets") or {}
     used = {(l["catalog_id"], l["dataset_name"]) for l in layers}
     seen: dict[tuple[str, str], dict] = {}
     for row in _read_inventory(inventory):
         key = (row["catalog_id"], row["dataset_name"])
         if key not in used or key in seen:
             continue
-        fixed = verified.get(row["organization"])
+        # データセット単位の補正が最優先。organization ごと差し替えることがある
+        # （スクレイプ元によっては organization がカタログ名になる）
+        exact = per_dataset.get(row["dataset_name"]) or {}
+        organization = exact.get("organization") or row["organization"]
+        fixed = verified.get(organization)
         seen[key] = {
-            "organization": row["organization"],
-            "license": fixed["license"] if fixed else row["license"],
+            "organization": organization,
+            "license": exact.get("license") or (fixed["license"] if fixed else row["license"]),
             "catalog": row["catalog_name"],
             "url": row["dataset_url"],
         }
@@ -666,17 +673,44 @@ def _to_wgs84(srs: str, points: list[tuple[float, float]]) -> list[tuple[float, 
     return moved if len(moved) == len(points) else None
 
 
+def _geojsonl_bbox(path: Path) -> list[float] | None:
+    """変換後の GeoJSONSeq から範囲を読む。中身は必ず EPSG:4326。
+
+    シェープファイルに .prj が無いと layers.json の srs が空になり、ヘッダの
+    外接矩形をどの投影から変換すればよいか決められない。そのときの逃げ道。
+    全件を走査するので遅いが、対象は .prj を持たないレイヤだけ。
+    """
+    import subprocess
+    try:
+        done = subprocess.run(["ogrinfo", "-so", "-al", str(path)],
+                              capture_output=True, text=True, timeout=900)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    m = re.search(r"Extent: \(([-\d.]+), ([-\d.]+)\) - \(([-\d.]+), ([-\d.]+)\)", done.stdout)
+    return [float(m.group(i)) for i in (1, 2, 3, 4)] if m else None
+
+
 def _bboxes(layers: list[dict], work: Path) -> dict[str, list[float]]:
     """レイヤの path → EPSG:4326 の [w, s, e, n]。
 
     投影が違えば矩形は変換後に傾くので、4 隅を通してから min/max を取る。
     """
-    per_srs: dict[str, list[tuple[str, tuple]]] = collections.defaultdict(list)
-    for layer in layers:
-        if box := _shp_bbox(work / layer["source"]):
-            per_srs[layer["srs"] or "EPSG:4326"].append((layer["path"], box))
-
     out: dict[str, list[float]] = {}
+    per_srs: dict[str, list[tuple[str, tuple]]] = collections.defaultdict(list)
+    unknown = 0
+    for layer in layers:
+        box = _shp_bbox(work / layer["source"])
+        # srs が空のまま投影座標を EPSG:4326 と見なすと、メートルを緯度経度として
+        # 出してしまう。素直に変換後のファイルから読む
+        if not box or not layer["srs"]:
+            unknown += 1
+            if found := _geojsonl_bbox(Path(layer["path"])):
+                out[layer["path"]] = found
+            continue
+        per_srs[layer["srs"]].append((layer["path"], box))
+    if unknown:
+        logging.info("投影が不明な %d レイヤは変換後のファイルから範囲を読みました", unknown)
+
     for srs, items in per_srs.items():
         corners = [pt for _, (xmin, ymin, xmax, ymax) in items
                    for pt in ((xmin, ymin), (xmax, ymin), (xmax, ymax), (xmin, ymax))]
@@ -719,10 +753,19 @@ def _areas_for(layers: list[dict], inventory: Path, reference: Path,
     if rule_path.exists():
         rules = yaml.safe_load(rule_path.read_text(encoding="utf-8")) or {}
 
+    # 提供元は出典表示と揃える。licenses.yaml の datasets で差し替えたものが
+    # ここだけカタログ名のまま出ると、同じ地図の中で名前が食い違う
+    per_dataset: dict[str, dict] = {}
+    lic_path = reference / "licenses.yaml"
+    if lic_path.exists():
+        per_dataset = (yaml.safe_load(lic_path.read_text(encoding="utf-8")) or {}).get("datasets") or {}
+
     provider: dict[tuple[str, str], tuple[str, str, str]] = {}
     for row in _read_inventory(inventory):
+        fixed = per_dataset.get(row["dataset_name"]) or {}
         provider.setdefault((row["catalog_id"], row["dataset_name"]),
-                            (row["organization"], row["catalog_name"], row["dataset_url"]))
+                            (fixed.get("organization") or row["organization"],
+                             row["catalog_name"], row["dataset_url"]))
 
     boxes = _bboxes(layers, work)
     groups: dict[str, dict] = {}
@@ -911,6 +954,7 @@ def cmd_fetch(args: argparse.Namespace) -> None:
         dry_run=args.dry_run,
         limit=args.limit,
         user_agents={c.id: c.user_agent for c in cats if c.user_agent},
+        datasets=args.dataset,
     )
 
 
@@ -996,6 +1040,8 @@ def main(argv: list[str] | None = None) -> None:
     sf.add_argument("--kind", action="append",
                     choices=["geo", "archive", "tabular", "document", "other"],
                     help="取得する種別（既定は全部）")
+    sf.add_argument("--dataset", action="append",
+                    help="データセット名かタイトルに含まれる文字列で絞る（複数可）")
     sf.add_argument("--max-mb", type=int, help="この MB を超えるリソースは飛ばす")
     sf.add_argument("--limit", type=int, help="取得件数の上限")
     sf.add_argument("--dry-run", action="store_true", help="URL と保存先を出すだけ")
